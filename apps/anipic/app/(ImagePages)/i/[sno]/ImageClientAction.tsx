@@ -1,7 +1,7 @@
 "use client";
 
 import { IconButton } from "@shared/components/ui/Button";
-import { useState, useTransition } from "react";
+import { useState } from "react";
 import { AiOutlineLoading } from "react-icons/ai";
 import { FaRegHeart } from "react-icons/fa6";
 import { SlCloudDownload } from "react-icons/sl";
@@ -33,8 +33,12 @@ export function DownloadButton({ sno }: { sno: number }) {
         throw new Error("Invalid response");
       }
 
-      // trigger download
-      window.location.assign(res.downloadUrl);
+      const link = document.createElement("a");
+      link.href = res.downloadUrl;
+      link.download = "";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
 
       toast.success("Download started");
     } catch {
