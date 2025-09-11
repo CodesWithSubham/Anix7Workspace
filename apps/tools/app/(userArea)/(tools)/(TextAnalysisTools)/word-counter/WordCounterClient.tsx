@@ -89,7 +89,7 @@ export default function WordCounterClient() {
   }
 
   return (
-    <Section className="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <Section className="grid grid-cols-1 md:grid-cols-3 gap-4" title="Word & Character Counter">
       {/* Text editor */}
       <div className="md:col-span-2 flex flex-col">
         <label className="mb-2 font-semibold">Enter your text</label>

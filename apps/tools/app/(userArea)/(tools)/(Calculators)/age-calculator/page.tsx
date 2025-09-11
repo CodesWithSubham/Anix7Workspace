@@ -1,3 +1,5 @@
+// apps/tools/app/(userArea)/(tools)/(Calculators)/age-calculator/page.tsx
+
 import { IfLoggedOut } from "@shared/components/auth/LoggedInWrapper";
 import AgeCalculatorClient from "./AgeCalculatorClient";
 import Section, { Card, CardSection } from "@shared/components/ui/Section";

@@ -1,13 +1,10 @@
 // apps/tools/app/(userArea)/(tools)/(WritingTools)/word-counter/page.tsx
 
-import { IfLoggedOut } from "@shared/components/auth/LoggedInWrapper";
 import Section, { Card, CardSection } from "@shared/components/ui/Section";
-import { WorkBox } from "@shared/components/ui/Boxes";
-import { Button } from "@shared/components/ui/Button";
 import WordCounterClient from "./WordCounterClient";
 
 export const metadata = {
-  title: "Free Word Counter – Track Word & Character Count Easily",
+  title: "Free Word Counter - Track Word & Character Count Easily",
   description:
     "Free Word Counter tool to count words and characters instantly. Track text length, extract keywords, set limits, and optimize your content for writing, blogging, SEO, and social media.",
   keywords: [
@@ -65,10 +62,9 @@ export default function WordCounter() {
 
       <Section title="Smart Word Counter Tool">
         <p className="text-center mb-6">
-          Our free online Word Counter helps you count words and characters in
-          real-time. Whether you’re writing blog posts, social media captions,
-          essays, or professional content, this tool ensures your text is
-          precise, optimized, and within required limits.
+          Our free online Word Counter helps you count words and characters in real-time. Whether
+          you&apos;re writing blog posts, social media captions, essays, or professional content,
+          this tool ensures your text is precise, optimized, and within required limits.
         </p>
 
         <CardSection>
@@ -101,7 +97,7 @@ export default function WordCounter() {
               title: "Social Media Friendly",
               description:
                 "Check character limits for Twitter (X), Instagram, and Facebook posts to craft concise, engaging content.",
-              image: "/assets/img/word-social.png",
+              image: "/assets/img/social-media-friendly.png",
             },
             {
               title: "No Installation Required",
@@ -121,7 +117,7 @@ export default function WordCounter() {
         </CardSection>
       </Section>
 
-      <IfLoggedOut>
+      {/* <IfLoggedOut>
         <WorkBox className="mt-14 text-center">
           <h2>Track Words & Characters Instantly!</h2>
           <p>
@@ -130,7 +126,7 @@ export default function WordCounter() {
           </p>
           <Button htmlFor="loginSignupCheckId">Signup Now</Button>
         </WorkBox>
-      </IfLoggedOut>
+      </IfLoggedOut> */}
     </>
   );
 }
