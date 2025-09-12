@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import { twMerge } from "tailwind-merge";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 type TSection = {
   title?: string;
@@ -13,19 +16,48 @@ export default function Section({
   className,
   ...props
 }: TSection) {
+  const h2Ref = useRef<HTMLHeadingElement>(null);
+  const [titleHeight, setTitleHeight] = useState(title ? 70 : 0); // default height when title exists
+
+  // 1️⃣ Initial synchronous measurement (no flicker)
+  useLayoutEffect(() => {
+    if (h2Ref.current) {
+      setTitleHeight(h2Ref.current.offsetHeight + 32); // +32px padding
+    }
+  }, [title]);
+
+  // 2️⃣ Asynchronous resize updates (won’t block paint)
+  useEffect(() => {
+    if (!h2Ref.current) return;
+    const el = h2Ref.current;
+
+    const observer = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.target === el) {
+          // update asynchronously → smoother
+          setTitleHeight(entry.contentRect.height + 32);
+        }
+      }
+    });
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [title]);
+
   return (
     <section
       {...props}
       className={twMerge(
-        "relative bg-white dark:bg-neutral-800 px-5 py-8 mt-5 mb-12 mx-auto shadow-[0_5px_35px_rgba(0,0,0,.07)] rounded-xl text-justify ",
-        title && "pt-20",
+        "relative bg-white dark:bg-neutral-800 px-5 py-8 mt-5 mb-12 mx-auto shadow-[0_5px_35px_rgba(0,0,0,.07)] rounded-xl text-justify",
         className
       )}
+      style={{ paddingTop: title ? titleHeight : undefined }}
     >
       {title && (
         <h2
+          ref={h2Ref}
           className={twMerge(
-            "absolute top-5 w-[calc(100%-40px)] left-1/2 -translate-x-1/2 text-center after:content-[''] after:block after:w-40 after:h-[3px] after:bg-(--linkC) after:rounded-full after:mx-auto after:mt-1 line-clamp-1",
+            "absolute top-5 w-[calc(100%-40px)] left-1/2 -translate-x-1/2 text-center after:content-[''] after:block after:w-40 after:h-[3px] after:bg-(--linkC) after:rounded-full after:mx-auto after:mt-1",
             titleClassName
           )}
         >
