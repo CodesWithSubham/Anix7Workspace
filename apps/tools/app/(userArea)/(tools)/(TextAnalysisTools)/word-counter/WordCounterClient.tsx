@@ -94,33 +94,16 @@ export default function WordCounterClient() {
       <div className="md:col-span-2 flex flex-col">
         <label className="mb-2 font-semibold">Enter your text</label>
         <TextArea
-          // value={text}
           onChange={(e) => setText(e.target.value)}
-          rows={12}
           placeholder="Paste or type your text here..."
-          maxLength={20000}
-          // className="w-full resize-y min-h-[220px] rounded-xl border border-slate-200 dark:border-slate-700 bg-transparent p-4 focus:outline-none focus:ring-2 focus:ring-slate-300 dark:focus:ring-slate-600"
+          maxLength={50000}
+          className="w-full max-h-96"
         />
 
         <div className="mt-4 flex flex-wrap gap-3">
-          <Button
-            // className="px-4 py-2 rounded-lg bg-slate-100 dark:bg-slate-700 border"
-            onClick={handleClear}
-          >
-            Clear
-          </Button>
-          <Button
-            // className="px-4 py-2 rounded-lg bg-slate-100 dark:bg-slate-700 border"
-            onClick={handleCopy}
-          >
-            {copied ? "Copied" : "Copy"}
-          </Button>
-          <Button
-            // className="px-4 py-2 rounded-lg bg-slate-100 dark:bg-slate-700 border"
-            onClick={handleDownload}
-          >
-            Download .txt
-          </Button>
+          <Button onClick={handleClear}>Clear</Button>
+          <Button onClick={handleCopy}>{copied ? "Copied" : "Copy"}</Button>
+          <Button onClick={handleDownload}>Download .txt</Button>
         </div>
 
         <div className="mt-6 grid grid-cols-2 gap-3 text-sm text-slate-600 dark:text-slate-300">
@@ -202,33 +185,35 @@ export default function WordCounterClient() {
           <Input
             inputMode="numeric"
             value={String(wordLimit)}
-            onChange={(e) =>
-              setWordLimit(e.target.value === "" ? "" : Math.max(0, Number(e.target.value)))
-            }
+            onChange={(e) => {
+              const n = Number(e.target.value);
+              setWordLimit(Number.isFinite(n) && n >= 0 ? n : "");
+            }}
             placeholder="e.g. 500"
             label="Word limit"
-            // className="w-full rounded-lg border p-2 bg-transparent"
           />
 
           <Input
             inputMode="numeric"
             value={String(charLimit)}
-            onChange={(e) =>
-              setCharLimit(e.target.value === "" ? "" : Math.max(0, Number(e.target.value)))
-            }
+            onChange={(e) => {
+              const n = Number(e.target.value);
+              setCharLimit(Number.isFinite(n) && n >= 0 ? n : "");
+            }}
             placeholder="e.g. 280"
             label="Character limit"
-            // className="w-full rounded-lg border p-2 bg-transparent"
           />
 
           <Input
             inputMode="numeric"
             value={String(topN)}
-            onChange={(e) => setTopN(Math.max(1, Math.min(20, Number(e.target.value || 5))))}
+            onChange={(e) => {
+              const n = Number(e.target.value);
+              setTopN(Number.isFinite(n) && n >= 1 && n <= 20 ? n : 5);
+            }}
             onFocus={(e) => e.target.select()}
             placeholder="5"
             label="Top keywords"
-            // className="w-full rounded-lg border p-2 bg-transparent"
           />
         </div>
       </div>
