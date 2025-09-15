@@ -183,6 +183,7 @@ export default function Resizer() {
           accept={{ "image/*": [] }}
           multiple
           maxItem={12}
+          maxSize={50 * 1024 * 1024} // 50 MB
           label="Drag & drop your image here, or click to select"
           disabled={loading.resize}
         />

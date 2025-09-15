@@ -17,12 +17,12 @@ export default function Section({
   ...props
 }: TSection) {
   const h2Ref = useRef<HTMLHeadingElement>(null);
-  const [titleHeight, setTitleHeight] = useState(title ? 70 : 0); // default height when title exists
+  const [titleHeight, setTitleHeight] = useState(title ? 79.4 : 0); // default height when title exists
 
   // 1️⃣ Initial synchronous measurement (no flicker)
   useLayoutEffect(() => {
     if (h2Ref.current) {
-      setTitleHeight(h2Ref.current.offsetHeight + 32); // +32px padding
+      setTitleHeight(h2Ref.current.offsetHeight + 34); // +34px padding
     }
   }, [title]);
 
@@ -35,7 +35,7 @@ export default function Section({
       for (const entry of entries) {
         if (entry.target === el) {
           // update asynchronously → smoother
-          setTitleHeight(entry.contentRect.height + 32);
+          setTitleHeight(entry.contentRect.height + 34); // +34px padding
         }
       }
     });
@@ -51,7 +51,7 @@ export default function Section({
         "relative bg-white dark:bg-neutral-800 px-5 py-8 mt-5 mb-12 mx-auto shadow-[0_5px_35px_rgba(0,0,0,.07)] rounded-xl text-justify",
         className
       )}
-      style={{ paddingTop: title ? titleHeight : undefined }}
+      style={{ paddingTop: title ? titleHeight : 0 }}
     >
       {title && (
         <h2
@@ -140,6 +140,7 @@ export function Card({
             alt={title || "Feature Image"}
             width={imageWidth || 96}
             height={imageHeight || 96}
+            loading="lazy"
             className="object-contain w-full h-full"
           />
         </div>
