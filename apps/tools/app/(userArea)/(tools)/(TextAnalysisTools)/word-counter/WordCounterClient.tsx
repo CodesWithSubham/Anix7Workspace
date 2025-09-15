@@ -6,7 +6,8 @@ import { Button } from "@shared/components/ui/Button";
 import { Input, TextArea } from "@shared/components/ui/Input";
 import Section from "@shared/components/ui/Section";
 import { cn } from "@shared/utils/cn";
-import { useEffect, useMemo, useState } from "react";
+import copyToClipboard from "@shared/utils/CopyToClipboard";
+import { useMemo, useState } from "react";
 
 type Keyword = { word: string; count: number };
 
@@ -15,7 +16,6 @@ export default function WordCounterClient() {
   const [wordLimit, setWordLimit] = useState<number | "">("");
   const [charLimit, setCharLimit] = useState<number | "">("");
   const [topN, setTopN] = useState(5);
-  const [copied, setCopied] = useState(false);
 
   // Word and character counts
   const charCount = text.length;
@@ -52,32 +52,6 @@ export default function WordCounterClient() {
     ? Math.min(100, Math.round((charCount / Number(charLimit)) * 100))
     : 0;
 
-  useEffect(() => {
-    if (!copied) return;
-    const t = setTimeout(() => setCopied(false), 1500);
-    return () => clearTimeout(t);
-  }, [copied]);
-
-  // Actions
-  function handleClear() {
-    setText("");
-  }
-
-  async function handleCopy() {
-    try {
-      await navigator.clipboard.writeText(text);
-      setCopied(true);
-    } catch (e) {
-      const el = document.createElement("textarea");
-      el.value = text;
-      document.body.appendChild(el);
-      el.select();
-      document.execCommand("copy");
-      document.body.removeChild(el);
-      setCopied(true);
-    }
-  }
-
   function handleDownload() {
     const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
     const url = URL.createObjectURL(blob);
@@ -97,12 +71,12 @@ export default function WordCounterClient() {
           onChange={(e) => setText(e.target.value)}
           placeholder="Paste or type your text here..."
           maxLength={50000}
-          className="w-full max-h-96"
+          className="w-full max-h-[70vh]"
         />
 
         <div className="mt-4 flex flex-wrap gap-3">
-          <Button onClick={handleClear}>Clear</Button>
-          <Button onClick={handleCopy}>{copied ? "Copied" : "Copy"}</Button>
+          <Button onClick={() => setText("")}>Clear</Button>
+          <Button onClick={() => copyToClipboard(text)}>Copy</Button>
           <Button onClick={handleDownload}>Download .txt</Button>
         </div>
 
