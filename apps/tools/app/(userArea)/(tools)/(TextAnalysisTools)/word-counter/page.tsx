@@ -6,7 +6,7 @@ import WordCounterClient from "./WordCounterClient";
 export const metadata = {
   title: "Free Word Counter - Track Word & Character Count Easily",
   description:
-    "Free Word Counter tool to count words and characters instantly. Track text length, extract keywords, set limits, and optimize your content for writing, blogging, SEO, and social media.",
+    "Free Word Counter to count words and characters instantly. Track text length, extract keywords, set limits and optimize writing for SEO and social media.",
   keywords: [
     "Anix7 Tools",
     "Anix7 word counter",
@@ -73,25 +73,25 @@ export default function WordCounter() {
               title: "Instant Word & Character Count",
               description:
                 "Track the number of words and characters as you type or paste your text — instantly and accurately.",
-              image: "/assets/img/word-instant.png",
+              image: "/assets/img/word-counter.webp",
             },
             {
               title: "Track Word & Character Limits",
               description:
                 "Set your desired word or character limit and get progress indicators to stay on target.",
-              image: "/assets/img/word-limit.png",
+              image: "/assets/img/word-counter-limit.webp",
             },
             {
               title: "Keyword Extraction",
               description:
                 "Automatically identify frequently used words in your content to optimize SEO and readability.",
-              image: "/assets/img/word-keywords.png",
+              image: "/assets/img/word-counter-seo.webp",
             },
             {
               title: "Perfect for Students & Writers",
               description:
                 "Ensure your essays, assignments, and blog posts meet specific length requirements without hassle.",
-              image: "/assets/img/word-student.png",
+              image: "/assets/img/word-counter-student-and-writer.png",
             },
             {
               title: "Social Media Friendly",
