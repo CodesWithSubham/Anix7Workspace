@@ -1,6 +1,7 @@
 export type ToolType = {
-  category: "Calculator" | "Image" | "Other";
+  category: "Calculator" | "Image" | "Text Analysis" | "Other";
   hot?: true;
+  isNew?: true;
   title: string;
   description: string;
   image: string;
@@ -27,11 +28,21 @@ export const tools: ToolType[] = [
   {
     category: "Calculator",
     hot: true,
+    isNew: true,
     title: "Age Calculator",
     description:
       "Free Age Calculator to find exact age in years, months, days. Compare ages, differences & birthdays.",
     image: "/assets/img/age-calculator.png",
     link: "/age-calculator",
+  },
+  {
+    category: "Text Analysis",
+    title: "Word & Character Counter",
+    isNew: true,
+    description:
+      "Free Word Counter to count words and characters, set limits, and optimize writing for SEO",
+    image: "/assets/img/word-counter-limit.webp",
+    link: "/word-counter",
   },
   {
     category: "Image",
