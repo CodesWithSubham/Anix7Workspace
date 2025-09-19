@@ -82,6 +82,7 @@ type CardButtonProps = {
   imageClassName?: string;
   imageWidth?: number;
   imageHeight?: number;
+  isNew?: boolean;
 } & React.AnchorHTMLAttributes<HTMLAnchorElement> & // native <a> attributes
   LinkProps; // next/link specific props
 
@@ -93,12 +94,13 @@ export function CardButton({
   imageClassName = "",
   imageWidth,
   imageHeight,
+  isNew,
   ...props
 }: CardButtonProps) {
   return (
     <Link
       className={twMerge(
-        "w-full flex h-full flex-row items-center gap-4 p-4 overflow-hidden hover:scale-102 transition-all",
+        "w-full relative flex h-full flex-row items-center gap-4 p-4 overflow-hidden hover:scale-102 transition-all",
         "shadow-[0px_3px_10px_rgba(0,0,0,.20),_inset_20px_20px_18px_rgba(255,255,255,.9),_inset_-20px_-20px_18px_rgba(0,0,0,.07)]",
         "dark:shadow-[inset_20px_20px_18px_rgba(255,255,255,.07),_inset_-20px_-20px_18px_rgba(0,0,0,.9)]",
         "hover:shadow-[0px_3px_10px_rgba(0,0,0,.20),_inset_20px_20px_18px_rgba(0,0,0,.07),_inset_-20px_-20px_18px_rgba(255,255,255,.9)]",
@@ -107,6 +109,14 @@ export function CardButton({
       )}
       {...props}
     >
+      {/* Ribbon */}
+      {isNew && (
+        <div className="absolute z-10 top-0 left-0 w-10 aspect-square grid place-items-center">
+          <div className="absolute rotate-[-45deg] bg-gradient-to-r from-red-600 to-red-500 text-white font-bold text-[10px] px-8 py-0.5 text-center ring-2 ring-red-600 border border-white shadow-md">
+            NEW
+          </div>
+        </div>
+      )}
       {image && (
         <div
           className={twMerge(

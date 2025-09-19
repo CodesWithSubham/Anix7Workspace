@@ -24,8 +24,15 @@ export function ToolsList() {
     return (
       <Section key={category} title={`${category} Tools`}>
         <CardSection>
-          {features.map(({ title, description, image, link }, i) => (
-            <CardButton key={i} href={link} title={title} image={image} description={description} />
+          {features.map(({ title, description, image, link, isNew }, i) => (
+            <CardButton
+              key={i}
+              href={link}
+              title={title}
+              image={image}
+              description={description}
+              isNew={isNew}
+            />
           ))}
         </CardSection>
       </Section>
@@ -39,8 +46,15 @@ export function FeaturedTools() {
       <CardSection>
         {tools
           .filter((feature) => feature.hot)
-          .map(({ title, description, image, link }, i) => (
-            <CardButton key={i} href={link} title={title} image={image} description={description} />
+          .map(({ title, description, image, link, isNew }, i) => (
+            <CardButton
+              key={i}
+              href={link}
+              title={title}
+              image={image}
+              description={description}
+              isNew={isNew}
+            />
           ))}
       </CardSection>
     </Section>
