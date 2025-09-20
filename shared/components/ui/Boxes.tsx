@@ -22,6 +22,38 @@ export function WorkBox({ children, className = "", ...props }: React.HTMLProps<
   );
 }
 
+type PopupBoxProps = React.HTMLProps<HTMLDivElement> & {
+  id?: string;
+  visible?: boolean;
+  className?: string;
+  header?: React.ReactNode;
+  svg?: React.ReactNode;
+  closeable?: boolean;
+  onClose?: () => void;
+};
+/**
+ * A reusable popup container with optional header, close button, and animation support.
+ *
+ * @example
+ * // Basic usage:
+ * <PopUpBox visible={true} header="Hello" closeable onClose={() => setShow(false)}>
+ *   <p>This is a popup message.</p>
+ * </PopUpBox>
+ *
+ * @example
+ * // With custom icon and styling:
+ * <PopUpBox
+ *   visible={isOpen}
+ *   svg={<MyIcon />}
+ *   className="max-w-md bg-white shadow-lg"
+ *   closeable
+ *   onClose={() => setOpen(false)}
+ * >
+ *   <div>Custom content goes here</div>
+ * </PopUpBox>
+ *
+ * @param props - See `PopupBoxProps` for all available options.
+ */
 export function PopUpBox({
   children,
   id = "",
@@ -32,16 +64,7 @@ export function PopUpBox({
   closeable = false,
   onClose = () => {},
   ...props
-}: React.PropsWithChildren<{
-  id?: string;
-  visible?: boolean;
-  className?: string;
-  header?: React.ReactNode;
-  svg?: React.ReactNode;
-  closeable?: boolean;
-  onClose?: () => void;
-}> &
-  React.HTMLProps<HTMLDivElement>) {
+}: PopupBoxProps) {
   const [isScrollable, setIsScrollable] = useState(false);
   const [isAtBottom, setIsAtBottom] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
