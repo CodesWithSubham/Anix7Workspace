@@ -1,2 +1,53 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# Ensure consistent line endings across OS
+* text=auto eol=lf
+
+# Treat all JS/TS files as UTF-8 text
+*.js text diff=javascript
+*.jsx text diff=javascript
+*.ts text diff=typescript
+*.tsx text diff=typescript
+
+# React, HTML, CSS
+*.html text diff=html
+*.css text diff=css
+*.scss text diff=css
+*.sass text diff=css
+
+# JSON, YAML, Markdown, etc.
+*.json text diff=json
+*.yml text diff=yaml
+*.yaml text diff=yaml
+*.md text diff=markdown
+*.mdx text diff=markdown
+
+# Lockfiles (don’t normalize line endings)
+package-lock.json -text
+pnpm-lock.yaml -text
+yarn.lock -text
+
+# Fonts, images, binaries — treat as binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.svg text
+*.ttf binary
+*.otf binary
+*.woff binary
+*.woff2 binary
+*.eot binary
+*.pdf binary
+*.zip binary
+
+# Type definitions
+*.d.ts text diff=typescript
+
+# Optional: treat env files as text (but ignored in .gitignore)
+.env text
+.env.* text
+
+# Ignore system files in attributes as well
+.DS_Store binary
+Thumbs.db binary

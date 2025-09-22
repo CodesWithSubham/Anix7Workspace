@@ -1,6 +1,6 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-# Dependencies
+# ------------------------------------------------------
+# 📦 Dependencies & Package Managers
+# ------------------------------------------------------
 node_modules/
 .pnpm-store
 /.pnp
@@ -11,62 +11,62 @@ node_modules/
 !.yarn/releases
 !.yarn/versions
 
-# testing
-/coverage
+# ------------------------------------------------------
+# 🧪 Testing & Coverage
+# ------------------------------------------------------
+coverage/
 test/
 
-# next.js
+# ------------------------------------------------------
+# ⚡ Next.js / Build Output
+# ------------------------------------------------------
 .next/
 out/
+build/
+dist/
 
-# production
-/build
+# ------------------------------------------------------
+# 🚀 Production / Deployment
+# ------------------------------------------------------
+.vercel/
+.turbo/
 
-# misc
-.DS_Store
-*.pem
+# ------------------------------------------------------
+# ⚙️ Environment Variables
+# ------------------------------------------------------
+.env
+.env.*
+.env.*.local
+.env.local
 
-# debug
+# ------------------------------------------------------
+# 🪵 Logs & Debug
+# ------------------------------------------------------
+logs/
+*.log
+*.log.*
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# Environment variables
-.env.*.local
-.env*
-
-# vercel
-.vercel
-
-# typescript
+# ------------------------------------------------------
+# 🧰 TypeScript
+# ------------------------------------------------------
 *.tsbuildinfo
 next-env.d.ts
 
-
-
-# Logs
-logs
-*.log
-*.log.*
-
-
-# Other build output
-dist/
-build/
-coverage/
-
-# Turbo cache (optional - you may want to keep this in CI)
-.turbo/
-
-# System files
-.DS_Store
-Thumbs.db
-
-# IDE files
+# ------------------------------------------------------
+# 🖥️ IDE & System Files
+# ------------------------------------------------------
 .idea/
 .vscode/
 *.sw?
+.DS_Store
+Thumbs.db
 
-# For IntelliSense
+# ------------------------------------------------------
+# 🧠 Miscellaneous
+# ------------------------------------------------------
+*.pem
 forIntelliSense.css
