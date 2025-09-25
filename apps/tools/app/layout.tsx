@@ -90,8 +90,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {/* Top Right Circle Style */}
           <div className="absolute w-48 h-56 bg-neutral-500/5 dark:bg-black/15 -z-10 top-0 right-0 rounded-bl-full" />
           <Navbar
-            appName="Tools"
-            appSubName="Beta"
+            appName="Anix7"
+            appSubName="Tools"
             moreIcon={[
               {
                 component: <ToolSearch />,

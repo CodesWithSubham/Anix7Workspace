@@ -231,21 +231,27 @@ export function SliderWithTooltip({
   );
 }
 
+type TextAreaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
+  name?: string | undefined;
+  placeholder?: string | undefined;
+  className?: string | undefined;
+  maxLength?: number | undefined;
+};
+
 export function TextArea({
   name = "text",
   placeholder = "Enter Your Text...",
   className = "",
   maxLength = 256,
-  onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {}, // Function to update parent state
   ...props
-}) {
+}: React.PropsWithChildren<TextAreaProps>) {
   const [count, setCount] = useState(0);
   const ref = useRef<NodeJS.Timeout | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     clearTimeout(ref.current as NodeJS.Timeout);
     setCount(e.target.value.length);
-    ref.current = setTimeout(() => onChange(e), debounceTime);
+    ref.current = setTimeout(() => props.onChange?.(e), debounceTime);
   };
   return (
     <div>
@@ -257,9 +263,11 @@ export function TextArea({
         onChange={handleChange}
         {...props}
       ></textarea>
-      <p className={`text-xs -mt-3 ml-3 ${count == maxLength ? "text-red-500" : ""}`}>
-        {count === 0 ? `Maximum ${maxLength} characters` : `${maxLength - count} characters left`}
-      </p>
+      {!props.readOnly && (
+        <p className={`text-xs -mt-3 ml-3 ${count == maxLength ? "text-red-500" : ""}`}>
+          {count === 0 ? `Maximum ${maxLength} characters` : `${maxLength - count} characters left`}
+        </p>
+      )}
     </div>
   );
 }
