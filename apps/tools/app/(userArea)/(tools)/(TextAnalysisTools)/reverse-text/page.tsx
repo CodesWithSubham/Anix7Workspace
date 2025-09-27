@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useMemo, useState } from "react";
 import { Button } from "@shared/components/ui/Button";
 import { TextArea } from "@shared/components/ui/Input";
 import Section from "@shared/components/ui/Section";
@@ -21,13 +21,9 @@ export default function ReverseTextPage() {
   const [text, setText] = useState("");
   const [reverseAction, setReverseAction] = useState<reverseT>("full");
   const [flipAction, setFlipAction] = useState<flipT>(null);
-  const [result, setResult] = useState("");
 
-  useEffect(() => {
-    if (!text) {
-      setResult("");
-      return;
-    }
+  const result = useMemo(() => {
+    if (!text) return "";
 
     let res =
       reverseAction === "full"
@@ -38,14 +34,11 @@ export default function ReverseTextPage() {
         ? reverseEachWordLettering(text)
         : text;
 
-    res =
-      flipAction === "upside-down"
-        ? flipTextUpsideDown(res)
-        : flipAction === "mirror"
-        ? flipTextMirror(res)
-        : res;
-
-    setResult(res);
+    return flipAction === "upside-down"
+      ? flipTextUpsideDown(res)
+      : flipAction === "mirror"
+      ? flipTextMirror(res)
+      : res;
   }, [text, reverseAction, flipAction]);
 
   // --- Share / Copy ---
@@ -133,8 +126,10 @@ export default function ReverseTextPage() {
 
       {/* Result output */}
       {result && (
-        <div className="relative">
-          <h2 className="absolute top-2 left-2 text-sm text-gray-400 ">Result:</h2>
+        <div className="relative bg-inherit">
+          <h2 className="absolute bg-inherit top-[7px] left-px right-px rounded-t-lg text-sm text-gray-400 pl-2">
+            Result:
+          </h2>
           <TextArea className="pt-5" value={result} onFocus={(e) => e.target.select()} readOnly />
         </div>
       )}

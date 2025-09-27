@@ -1,27 +1,32 @@
 import { mirrorMap, upsideDownMap } from "./letters";
 
-export const reverseText = (text) => [...text].reverse().join("");
+export const reverseText = (text: string) => Array.from(text).reverse().join("");
 
 // --- Reverse words ---
-export const reverseWords = (text) =>
+export const reverseWords = (text: string) =>
   text
+    .trim()
     .split(/\n+/)
     .reverse()
-    .map((t) => t.split(/\s+/).filter(Boolean).reverse().join(" "))
+    .map((rl) => rl.split(/\s+/).reverse().join(" "))
     .join("\n");
 
-export const reverseEachWordLettering = (text) =>
+export const reverseEachWordLettering = (text: string) =>
   text
     .split(/\n+/)
     .map((t) =>
       t
         .split(/\s+/)
-        .map((w) => [...w].reverse().join(""))
+        .map((w) => Array.from(w).reverse().join(""))
         .join(" ")
     )
     .join("\n");
 
 // --- Flip logic ---
-export const flipTextUpsideDown = (text) => [...text].map((ch) => upsideDownMap[ch] || ch).join("");
+const flip = (text: string, map: Record<string, string>) =>
+  Array.from(text)
+    .map((ch) => map[ch] || ch)
+    .join("");
 
-export const flipTextMirror = (text) => [...text].map((ch) => mirrorMap[ch] || ch).join("");
+export const flipTextUpsideDown = (text: string) => flip(text, upsideDownMap);
+export const flipTextMirror = (text: string) => flip(text, mirrorMap);
