@@ -90,7 +90,7 @@ export default function Page() {
               // image: "/assets/img/mirror-text.png",
             },
             {
-              title: "Reverse Each Word’s Letter",
+              title: "Reverse Each Word's Letter",
               description:
                 "Flip every word individually while keeping sentence order intact — unique style for word games and riddles.",
               // image: "/assets/img/reverse-each-word.png",

@@ -172,6 +172,7 @@ export default function MyImages() {
                 className="break-inside-avoid overflow-hidden rounded-lg even:bg-(--waveB) dark:even:bg-(--headerB) odd:bg-[#4e4e4e29] border-2 border-dotted border-(--linkC)"
                 key={image.alias}
               >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   onContextMenu={(e) => e.preventDefault()}
                   src={`${imageUrl}/${image.alias}.${image.extension}`}
