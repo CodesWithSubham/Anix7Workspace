@@ -25,7 +25,7 @@ export default function ReverseTextPage() {
   const result = useMemo(() => {
     if (!text) return "";
 
-    let res =
+    const res =
       reverseAction === "full"
         ? reverseText(text)
         : reverseAction === "word"
@@ -97,7 +97,7 @@ export default function ReverseTextPage() {
               reverseAction !== "each-word-letter" && "bg-transparent not-dark:text-gray-600"
             )}
           >
-            Each Word's Letter
+            Each Word&apos;s Letter
           </Button>
         </div>
         <h3>Flip</h3>
