@@ -272,7 +272,7 @@ export function TextArea({
   );
 }
 
-type Option = { label: string } & React.HTMLProps<HTMLOptionElement>;
+export type Option = { label: string } & React.HTMLProps<HTMLOptionElement>;
 
 export function Select({
   label = "",
@@ -282,15 +282,16 @@ export function Select({
   className = "",
   options = [],
   ...props
-}: React.PropsWithChildren<
-  {
-    label?: string;
-    labelClassName?: string;
-    name?: string;
-    value?: string | number;
-    className?: string;
-    options?: Option[];
-  } & React.HTMLProps<HTMLSelectElement>
+}: {
+  label?: string;
+  labelClassName?: string;
+  name?: string;
+  value?: string | number;
+  className?: string;
+  options?: Option[];
+} & Omit<
+  React.DetailedHTMLProps<React.SelectHTMLAttributes<HTMLSelectElement>, HTMLSelectElement>,
+  "children"
 >) {
   return (
     <div className={twMerge("w-full flex flex-col relative", label && "mt-3")}>
