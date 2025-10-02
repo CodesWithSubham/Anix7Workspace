@@ -19,8 +19,6 @@ export default function SpeedCalculatorPage() {
     const metersPerSec = Number(value) * toMetersPerSecond[from];
     const result = metersPerSec / toMetersPerSecond[to];
 
-    console.log("result", result);
-
     if (result === Infinity) return "∞";
     if (result === 0) return "0";
     if (result > 1e9 || result < 1e-6) return result.toExponential(6);
