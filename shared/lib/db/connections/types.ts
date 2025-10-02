@@ -12,4 +12,5 @@ declare global {
   var _userDb: CachedConnection | undefined;
   var _imageUploadDb: CachedConnection | undefined;
   var _shortUrlDb: CachedConnection | undefined;
+  var _aniPicDb: CachedConnection | undefined;
 }
