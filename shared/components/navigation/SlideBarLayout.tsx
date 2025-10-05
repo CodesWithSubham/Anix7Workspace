@@ -25,7 +25,7 @@ type MenuItemDefault = {
   showOnLoggedIn?: boolean;
   showOnLoggedOut?: boolean;
 };
-type MenuItem = MenuItemDefault & {
+export type MenuItem = MenuItemDefault & {
   subMenu?: MenuItem[];
 };
 const commonMenu: MenuItem[] = [
