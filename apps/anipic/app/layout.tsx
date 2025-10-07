@@ -20,31 +20,38 @@ const baseUrl = process.env.BASE_URL!;
 export const metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "Anix7 - Explore Tools, Anime, Games, and Stunning Visuals",
-    template: "%s - Anix7",
+    default: "Anipic",
+    template: "%s - Anipic",
   },
   description:
-    "Anix7 is your all-in-one hub for smart tools, anime updates, 4K wallpapers, mini games and nature photography. Discover, create, and download with ease.",
-  keywords: ["Anix7"],
+    "Discover high-quality images and wallpapers on Anipic. Free downloads of stunning, curated photos from your favorite series. Explore now!",
+  keywords: [
+    "Anipic",
+    "AniPic - Anix7",
+    "anix7.in",
+    "AniPic by Anix7",
+    "anime hub",
+    // "Crunchyroll, manga, animation,anime, reviews, leaks, updates, community, enthusiasts, Anix7, anime magic, curated content,anime blog, anime community, anime reviews, anime leaks, anime updates, passionate fans, Anix7 site, anime enthusiasts, curated content, immersive experience,Japanese animation, anime fandom, animated series, manga reviews, exclusive leaks, upcoming releases, vibrant community, anime discussions, otaku culture,HD wallpaper,anime boys,aesthetic,sad anime boys,lonely,anime boy,sad anime boy,anime girl,anime landscape,depressed,cute anime boy,clouds,sunset,anime girls,scenic, anime enthusiast hub.",
+  ],
   author: "Anix7",
   openGraph: {
     url: "/",
-    siteName: "Anix7",
+    siteName: "AniPic",
     images: [
       {
-        url: `/assets/img/logo/anix7-logo-512.jpg`,
+        url: `/assets/img/logo/logo-512.jpg`,
         // width: 1200,
         // height: 630,
         width: 512,
         height: 512,
-        alt: "Anix7 Logo",
+        alt: "AniPic Logo",
       },
     ],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    images: ["/assets/img/logo/anix7-logo-512.jpg"],
+    images: ["/assets/img/logo/logo-512.jpg"],
   },
   robots: {
     index: true,

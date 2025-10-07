@@ -7,12 +7,15 @@ import getAniPicModel from "@shared/lib/db/models/AniPic";
 // 🧠 Server Action
 export async function uploadImageAction(_prevState: any, formData: FormData) {
   const session = await auth();
+  // Temporary for admin and owner access
   if (
     !session ||
     !session.user ||
     !(session?.user?.role === "admin" || session?.user?.role === "owner")
   )
     return { success: false, error: "Unauthorized" };
+
+  const user = session.user;
 
   const url = formData.get("url") as string;
   const tags = (formData.get("tags") as string)
@@ -29,23 +32,18 @@ export async function uploadImageAction(_prevState: any, formData: FormData) {
     const sno = last ? last.sno + 1 : 1;
     // await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate delay for demo purposes
     // throw new Error("Simulated failure"); // Simulate failure for demo purposes
-    console.log("data", {
-      sno,
-      url,
-      uploadedBy: 1, // Replace with logged-in user ID later
-      approved: false,
-      tags,
-      downloads: 0,
-    });
 
-    await AniPic.create({
+    const data = {
       sno,
       url,
       uploadedBy: 1, // Replace with logged-in user ID later
-      approved: false,
+      approved: user.role === "admin" || user.role === "owner",
       tags,
       downloads: 0,
-    });
+    };
+
+    console.log("data", data);
+    await AniPic.create(data);
 
     // revalidatePath("/");
     return { success: true, message: "✅ Image uploaded (pending admin approval)" };
