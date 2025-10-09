@@ -3,7 +3,7 @@ import getAniPicModel from "@shared/lib/db/models/AniPic";
 import ImageDetailClient from "./ImageDetailClient";
 
 interface Props {
-  params: { sno: string };
+  params: Promise<{ sno: string }>;
 }
 
 export default async function ImagePage({ params }: Props) {

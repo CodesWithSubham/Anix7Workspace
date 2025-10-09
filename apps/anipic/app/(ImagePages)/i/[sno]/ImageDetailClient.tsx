@@ -1,5 +1,6 @@
 "use client";
 
+import { formatThumbnailImageUrl } from "@/utils/formatThumbnail";
 // import { useRouter } from "next/navigation";
 import { motion } from "motion/react";
 
@@ -27,7 +28,7 @@ export default function ImageDetailClient({ img }: Props) {
         transition={{ duration: 0.3 }}
       >
         <img
-          src={img.url}
+          src={formatThumbnailImageUrl(img.url)}
           alt={`AniPic ${img.sno}`}
           width={800}
           height={600}
