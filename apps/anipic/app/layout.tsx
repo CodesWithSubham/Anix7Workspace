@@ -8,7 +8,7 @@ import Wave from "@shared/components/Wave";
 import SlideBar from "@/components/navigation/SlideBar";
 import Providers from "@shared/providers";
 import DefaultHead from "@shared/head";
-import { AnimatePresence } from "motion/react";
+import AnimatedPresenceWrapper from "@/components/AnimatedPresenceWrapper";
 
 // Load Inter
 const inter = Inter({
@@ -76,7 +76,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <div className="px-5 md:px-6 mx-auto max-w-(--breakpoint-xl)">
                 <main>
                   <NoScriptWarning />
-                  <AnimatePresence mode="wait">{children}</AnimatePresence>
+                  <AnimatedPresenceWrapper>{children}</AnimatedPresenceWrapper>
                 </main>
                 <ScrollToTopButton />
                 <Footer />

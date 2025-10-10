@@ -4,8 +4,19 @@ import { auth } from "@shared/lib/auth";
 import getAniPicModel from "@shared/lib/db/models/AniPic";
 // import { revalidatePath } from "next/cache";
 
+// Type of the return state
+export type UploadImageState =
+  | {
+      success: false;
+      error: string;
+    }
+  | {
+      success: true;
+      message: string;
+    };
+
 // 🧠 Server Action
-export async function uploadImageAction(_prevState: any, formData: FormData) {
+export async function uploadImageAction(_prevState: UploadImageState, formData: FormData): Promise<UploadImageState> {
   const session = await auth();
   // Temporary for admin and owner access
   if (
@@ -24,7 +35,7 @@ export async function uploadImageAction(_prevState: any, formData: FormData) {
     .filter(Boolean);
 
   if (!url || !url.startsWith("http"))
-    return { success: false, message: "Please enter a valid image URL." };
+    return { success: false, error: "Please enter a valid image URL." };
 
   try {
     const AniPic = await getAniPicModel();
@@ -49,6 +60,6 @@ export async function uploadImageAction(_prevState: any, formData: FormData) {
     return { success: true, message: "✅ Image uploaded (pending admin approval)" };
   } catch (err) {
     console.error("Upload failed:", err);
-    return { success: false, message: "Upload failed. Try again later." };
+    return { success: false, error: "Upload failed. Try again later." };
   }
 }

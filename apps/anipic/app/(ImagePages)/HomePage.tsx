@@ -4,8 +4,7 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
-
-export type Img = { sno: number; url: string };
+import { Img } from "./types";
 
 export default function HomePage({ images = [] }: { images: Img[] }) {
   const [visibleCount, setVisibleCount] = useState(20);

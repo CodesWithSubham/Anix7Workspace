@@ -1,6 +1,7 @@
 "use client";
 import { createContext, useContext, useState, ReactNode } from "react";
-import { Img } from "./HomePage";
+import { Img } from "./types";
+
 
 type ImgContextType = { visibleImages: Img[]; setVisibleImages: (imgs: Img[]) => void };
 const ImgContext = createContext<ImgContextType | undefined>(undefined);

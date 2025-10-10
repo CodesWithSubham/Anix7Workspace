@@ -10,7 +10,7 @@ import { cn } from "@shared/utils/cn";
 export default function UploadPage() {
   const [state, action, isPending] = useActionState(uploadImageAction, {
     success: false,
-    message: "",
+    error: "",
   });
 
   type ImgType = {
@@ -132,15 +132,10 @@ export default function UploadPage() {
         </Button>
       </form>
 
-      {state.message && (
-        <p
-          className={`text-center mt-4 text-sm ${
-            state.success ? "text-green-600" : "text-red-500"
-          }`}
-        >
-          {state.message}
-        </p>
+      {state.success && (
+        <p className={"text-center mt-4 text-sm text-green-600"}>{state.message}</p>
       )}
+      {!state.success && <p className={"text-center mt-4 text-sm text-red-500"}>{state.error}</p>}
 
       <p className="text-center mt-6 text-gray-500 text-xs">
         Uploaded images need admin approval before appearing publicly.

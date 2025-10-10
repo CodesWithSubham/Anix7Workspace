@@ -1,13 +1,13 @@
 "use client";
 
 import SlideBarLayout, { MenuItem } from "@shared/components/navigation/SlideBarLayout";
-import { HomeSvg } from "@shared/components/svg/HomeSvg";
-import { ImageRoundedSvg } from "@shared/components/svg/ImageSvg";
-import { InformationQuestionMarkSvg } from "@shared/components/svg/InformationSvg";
-import { QrSvg } from "@shared/components/svg/QrSvg";
-import { ResizeSvg } from "@shared/components/svg/ResizeSvg";
-import { SettingSvg } from "@shared/components/svg/SettingSvg";
-import { UrlSvg } from "@shared/components/svg/UrlSvg";
+// import { HomeSvg } from "@shared/components/svg/HomeSvg";
+// import { ImageRoundedSvg } from "@shared/components/svg/ImageSvg";
+// import { InformationQuestionMarkSvg } from "@shared/components/svg/InformationSvg";
+// import { QrSvg } from "@shared/components/svg/QrSvg";
+// import { ResizeSvg } from "@shared/components/svg/ResizeSvg";
+// import { SettingSvg } from "@shared/components/svg/SettingSvg";
+// import { UrlSvg } from "@shared/components/svg/UrlSvg";
 
 const menuItem: MenuItem[] = [
   // {
