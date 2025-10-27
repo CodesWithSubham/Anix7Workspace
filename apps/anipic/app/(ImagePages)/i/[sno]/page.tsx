@@ -13,11 +13,7 @@ export default async function ImagePage({ params }: Props) {
   // await new Promise(resolve => setTimeout(resolve, 2000));
 
   // Fetch image and increment downloads atomically
-  const img = await AniPic.findOneAndUpdate(
-    { sno: Number(sno), approved: true },
-    { $inc: { downloads: 1 } },
-    { new: true }
-  ).lean();
+  const img = await AniPic.findOne({ sno: Number(sno), approved: true }).lean();
 
   if (!img) return notFound();
 

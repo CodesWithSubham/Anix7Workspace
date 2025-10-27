@@ -1,8 +1,10 @@
 "use client";
 
-import { formatThumbnailImageUrl } from "@/utils/formatThumbnail";
-// import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { motion } from "motion/react";
+import updateDownloads from "./action";
+import { Button } from "@shared/components/ui/Button";
+import { formatThumbnailImageUrl } from "@/utils/formatThumbnail";
 
 interface Props {
   img: {
@@ -14,14 +16,46 @@ interface Props {
 }
 
 export default function ImageDetailClient({ img }: Props) {
-  // const router = useRouter();
+  const [downloads, setDownloads] = useState(img.downloads);
+
+  const handleDownload = async () => {
+    try {
+      // 1️⃣ Fetch image as Blob (external or internal)
+      const response = await fetch(img.url, { mode: "cors" });
+      if (!response.ok) throw new Error("Failed to fetch image");
+
+      const blob = await response.blob();
+      const objectUrl = URL.createObjectURL(blob);
+
+      // 2️⃣ Trigger download
+      const link = document.createElement("a");
+      link.href = objectUrl;
+      link.download = `AniPic-${img.sno}${getExtension(img.url)}`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      // 3️⃣ Revoke URL
+      setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
+
+      // 4️⃣ Update DB + state
+      const res = await updateDownloads(img.sno);
+      if (res?.success) {
+        setDownloads((d) => d + 1);
+      } else {
+        console.warn("Download count not updated:", res?.message);
+      }
+    } catch (err) {
+      console.error("❌ Download failed:", err);
+      alert("Failed to download image.");
+    }
+  };
 
   return (
     <div className="max-w-4xl mx-auto p-4">
       <motion.div
-        layoutId={`image-${img.sno}`} // Shared layout animation
-        className="relative rounded-xl overflow-hidden cursor-pointer"
-        // onClick={() => router.back()} // Click to go back
+        layoutId={`image-${img.sno}`}
+        className="relative rounded-xl overflow-hidden"
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.95 }}
@@ -41,15 +75,23 @@ export default function ImageDetailClient({ img }: Props) {
         <p className="mt-2 text-gray-700">
           Tags: {img.tags?.length ? img.tags.join(", ") : "No tags"}
         </p>
-        <p className="text-gray-400 text-xs mt-2">Downloads: {img.downloads}</p>
-        <a
-          href={img.url}
-          download
-          className="inline-block mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        <p className="text-gray-400 text-xs mt-2">
+          Downloads: {downloads}
+        </p>
+
+        <Button
+          onClick={handleDownload}
+          className="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
         >
           Download
-        </a>
+        </Button>
       </div>
     </div>
   );
+}
+
+// Helper: extract file extension
+function getExtension(url: string) {
+  const match = url.match(/\.(jpe?g|png|webp|gif|bmp|svg)$/i);
+  return match ? `.${match[1].toLowerCase()}` : ".jpg";
 }
