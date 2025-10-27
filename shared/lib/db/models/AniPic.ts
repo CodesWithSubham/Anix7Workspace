@@ -1,3 +1,4 @@
+import "server-only"
 import { Schema, Model, Document, Connection } from "mongoose";
 import connectToAniPicDb from "../connections/aniPicDb";
 
