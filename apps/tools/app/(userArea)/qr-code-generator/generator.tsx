@@ -13,7 +13,7 @@ import {
 import { toPng } from "html-to-image";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
-import { JSX, useCallback, useEffect, useRef, useState } from "react";
+import { JSX, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { IProps, QRCode } from "react-qrcode-logo";
 import type {
   contentTab,
@@ -319,11 +319,10 @@ export default function QRCodeGenerator() {
   const [content, setContent] = useState(allContent[0]);
   const searchParams = useSearchParams();
   // Set initial state from URL
-  useEffect(() => {
-    const initial = searchParams.get("content") as contentTab;
-    if (initial && allContent.includes(initial)) {
-      setContent(allContent.includes(initial) ? initial : allContent[0]);
-    }
+  useLayoutEffect(() => {
+    const initial = searchParams.get("content") as contentTab | null;
+    const newContent = initial && allContent.includes(initial) ? initial : allContent[0];
+    setContent(newContent);
   }, [searchParams]);
   // Update URL when content changes (without full reload)
   useEffect(() => {
@@ -541,34 +540,21 @@ export default function QRCodeGenerator() {
     let val = "";
     if (content === "URL" && qrData.URL?.url) {
       val = qrData.URL.url;
-      setQrSetting((prev) => ({ ...prev, value: val }));
-      return;
-    }
-    if (content === "Text" && qrData.Text?.text) {
+    } else if (content === "Text" && qrData.Text?.text) {
       val = qrData.Text.text;
-      setQrSetting((prev) => ({ ...prev, value: val }));
-      return;
-    }
-    if (content === "Wifi" && qrData.Wifi?.name) {
+    } else if (content === "Wifi" && qrData.Wifi?.name) {
       val = `WIFI:S:${qrData.Wifi?.name};T:${qrData.Wifi?.encryption ?? ""};P:${
         qrData.Wifi?.encryption && qrData.Wifi?.password ? qrData.Wifi.password : ""
       };H:${qrData.Wifi?.hidden ? "true" : "false"};;`;
-
-      setQrSetting((prev) => ({ ...prev, value: val }));
-      return;
-    }
-
-    if (content === "Email" && qrData.Email?.email) {
+    } else if (content === "Email" && qrData.Email?.email) {
       val = `mailto:${qrData.Email?.email}?subject=${encodeURIComponent(
         qrData.Email?.subject ?? ""
       )}&body=${encodeURIComponent(qrData.Email?.body ?? "")}`;
-
-      setQrSetting((prev) => ({ ...prev, value: val }));
-      return;
     }
+
     setQrSetting((prev) => ({
       ...prev,
-      value: "https://tools.anix7.in",
+      value: val || "https://tools.anix7.in",
     }));
   }, [qrData, content]);
 
@@ -1078,20 +1064,16 @@ function Frame({ frame, children }: { frame: QrFrame; children: React.ReactNode 
     </div>
   );
 
-  const QR = ({ className = "" }) => (
-    <div
-      ref={childrenRef}
-      className={`rounded-md p-2 ${className}`}
-      style={{ backgroundColor: frame.bg }}
-    >
-      {children}
-    </div>
-  );
-
   if (frame.type === 1)
     return (
       <div className="rounded-lg overflow-hidden" style={{ backgroundColor: frame.bg }}>
-        <QR className="pb-0" />
+        <div
+          ref={childrenRef}
+          className={`rounded-md p-2 pb-0`}
+          style={{ backgroundColor: frame.bg }}
+        >
+          {children}
+        </div>
         {textBox}
       </div>
     );
@@ -1100,14 +1082,26 @@ function Frame({ frame, children }: { frame: QrFrame; children: React.ReactNode 
     return (
       <div className="rounded-lg overflow-hidden" style={{ backgroundColor: frame.bg }}>
         {textBox}
-        <QR className="pt-0" />
+        <div
+          ref={childrenRef}
+          className={`rounded-md p-2 pt-0`}
+          style={{ backgroundColor: frame.bg }}
+        >
+          {children}
+        </div>
       </div>
     );
 
   if (frame.type === 3)
     return (
       <div className="bg-transparent rounded-md relative z-0">
-        <QR className="mb-3" />
+        <div
+          ref={childrenRef}
+          className={`rounded-md p-2 mb-3`}
+          style={{ backgroundColor: frame.bg }}
+        >
+          {children}
+        </div>
         <div
           className="absolute w-5 h-5 top-[220px] left-1/2 -translate-x-1/2 rotate-45 -z-10"
           style={{ backgroundColor: frame.bg }}
@@ -1120,7 +1114,13 @@ function Frame({ frame, children }: { frame: QrFrame; children: React.ReactNode 
     return (
       <div className="bg-transparent rounded-md relative z-0">
         {textBox}
-        <QR className="mt-3" />
+        <div
+          ref={childrenRef}
+          className={`rounded-md p-2 mt-3`}
+          style={{ backgroundColor: frame.bg }}
+        >
+          {children}
+        </div>
         <div
           className="absolute w-5 h-5 bottom-[220px] left-1/2 -translate-x-1/2 rotate-45 -z-10"
           style={{ backgroundColor: frame.bg }}
@@ -1140,7 +1140,9 @@ function Frame({ frame, children }: { frame: QrFrame; children: React.ReactNode 
             <div className="h-2 w-10 bg-white rounded-full" />
           </div>
         </div>
-        <QR />
+        <div ref={childrenRef} className="rounded-md p-2" style={{ backgroundColor: frame.bg }}>
+          {children}
+        </div>
         <div className="w-full h-14 flex items-center">{textBox}</div>
       </div>
     );

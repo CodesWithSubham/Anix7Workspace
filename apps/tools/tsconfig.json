@@ -10,7 +10,7 @@
 
   "include": [
     "next-env.d.ts",
-    "types.d.ts",
+    "../../shared/types.d.ts",
     "**/*.ts",
     "**/*.js",
     "**/*.tsx",

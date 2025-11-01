@@ -6,8 +6,9 @@ import { IfLoggedIn, IfLoggedOut } from "@shared/components/auth/LoggedInWrapper
 import { Button } from "@shared/components/ui/Button";
 import Section, { Card, CardSection } from "@shared/components/ui/Section";
 import { FeaturedTools, ToolsList } from "@/components/tools/toolsList";
+import { Metadata } from "next";
 
-export const metadata = { alternates: { canonical: "/" }, addToSitemap: true };
+export const metadata: Metadata = { alternates: { canonical: "/" }, addToSitemap: true };
 
 export default function Home() {
   return (
