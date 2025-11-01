@@ -17,7 +17,9 @@
     "../../shared/**/*.ts",
     "../../shared/**/*.js",
     "../../shared/**/*.tsx",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts",
+    "**/*.mts"
     // "../../shared/config/eslint/next.mjs"
   ],
   "exclude": ["node_modules"]

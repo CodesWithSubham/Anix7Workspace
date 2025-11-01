@@ -3,17 +3,17 @@
   "version": "0.1.2",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack --port 3000",
-    "build": "next build --turbopack",
+    "dev": "next dev --port 3000",
+    "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint"
   },
   "dependencies": {
     "@repo/shared": "workspace:*",
     "jszip": "^3.10.1",
-    "next": "^15.3.4",
+    "next": "^16.0.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "react-qrcode-logo": "^3.0.0"
+    "react-qrcode-logo": "^4.0.0"
   }
 }
