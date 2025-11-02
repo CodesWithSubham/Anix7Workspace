@@ -1,1 +1,0 @@
-export type Img = { sno: number; url: string };
