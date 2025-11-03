@@ -1,6 +1,7 @@
 "use client";
 
 import SlideBarLayout, { MenuItem } from "@shared/components/navigation/SlideBarLayout";
+import { Suspense } from "react";
 // import { HomeSvg } from "@shared/components/svg/HomeSvg";
 // import { ImageRoundedSvg } from "@shared/components/svg/ImageSvg";
 // import { InformationQuestionMarkSvg } from "@shared/components/svg/InformationSvg";
@@ -55,5 +56,9 @@ const menuItem: MenuItem[] = [
 ];
 
 export default function SlideBar() {
-  return <SlideBarLayout menuItem={menuItem} />;
+  return (
+    <Suspense>
+      <SlideBarLayout menuItem={menuItem} />;
+    </Suspense>
+  );
 }

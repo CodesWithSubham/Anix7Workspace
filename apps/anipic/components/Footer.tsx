@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Hr from "@shared/components/ui/Hr";
 import Section from "@shared/components/ui/Section";
+import { cacheLife } from "next/cache";
 
 // Updated importantLinks constant with multiple categories
 const importantLinks = [
@@ -58,7 +59,10 @@ const importantLinks = [
   },
 ];
 
-export default function Footer() {
+export default async function Footer() {
+  "use cache";
+  cacheLife("days");
+  
   return (
     <footer className="mb-8 mt-12">
       <Section className="text-center border border-gray-200/50 dark:border-neutral-600/60">
