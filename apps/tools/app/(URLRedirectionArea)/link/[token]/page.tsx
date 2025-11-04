@@ -6,9 +6,9 @@ import { notFound } from "next/navigation";
 const secretKey = new TextEncoder().encode(process.env.URL_SHORTENER_TOKEN);
 
 export default async function Page({ params }: { params: Promise<{ token: string }> }) {
+  // Await params before using its properties, then extract the token
+  const { token } = await params;
   try {
-    // Await params before using its properties, then extract the token
-    const { token } = await params;
 
     // Decode the token from Base64URL back to the original JWE string
     const decodedToken = Buffer.from(token, "base64url").toString("utf8");

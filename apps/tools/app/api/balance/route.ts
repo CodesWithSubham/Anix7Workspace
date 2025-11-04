@@ -1,9 +1,11 @@
 // /app/api/balance/route.js
-import { NextResponse } from "next/server";
+import { connection, NextResponse } from "next/server";
 import { auth } from "@shared/lib/auth";
 import getUserModel from "@shared/lib/db/models/User";
 
 export async function GET() {
+  await connection();
+
   try {
     const session = await auth();
 
