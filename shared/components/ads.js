@@ -2,9 +2,9 @@
 import { useClientWidth } from "@shared/utils/ClientInfo";
 import Link from "next/link";
 import Script from "next/script";
-import { useEffect, useRef } from "react";
+import { useEffect, useId, useRef } from "react";
 import { twMerge } from "tailwind-merge";
-import { v4 } from "uuid";
+
 
 export function AdsIcon({ className, children }) {
   return (
@@ -91,7 +91,7 @@ export function AdsForImageIndexPage(props) {
 }
 
 export function AdsterraNativeBanner() {
-  const id = v4();
+  const id = useId();
   return (
     <>
       <div className="mt-3 mb-2">

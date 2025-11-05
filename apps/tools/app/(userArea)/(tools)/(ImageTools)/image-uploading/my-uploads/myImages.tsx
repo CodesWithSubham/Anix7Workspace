@@ -7,7 +7,6 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { ShareLeftSvg } from "@shared/components/svg/ShareSvg";
 import { DeleteSvg } from "@shared/components/svg/DeleteSvg";
 
 type UploadedImage = {
@@ -151,10 +150,6 @@ export default function MyImages() {
 
   return (
     <>
-      <Button href="/image-uploading">
-        <ShareLeftSvg />
-        Back to Image Upload
-      </Button>
       {isClient && pageLoading ? (
         <div className="grid place-items-center grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 mx-auto">
           {Array.from({ length: 12 }).map((_, index) => (
@@ -202,7 +197,7 @@ export default function MyImages() {
                         onClick={() => modifyAds(image.alias, value as 0 | 1 | 2 | 3)}
                       >
                         <span
-                          className={`w-4 h-4 rounded-full mr-[6px] border-[3.5px] border-(--waveB) outline outline-(--linkC) ${
+                          className={`w-4 h-4 rounded-full mr-1.5 border-[3.5px] border-(--waveB) outline outline-(--linkC) ${
                             image.adsLabel === value ? "bg-(--linkC)" : "bg-(--waveB)"
                           } ${adsLoading ? "opacity-70" : ""}`}
                         />
