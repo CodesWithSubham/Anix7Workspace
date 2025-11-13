@@ -1,12 +1,12 @@
 import { Button } from "@shared/components/ui/Button";
 import MyImages from "./myImages";
-import { ShareLeftSvg } from "@shared/components/svg/ShareSvg";
+import { TiArrowBackOutline } from "react-icons/ti";
 
 export default async function MyImg() {
   return (
     <>
       <Button href="/image-uploading">
-        <ShareLeftSvg />
+        <TiArrowBackOutline />
         Back to Image Upload
       </Button>
       <MyImages />

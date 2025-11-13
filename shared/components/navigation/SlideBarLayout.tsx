@@ -8,13 +8,11 @@ import React, { useEffect, useRef, useState } from "react";
 import Hr from "../ui/Hr";
 import { twJoin, twMerge } from "tailwind-merge";
 import { usePathname } from "next/navigation";
-import { InstagramSvg, TelegramSvg, YouTubeSvg } from "../svg/SocialMediaSvg";
-import { HomeSvg } from "../svg/HomeSvg";
-import { ProfileGroupSvg } from "../svg/ProfileSvg";
-import { LetterRoundedSvg } from "../svg/LetterSvg";
-import { DisclaimerSvg } from "../svg/DisclaimerSvg";
-import { DocumentSecureSvg } from "../svg/DocumentSvg";
-import { PowerButtonSvg } from "../svg/PowerButtonSvg";
+import { RiGroupLine, RiHomeHeartLine } from "react-icons/ri";
+import { TiWarningOutline } from "react-icons/ti";
+import { MdAlternateEmail, MdOutlineSecurity } from "react-icons/md";
+import { IoLogoInstagram, IoPower } from "react-icons/io5";
+import { PiTelegramLogo, PiYoutubeLogo } from "react-icons/pi";
 
 type MenuItemDefault = {
   label: string;
@@ -31,30 +29,30 @@ export type MenuItem = MenuItemDefault & {
 const commonMenu: MenuItem[] = [
   {
     label: "About Us",
-    icon: <ProfileGroupSvg />,
+    icon: <RiGroupLine />,
     url: "https://www.anix7.in/page/about-us",
   },
   {
     label: "Contact Us",
-    icon: <LetterRoundedSvg />,
+    icon: <MdAlternateEmail />,
     url: "https://www.anix7.in/page/contact-us",
     hr: true,
   },
   {
     label: "Disclaimer",
-    icon: <DisclaimerSvg />,
+    icon: <TiWarningOutline />,
     url: "https://www.anix7.in/page/disclaimer",
   },
   {
     label: "Terms of Use",
-    icon: <DocumentSecureSvg />,
+    icon: <MdOutlineSecurity />,
     url: "https://www.anix7.in/page/terms",
     hr: true,
   },
 
   {
     label: "Logout",
-    icon: <PowerButtonSvg />,
+    icon: <IoPower />,
     onClick: () => signOut(),
     hr: true,
     showOnLoggedIn: true,
@@ -81,7 +79,7 @@ export default function SlideBarLayout({ menuItem = [], quickURLs = [] }: {
   if (pathname !== "/") {
     updatedMenu.unshift({
       label: "Home",
-      icon: <HomeSvg />,
+      icon: <RiHomeHeartLine />,
       url: "/",
       hr: true,
     });
@@ -172,7 +170,7 @@ export default function SlideBarLayout({ menuItem = [], quickURLs = [] }: {
                     role="button"
                     target="_blank"
                   >
-                    <YouTubeSvg />
+                    <PiYoutubeLogo />
                   </IconButton>
                 </li>
                 <li>
@@ -183,7 +181,7 @@ export default function SlideBarLayout({ menuItem = [], quickURLs = [] }: {
                     role="button"
                     target="_blank"
                   >
-                    <InstagramSvg />
+                    <IoLogoInstagram />
                   </IconButton>
                 </li>
                 <li>
@@ -194,7 +192,7 @@ export default function SlideBarLayout({ menuItem = [], quickURLs = [] }: {
                     role="button"
                     target="_blank"
                   >
-                    <TelegramSvg />
+                    <PiTelegramLogo />
                   </IconButton>
                 </li>
               </ul>

@@ -4,9 +4,9 @@ import { useState, useCallback, useEffect, useMemo } from "react";
 import { useDropzone } from "react-dropzone";
 import { twMerge } from "tailwind-merge";
 import { Button } from "./Button";
-import { XSvg } from "../svg/XSvg";
 import Link from "next/link";
-import { DeleteSvg } from "../svg/DeleteSvg";
+import { IoClose } from "react-icons/io5";
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 type DropZoneProps = {
   accept?: Record<string, string[]>;
@@ -204,7 +204,7 @@ export default function DropZone({
           }}
           disabled={disabled}
         >
-          <XSvg className="w-3" />
+          <IoClose className="w-3" />
         </Button>
         {thumb}
         <span className="text-xs truncate w-24 mt-1">{file.name}</span>
@@ -239,7 +239,7 @@ export default function DropZone({
         </div>
         {isDragActive && (
           <div className="fixed top-5/6 inset-0 bg-red-700 dark:bg-red-800 z-50 flex justify-center items-center text-white text-xl font-semibold">
-            <DeleteSvg className="w-6 h-6 mr-2" />
+            <RiDeleteBin6Line className="w-6 h-6 mr-2" />
             Cancel Drop
           </div>
         )}

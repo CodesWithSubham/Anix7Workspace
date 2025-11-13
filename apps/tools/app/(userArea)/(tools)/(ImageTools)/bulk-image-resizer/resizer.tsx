@@ -4,11 +4,11 @@ import DropZone from "@shared/components/ui/DropZone";
 import { useState, useEffect } from "react";
 import JSZip from "jszip";
 import { Checkbox, Input, SliderWithTooltip } from "@shared/components/ui/Input";
-import { XSvg } from "@shared/components/svg/XSvg";
 import { Button } from "@shared/components/ui/Button";
-import { DownloadCloudSvg } from "@shared/components/svg/DownloadSvg";
+import { FaCloudDownloadAlt } from "react-icons/fa";
 import { formatBytes } from "@shared/utils/unit";
 import { WorkBox } from "@shared/components/ui/Boxes";
+import { IoClose } from "react-icons/io5";
 
 type ImageFile = File & {
   uid: string;
@@ -219,7 +219,7 @@ export default function Resizer() {
 
             {!maintainAspect && (
               <>
-                <XSvg className="shrink-0 mt-3" />
+                <IoClose className="shrink-0 mt-3" />
                 <div className="relative w-full">
                   <select
                     className="absolute cursor-pointer z-10 top-1/2 -translate-y-1/2 mt-1.5 right-1 outline-hidden bg-transparent"
@@ -322,7 +322,7 @@ export default function Resizer() {
                       img.resizedBlob?.type.split("/")[1]
                     }`}
                   >
-                    <DownloadCloudSvg /> Download
+                    <FaCloudDownloadAlt /> Download
                   </Button>
                 </div>
               ))}

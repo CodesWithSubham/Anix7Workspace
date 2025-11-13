@@ -1,4 +1,4 @@
-import { NotFoundAnimatedSvg } from "@shared/components/svg/NotFoundSvg";
+import { NotFoundAnimatedSvg } from "@shared/components/NotFoundSvg";
 import { Button } from "@shared/components/ui/Button";
 
 export default function NotFound() {

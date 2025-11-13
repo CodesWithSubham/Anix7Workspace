@@ -1,11 +1,11 @@
 "use client";
 
-import { EditSvg } from "@shared/components/svg/EditSvg";
 import { PopUpBox } from "@shared/components/ui/Boxes";
 import { Button, IconButton } from "@shared/components/ui/Button";
 import { Input } from "@shared/components/ui/Input";
 import Image from "next/image";
 import { useActionState, useEffect, useState } from "react";
+import { CiEdit } from "react-icons/ci";
 
 export default function UserClientPage({ user }) {
   const [pop, setPop] = useState("");
@@ -29,7 +29,7 @@ export default function UserClientPage({ user }) {
               {user.firstName} {user.lastName} ({!user.isVerified && "Not"}{" "}
               Verified)
               <IconButton className="m-0" onClick={() => setPop("details")}>
-                <EditSvg />
+                <CiEdit />
               </IconButton>
             </h2>
             <p className="text-xs">
@@ -44,7 +44,7 @@ export default function UserClientPage({ user }) {
           <h3 className="text-lg flex items-center">
             Balance
             <IconButton className="m-0" onClick={() => setPop("balance")}>
-              <EditSvg />
+              <CiEdit />
             </IconButton>
           </h3>
           <ul className="list-disc ml-5">

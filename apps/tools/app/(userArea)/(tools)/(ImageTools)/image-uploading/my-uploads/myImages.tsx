@@ -7,7 +7,7 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { DeleteSvg } from "@shared/components/svg/DeleteSvg";
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 type UploadedImage = {
   alias: string;
@@ -179,7 +179,7 @@ export default function MyImages() {
                 <div className="flex w-full gap-2 items-center justify-around p-1 border-y-2 border-dotted border-(--linkC)">
                   <CopyInput value={`${indexUrl}/${image.alias}`} />
                   <IconButton onClick={() => openPopup(image)} className="m-0.5 p-0">
-                    <DeleteSvg />
+                    <RiDeleteBin6Line />
                   </IconButton>
                 </div>
 

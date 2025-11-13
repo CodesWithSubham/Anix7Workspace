@@ -1,8 +1,8 @@
 
 import Image from "next/image";
 import { Button } from "@shared/components/ui/Button";
-import { ColorPaletteSvg } from "@shared/components/svg/ColorPaletteSvg";
 import QRCodeGenerator, { LaunchQRCodeGenerator } from "./generator";
+import { IoColorPaletteOutline } from "react-icons/io5";
 
 export const metadata = {
   title: "Fully customized QR Code Generator with colors, shapes, and logos",
@@ -152,7 +152,7 @@ export default async function QrCode() {
 
           {/* Section 3: QR Styling */}
           <div className="flex flex-col items-center gap-2">
-            <ColorPaletteSvg className="w-20 h-20" />
+            <IoColorPaletteOutline className="w-20 h-20" />
             <h2 className="text-base font-semibold">Customized Colors & Shapes</h2>
             <p className="text-sm text-muted-foreground">
               Personalize your QR codes with unique color schemes, eye styles, and frames.

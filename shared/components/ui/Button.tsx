@@ -1,6 +1,6 @@
 import Link, { LinkProps } from "next/link";
 import { twMerge } from "tailwind-merge";
-import { CircleLoadingSvg } from "../svg/LoadingSvg";
+import { AiOutlineLoading } from "react-icons/ai";
 import { AnchorHTMLAttributes, ButtonHTMLAttributes, LabelHTMLAttributes, ReactNode } from "react";
 import Image from "next/image";
 
@@ -10,7 +10,7 @@ export function Button({
   loadingText = "Loading...",
   className = "",
   svg,
-  loadingSvg = <CircleLoadingSvg className="text-white" />,
+  loadingSvg = <AiOutlineLoading className="text-white" />,
   as = "button", // 'button' by default
   ...props
 }: ButtonProps) {

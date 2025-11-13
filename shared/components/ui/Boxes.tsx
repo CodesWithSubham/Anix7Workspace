@@ -2,10 +2,9 @@
 
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
-import { XSvg } from "../svg/XSvg";
 import { Button } from "./Button";
-import { DocumentSvg } from "../svg/DocumentSvg";
 import { cn } from "@shared/utils/cn";
+import { IoClose, IoDocumentTextOutline } from "react-icons/io5";
 
 export function WorkBox({ children, className = "", ...props }: React.HTMLProps<HTMLDivElement>) {
   return (
@@ -144,11 +143,11 @@ export function PopUpBox({
                 className="absolute -top-4 right-4 rounded-full w-7 h-7 m-0"
                 onClick={handleClose}
               >
-                <XSvg />
+                <IoClose />
               </Button>
             )}
 
-            <div className="mx-auto mb-1 w-6">{svg || <DocumentSvg />}</div>
+            <div className="mx-auto mb-1 w-6">{svg || <IoDocumentTextOutline />}</div>
 
             <div className="text-lg md:text-xl font-bold mb-2 text-center">{header}</div>
 

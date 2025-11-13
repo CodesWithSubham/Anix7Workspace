@@ -1,55 +1,54 @@
 "use client";
 
 import SlideBarLayout from "@shared/components/navigation/SlideBarLayout";
-import { HomeSvg } from "@shared/components/svg/HomeSvg";
-import { ImageRoundedSvg } from "@shared/components/svg/ImageSvg";
-import { InformationQuestionMarkSvg } from "@shared/components/svg/InformationSvg";
-import { QrSvg } from "@shared/components/svg/QrSvg";
-import { ResizeSvg } from "@shared/components/svg/ResizeSvg";
-import { SettingSvg } from "@shared/components/svg/SettingSvg";
-import { UrlSvg } from "@shared/components/svg/UrlSvg";
+
+import { RxImage } from "react-icons/rx";
+import { PiResize } from "react-icons/pi";
+import { IoQrCodeOutline, IoSettingsOutline } from "react-icons/io5";
+import { RiHomeHeartLine, RiQuestionAnswerLine } from "react-icons/ri";
+import { HiOutlineLink } from "react-icons/hi2";
 
 const menuItem = [
   {
     label: "Anix7 Tools",
-    icon: <SettingSvg />,
+    icon: <IoSettingsOutline />,
     subMenu: [
       {
         label: "Tools Home",
-        icon: <HomeSvg />,
+        icon: <RiHomeHeartLine />,
         url: "https://tools.anix7.in",
       },
       {
         label: "Url Shortener",
-        icon: <UrlSvg />,
+        icon: <HiOutlineLink />,
         url: "https://tools.anix7.in/url-shortener",
       },
       {
         label: "QR Code Generator",
-        icon: <QrSvg />,
+        icon: <IoQrCodeOutline />,
         url: "https://tools.anix7.in/qr-code-generator",
       },
       {
         label: "Bulk Image Resizer",
-        icon: <ResizeSvg />,
+        icon: <PiResize />,
         url: "https://tools.anix7.in/bulk-image-resizer",
       },
       {
         label: "Image Upload Tools",
-        icon: <ImageRoundedSvg />,
+        icon: <RxImage />,
         url: "https://tools.anix7.in/image-uploading",
       },
     ],
   },
   {
     label: "AniPic",
-    icon: <ImageRoundedSvg />,
+    icon: <RxImage />,
     url: "https://anipic.anix7.in",
     hr: true,
   },
   {
     label: "FAQs",
-    icon: <InformationQuestionMarkSvg />,
+    icon: <RiQuestionAnswerLine />,
     url: "/page/faqs",
   },
 ];

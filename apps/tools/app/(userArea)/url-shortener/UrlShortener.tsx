@@ -9,9 +9,9 @@ import { twMerge } from "tailwind-merge";
 import { WorkBox } from "@shared/components/ui/Boxes";
 import { CopyInput, Input } from "@shared/components/ui/Input";
 import { ErrorText } from "@shared/components/ui/Paragraph";
-import { CircleLoadingSvg } from "@shared/components/svg/LoadingSvg";
 import { Button } from "@shared/components/ui/Button";
 import { Urls } from "./types";
+import { AiOutlineLoading } from "react-icons/ai";
 
 export default function UrlShortener() {
   // Create URL Box
@@ -160,7 +160,7 @@ export default function UrlShortener() {
               />
 
               <span className="absolute top-1/2 right-3 -translate-y-1/2 text-green-600 font-bold">
-                {alias ? "Available ✓" : aliasLoading && <CircleLoadingSvg />}
+                {alias ? "Available ✓" : aliasLoading && <AiOutlineLoading className="animate-spin" />}
               </span>
 
               <ErrorText>{aliasError}</ErrorText>

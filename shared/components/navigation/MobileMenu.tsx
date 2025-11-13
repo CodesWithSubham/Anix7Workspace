@@ -1,14 +1,14 @@
 // /components/MobileMenu.js
 
 import Link from "next/link";
-import { HomeSvg } from "../svg/HomeSvg";
-import { SettingSvg } from "../svg/SettingSvg";
+import { RiHomeHeartLine } from "react-icons/ri";
+import { IoSettingsOutline } from "react-icons/io5";
 
 const menuItems = [
   {
     href: "/",
     label: "Home",
-    icon: <HomeSvg />,
+    icon: <RiHomeHeartLine />,
   },
   // {
   //   href: "/invite",
@@ -41,7 +41,7 @@ const menuItems = [
   {
     href: "/setting",
     label: "Setting",
-    icon: <SettingSvg />,
+    icon: <IoSettingsOutline />,
   },
 ];
 

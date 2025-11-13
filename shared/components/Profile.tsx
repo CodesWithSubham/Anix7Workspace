@@ -10,9 +10,8 @@ import { IconButton } from "./ui/Button";
 import { useSession } from "next-auth/react";
 import ThemePicker from "./theme/ThemePicker";
 import { twMerge } from "tailwind-merge";
-import { SettingSvg } from "./svg/SettingSvg";
-import { ColorPaletteSvg } from "./svg/ColorPaletteSvg";
-import ProfileSvg from "./svg/ProfileSvg";
+import { IoColorPaletteOutline, IoSettingsOutline } from "react-icons/io5";
+import { CgProfile } from "react-icons/cg";
 
 export default function Profile() {
   const { data: session } = useSession();
@@ -36,7 +35,7 @@ export default function Profile() {
           <IconButton
             onClick={() => setProfilePop(!profilePop)}
             aria-label="Profile"
-            svg={<ProfileSvg />}
+            svg={<CgProfile />}
           />
           {profilePop && (
             <div
@@ -67,14 +66,14 @@ export default function Profile() {
 
                 <li>
                   <Link href="/setting" className="text-inherit hover:text-(--linkC) flex gap-2">
-                    <SettingSvg /> Setting
+                    <IoSettingsOutline /> Setting
                   </Link>
                 </li>
                 <li
                   onClick={() => setThemePop(!themePop)}
                   className="hover:text-(--linkC) cursor-pointer"
                 >
-                  <ColorPaletteSvg /> Change Theme
+                  <IoColorPaletteOutline /> Change Theme
                 </li>
 
                 <li

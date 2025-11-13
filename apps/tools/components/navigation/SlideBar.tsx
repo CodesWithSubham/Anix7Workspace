@@ -1,23 +1,23 @@
 "use client";
 
 import SlideBarLayout from "@shared/components/navigation/SlideBarLayout";
-import { ImageRoundedSvg } from "@shared/components/svg/ImageSvg";
-import { InformationQuestionMarkSvg } from "@shared/components/svg/InformationSvg";
-import { QrSvg } from "@shared/components/svg/QrSvg";
-import { ResizeSvg } from "@shared/components/svg/ResizeSvg";
-import { UrlSvg } from "@shared/components/svg/UrlSvg";
+import { RxImage } from "react-icons/rx";
+import { PiResize } from "react-icons/pi";
 import { PiCalculatorThin } from "react-icons/pi";
 import { FcManager } from "react-icons/fc";
+import { IoQrCodeOutline } from "react-icons/io5";
+import { HiOutlineLink } from "react-icons/hi2";
+import { RiQuestionAnswerLine } from "react-icons/ri";
 
 const menuItem = [
   {
     label: "Url Shortener",
-    icon: <UrlSvg />,
+    icon: <HiOutlineLink />,
     url: "/url-shortener",
   },
   {
     label: "QR Code Generator",
-    icon: <QrSvg />,
+    icon: <IoQrCodeOutline />,
     url: "/qr-code-generator",
   },
   {
@@ -33,12 +33,12 @@ const menuItem = [
   },
   {
     label: "Bulk Image Resizer",
-    icon: <ResizeSvg />,
+    icon: <PiResize />,
     url: "/bulk-image-resizer",
   },
   {
     label: "Image Upload Tools",
-    icon: <ImageRoundedSvg />,
+    icon: <RxImage />,
     subMenu: [
       {
         label: "Upload Image",
@@ -54,14 +54,14 @@ const menuItem = [
   },
   {
     label: "Image Uploading",
-    icon: <ImageRoundedSvg />,
+    icon: <RxImage />,
     url: "/image-uploading",
     showOnLoggedOut: true,
     hr: true,
   },
   {
     label: "FAQs",
-    icon: <InformationQuestionMarkSvg />,
+    icon: <RiQuestionAnswerLine />,
     url: "/page/faqs",
   },
 ];

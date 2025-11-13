@@ -1,7 +1,5 @@
 "use client";
 
-import { DeleteSvg } from "@shared/components/svg/DeleteSvg";
-import { DocumentSvg } from "@shared/components/svg/DocumentSvg";
 import { PopUpBox } from "@shared/components/ui/Boxes";
 import { Button } from "@shared/components/ui/Button";
 import { Input } from "@shared/components/ui/Input";
@@ -12,6 +10,8 @@ import { toast } from "react-toastify";
 import { deleteShortUrl, editShortUrl, modifyAds } from "./action";
 import { ErrorText } from "@shared/components/ui/Paragraph";
 import { Urls } from "./types";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { IoDocumentTextOutline } from "react-icons/io5";
 
 export default function ShortedURLs({
   urls,
@@ -303,7 +303,7 @@ export default function ShortedURLs({
 
       {/* Delete Confirmation DeletePopup */}
       {showDeletePopup && selectedUrl && (
-        <PopUpBox header="Are you sure you want to delete?" svg={<DeleteSvg />}>
+        <PopUpBox header="Are you sure you want to delete?" svg={<RiDeleteBin6Line />}>
           <p className="my-2">
             <span className="text-(--linkC)">Original URL:</span> {selectedUrl.longUrl}
           </p>
@@ -333,7 +333,12 @@ export default function ShortedURLs({
 
       {/* Edit Popup */}
       {showEditPopup && selectedUrl && (
-        <PopUpBox closeable={true} header="Edit URL" onClose={closeEditPopup} svg={<DocumentSvg />}>
+        <PopUpBox
+          closeable={true}
+          header="Edit URL"
+          onClose={closeEditPopup}
+          svg={<IoDocumentTextOutline />}
+        >
           <div className="flex flex-col mb-5 px-2">
             <label htmlFor="editShortedUrl" className="text-(--linkC) text-xs ml-1">
               Shorted URL

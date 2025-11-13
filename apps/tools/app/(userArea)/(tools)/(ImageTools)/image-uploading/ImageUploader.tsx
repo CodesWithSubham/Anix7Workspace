@@ -6,10 +6,10 @@ import { toast } from "react-toastify";
 import { upload } from "@vercel/blob/client";
 import { Button } from "@shared/components/ui/Button";
 import { CopyInput } from "@shared/components/ui/Input";
-import { UploadSvg } from "@shared/components/svg/UploadSvg";
-import { DocumentSvg } from "@shared/components/svg/DocumentSvg";
 import DropZone, { ExtendedFile } from "@shared/components/ui/DropZone";
 import Hr from "@shared/components/ui/Hr";
+import { IoDocumentTextOutline } from "react-icons/io5";
+import { IoMdCloudUpload } from "react-icons/io";
 
 export default function ImageUploader() {
   const [image, setImage] = useState<ExtendedFile | null>(null);
@@ -94,14 +94,14 @@ export default function ImageUploader() {
           disabled={uploading || !image}
           loading={uploading}
           loadingText="Uploading..."
-          svg={<UploadSvg />}
+          svg={<IoMdCloudUpload />}
         >
           Upload Image
         </Button>
       )}
 
       <Hr />
-      <Button href="/image-uploading/my-uploads" svg={<DocumentSvg />}>
+      <Button href="/image-uploading/my-uploads" svg={<IoDocumentTextOutline />}>
         My Uploads
       </Button>
       <Hr />
