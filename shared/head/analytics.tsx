@@ -5,10 +5,7 @@ export default function Analytics() {
     return (
       <>
         {/* <!-- Google tag (gtag.js) --> */}
-        <Script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-RFXNWC90EH"
-        ></Script>
+        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-RFXNWC90EH"></Script>
         <Script id="googletagmanager-G-RFXNWC90EH">
           {`window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}

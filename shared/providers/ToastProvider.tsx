@@ -1,18 +1,20 @@
 // /utils/ToastProvider.js
 "use client";
 
-import React from "react";
 import { ToastContainer, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const ToastProvider = () => {
+export default function ToastProvider() {
   const getToastPosition = () => {
-    return (typeof window !== "undefined" && window.innerWidth <= 768) ? "top-center" : "bottom-right";
+    return typeof window !== "undefined" && window.innerWidth <= 768
+      ? "top-center"
+      : "bottom-right";
   };
-  
-  const getToastTheme = () => {
-    return (typeof window !== "undefined" && localStorage.getItem("themeMode") == "dark") ? "dark" : "light";
 
+  const getToastTheme = () => {
+    return typeof window !== "undefined" && localStorage.getItem("themeMode") == "dark"
+      ? "dark"
+      : "light";
   };
 
   return (
@@ -30,6 +32,4 @@ const ToastProvider = () => {
       transition={Bounce}
     />
   );
-};
-
-export default ToastProvider;
+}

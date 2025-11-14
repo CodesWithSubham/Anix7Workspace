@@ -1,6 +1,9 @@
-import { twMerge } from "tailwind-merge";
+import { cn } from "@shared/utils/cn";
 
-export function NotFoundAnimatedSvg({ className = "", ...props }) {
+export function NotFoundAnimatedSvg({
+  className = "",
+  ...props
+}: React.PropsWithChildren<{ className?: string }>) {
   return (
     <svg
       x="0"
@@ -8,7 +11,7 @@ export function NotFoundAnimatedSvg({ className = "", ...props }) {
       style={{ transformOrigin: "50px 50px 0" }}
       version="1.1"
       viewBox="0 0 100 100"
-      className={twMerge(
+      className={cn(
         "drop-shadow-lg dark:drop-shadow-[0_35px_35px_rgba(0,100,0,0.25)] w-3/5! max-w-[40vh] h-3/5! max-h-[40vh]",
         className
       )}
