@@ -4,7 +4,7 @@ export async function sendNoReplyMail({
   sendTo,
   subject,
   html,
-  fromName = "Anix7 - Tools",
+  fromName = "Anix7",
 }: {
   sendTo: string;
   subject: string;

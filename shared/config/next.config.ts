@@ -20,4 +20,5 @@ const nextConfig: NextConfig = {
   },
   allowedDevOrigins: ["concrete-trout-credible.ngrok-free.app"],
 };
+
 export default nextConfig;

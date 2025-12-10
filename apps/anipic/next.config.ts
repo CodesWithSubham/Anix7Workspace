@@ -1,20 +1,9 @@
+import sharedNextConfig from "@shared/config/next.config";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  ...sharedNextConfig,
+
   cacheComponents: true,
-  reactCompiler: true,
-  images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "lh3.googleusercontent.com",
-      },
-      {
-        protocol: "https",
-        hostname: "avatars.githubusercontent.com",
-      },
-    ],
-  },
-  allowedDevOrigins: ["concrete-trout-credible.ngrok-free.app"],
 };
 export default nextConfig;
