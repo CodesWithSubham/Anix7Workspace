@@ -1,11 +1,11 @@
-import "server-only"
+import "server-only";
 import { Schema, Model, Document, Connection } from "mongoose";
 import connectToAniPicDb from "../connections/aniPicDb";
 
 export interface IAniPic extends Document {
   sno: number;
   url: string;
-  uploadedBy: number; // References User.userId
+  uploadedBy: String; // References User id
   approved: boolean; // Admin approval flag
   tags: string[];
   downloads: number;
@@ -17,7 +17,7 @@ const aniPicSchema = new Schema<IAniPic>(
   {
     sno: { type: Number, required: true, unique: true, index: true },
     url: { type: String, required: true, unique: true },
-    uploadedBy: { type: Number, required: true, ref: "User", index: true },
+    uploadedBy: { type: String, required: true, ref: "User", index: true },
     approved: { type: Boolean, default: false, index: true },
     tags: { type: [String], default: [], index: true },
     downloads: { type: Number, default: 0 },

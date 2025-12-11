@@ -2,9 +2,9 @@
 
 import { Suspense } from "react";
 import { Button, IconButton } from "../ui/Button";
-import { IfLoggedIn, IfLoggedOut } from "../auth/LoggedInWrapper";
+import { IfLoggedIn, IfLoggedOut } from "../../auth/LoggedInWrapper";
 import Profile from "../Profile";
-import LoginSignup from "../auth/LoginSignup";
+import LoginSignup from "../../auth/LoginSignup";
 import Link from "next/link";
 
 type MoreIconType =

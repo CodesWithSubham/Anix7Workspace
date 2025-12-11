@@ -2,7 +2,6 @@
 "use client";
 
 import Link from "next/link";
-import { signOut, useSession } from "next-auth/react";
 import { IconButton } from "../ui/Button";
 import React, { useEffect, useRef, useState } from "react";
 import Hr from "../ui/Hr";
@@ -13,6 +12,7 @@ import { TiWarningOutline } from "react-icons/ti";
 import { MdAlternateEmail, MdOutlineSecurity } from "react-icons/md";
 import { IoLogoInstagram, IoPower } from "react-icons/io5";
 import { PiTelegramLogo, PiYoutubeLogo } from "react-icons/pi";
+import { signOut, useSession } from "@shared/auth/client";
 
 type MenuItemDefault = {
   label: string;
@@ -117,7 +117,7 @@ export default function SlideBarLayout({ menuItem = [], quickURLs = [] }: {
           showSideBar ? "ml-0 md:w-56" : "md:w-16 ml-[-100%] md:ml-0"
         }`}
       >
-        <div className="mnBr w-11/12 max-w-md md:w-auto relative md:sticky md:top-[58px] lg:top-[61px] xl:top-16 max-[767.98px]:h-full max-[767.98px]:rounded-r-xl max-[767.98px]:z-[3] max-[767.98px]:overflow-hidden">
+        <div className="mnBr w-11/12 max-w-md md:w-auto relative md:sticky md:top-[58px] lg:top-[61px] xl:top-16 max-[767.98px]:h-full max-[767.98px]:rounded-r-xl max-[767.98px]:z-3 max-[767.98px]:overflow-hidden">
           <div className="mnBrs md:h-[calc(100vh-58px)] lg:h-[calc(100vh-61px)] xl:h-[calc(100vh-64px)] bg-(--contentB) dark:bg-(--darkB) md:*:w-full md:flex md:relative md:shadow-[0_0_15px_rgba(0,0,0,0.07)] pt-14 md:pt-0 max-[767.98px]:pt-14 max-[767.98px]:overflow-y-scroll max-[767.98px]:overflow-x-hidden max-[767.98px]:w-full max-[767.98px]:h-full">
             <div className="absolute z-10 top-0 left-0 bg-inherit flex items-center pl-4 md:hidden w-full h-16 shadow-2xs">
               <label
@@ -131,7 +131,7 @@ export default function SlideBarLayout({ menuItem = [], quickURLs = [] }: {
             </div>
 
             <div
-              className={`transition-all duration-300 self-end border-t bottom-0 left-0 right-0 absolute text-center bg-inherit shadow-[-5px_-5px_15px_rgba(0,0,0,0.1)] z-[1] pt-4 ${
+              className={`transition-all duration-300 self-end border-t bottom-0 left-0 right-0 absolute text-center bg-inherit shadow-[-5px_-5px_15px_rgba(0,0,0,0.1)] z-1 pt-4 ${
                 showSideBar ? "md:w-56" : "md:w-16 md:pb-4"
               }`}
             >
@@ -218,7 +218,7 @@ export default function SlideBarLayout({ menuItem = [], quickURLs = [] }: {
           </div>
         </div>
         <label
-          className={`block md:hidden fixed -top-1/2 -left-1/2 -right-1/2 -bottom-1/2 z-[1] transition-all duration-300 bg-black/20 backdrop-blur-md cursor-pointer ${
+          className={`block md:hidden fixed -top-1/2 -left-1/2 -right-1/2 -bottom-1/2 z-1 transition-all duration-300 bg-black/20 backdrop-blur-md cursor-pointer ${
             showSideBar ? "visible opacity-100" : "invisible opacity-0"
           }`}
           htmlFor="SideBarInput"

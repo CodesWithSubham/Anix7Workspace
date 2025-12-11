@@ -5,7 +5,7 @@ export interface IImageUpload extends Document {
   alias: string;
   deleteHash: string;
   extension: string;
-  uploadedBy: number; // References User.userId
+  uploadedBy: string; // References User id
   adsLabel: 0 | 1 | 2 | 3;
   expiredAt: Date | null;
   createdAt: Date;
@@ -17,7 +17,7 @@ const imageUploadSchema = new Schema<IImageUpload>(
     alias: { type: String, required: true, unique: true },
     deleteHash: { type: String, required: true },
     extension: { type: String, default: "jpg" },
-    uploadedBy: { type: Number, required: true, ref: "User" },
+    uploadedBy: { type: String, required: true, ref: "User" },
     adsLabel: { type: Number, enum: [0, 1, 2, 3], default: 1 },
     expiredAt: { type: Date, default: null },
   },

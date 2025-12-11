@@ -3,15 +3,14 @@
 
 import Link from "next/link";
 import Image from "next/image";
-// import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { IconButton } from "./ui/Button";
-import { useSession } from "next-auth/react";
 import ThemePicker from "./theme/ThemePicker";
 import { twMerge } from "tailwind-merge";
 import { IoColorPaletteOutline, IoSettingsOutline } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
+import { useSession } from "@shared/auth/client";
 
 export default function Profile() {
   const { data: session } = useSession();
@@ -45,16 +44,16 @@ export default function Profile() {
               <ul className="flex flex-col gap-2 *:flex  *:items-center *:gap-2">
                 <li>
                   <Image
-                    src={user?.profilePic ?? "https://i.ibb.co/1JGDTytY/default-Profile-Pic.webp"}
+                    src={user.image ?? "https://i.ibb.co/1JGDTytY/default-Profile-Pic.webp"}
                     width={30}
                     height={30}
                     className="rounded-full"
-                    alt={user?.firstName ?? "Profile Pic"}
+                    alt={user.name ?? "Profile Pic"}
                     unoptimized
                   />
                   <div className="flex flex-col">
                     <span className="font-bold">
-                      {user?.firstName}
+                      {user.name}
                       {user?.role && user.role !== "user"
                         ? ` (${user.role.charAt(0).toUpperCase() + user.role.slice(1)})`
                         : ""}
