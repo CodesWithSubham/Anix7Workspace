@@ -2,10 +2,10 @@
 
 import { useActionState, useState } from "react";
 import { uploadImageAction } from "./actions";
-import { useSession } from "next-auth/react";
 import { formatThumbnailImageUrl } from "@/utils/formatThumbnail";
 import { Button } from "@shared/components/ui/Button";
 import { cn } from "@shared/utils/cn";
+import { useSession } from "@shared/auth/client";
 
 export default function UploadPage() {
   const [state, action, isPending] = useActionState(uploadImageAction, {
@@ -58,12 +58,10 @@ export default function UploadPage() {
     };
   };
 
-  const { data: session, status } = useSession();
-  const allowed =
-    status === "authenticated" &&
-    (session?.user?.role === "admin" || session?.user?.role === "owner");
+  const { data: session, isPending: status } = useSession();
+  const allowed = session?.user?.role === "admin" || session?.user?.role === "owner";
 
-  if (status === "loading") {
+  if (status) {
     return <p className="text-center mt-10">Loading...</p>;
   }
 

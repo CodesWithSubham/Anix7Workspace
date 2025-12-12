@@ -100,7 +100,7 @@
 //   const matchedPairs = game.matched.filter(Boolean).length / 2;
 //   const score = calculateMemoryPuzzleScore({ totalMoves, duration, matchedPairs });
 
-//   await GameModel.create({ gameId, userId: game.tgId, totalMoves, duration, matchedPairs, score });
+//   await GameModel.create({ gameId, id: game.tgId, totalMoves, duration, matchedPairs, score });
 
 //   games.delete(gameId);
 

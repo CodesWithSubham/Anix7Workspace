@@ -1,7 +1,8 @@
 "use server";
 
-import { auth } from "@shared/lib/auth";
+import { auth } from "@shared/auth";
 import getAniPicModel from "@shared/lib/db/models/AniPic";
+import { headers } from "next/headers";
 // import { revalidatePath } from "next/cache";
 
 // Type of the return state
@@ -16,8 +17,13 @@ export type UploadImageState =
     };
 
 // 🧠 Server Action
-export async function uploadImageAction(_prevState: UploadImageState, formData: FormData): Promise<UploadImageState> {
-  const session = await auth();
+export async function uploadImageAction(
+  _prevState: UploadImageState,
+  formData: FormData
+): Promise<UploadImageState> {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
   // Temporary for admin and owner access
   if (
     !session ||
