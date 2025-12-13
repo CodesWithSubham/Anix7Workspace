@@ -1,8 +1,8 @@
 "use client";
 
+import { useSession } from "@shared/auth/client";
 import { WorkBox } from "@shared/components/ui/Boxes";
 import { Button } from "@shared/components/ui/Button";
-import { useSession } from "next-auth/react";
 
 export default function UnauthorizedPage() {
   const session = useSession();
@@ -16,7 +16,7 @@ export default function UnauthorizedPage() {
         ) : session?.data?.user ? (
           <>
             <p className="text-gray-500">
-              <strong>Hay {session.data.user.firstName}</strong>, You do not
+              <strong>Hay {session.data.user.name}</strong>, You do not
               have permission to view this page.
             </p>
             <Button href="https://www.anix7.in" className="w-full">

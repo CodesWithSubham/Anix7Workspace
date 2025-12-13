@@ -14,10 +14,7 @@ export default function UserClientPage({ user }) {
     <>
       <div className="flex flex-col items-center">
         <Image
-          src={
-            user?.profilePic ??
-            "https://i.ibb.co/1JGDTytY/default-Profile-Pic.webp"
-          }
+          src={user?.profilePic ?? "https://i.ibb.co/1JGDTytY/default-Profile-Pic.webp"}
           width={140}
           height={140}
           alt={`Profile Pic`}
@@ -26,8 +23,7 @@ export default function UserClientPage({ user }) {
         <div>
           <div className="relative">
             <h2 className="text-xl flex items-center">
-              {user.firstName} {user.lastName} ({!user.isVerified && "Not"}{" "}
-              Verified)
+              {user.name} ({!user.isVerified && "Not"} Verified)
               <IconButton className="m-0" onClick={() => setPop("details")}>
                 <CiEdit />
               </IconButton>
@@ -38,7 +34,7 @@ export default function UserClientPage({ user }) {
             </p>
             <p className="text-xs">
               <strong>User ID: </strong>
-              {user.userId}
+              {user.id}
             </p>
           </div>
           <h3 className="text-lg flex items-center">
@@ -113,26 +109,14 @@ function UserDetailsEditPopUp({ user, pop, setPop }) {
           {pop === "details" && (
             <div className="flex flex-col items-center">
               <Image
-                src={
-                  user?.profilePic ??
-                  "https://i.ibb.co/1JGDTytY/default-Profile-Pic.webp"
-                }
+                src={user?.profilePic ?? "https://i.ibb.co/1JGDTytY/default-Profile-Pic.webp"}
                 width={140}
                 height={140}
                 alt={`Profile Pic`}
                 unoptimized
               />
               <div className="flex gap-2 w-full">
-                <Input
-                  defaultValue={user.firstName}
-                  name="firstName"
-                  label="First Name"
-                />
-                <Input
-                  defaultValue={user.lastName}
-                  name="lastName"
-                  label="Last Name"
-                />
+                <Input defaultValue={user.name} name="name" label="Name" />
               </div>
               <Input defaultValue={user.email} name="email" label="Email" />
             </div>
@@ -217,9 +201,7 @@ function UserDetailsEditPopUp({ user, pop, setPop }) {
           {actionState.message && (
             <p
               className={`text-sm ${
-                actionState.status === "success"
-                  ? "text-green-600"
-                  : "text-red-600"
+                actionState.status === "success" ? "text-green-600" : "text-red-600"
               }`}
             >
               {actionState.message}

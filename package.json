@@ -42,7 +42,7 @@
     "@types/react-dom": "19.2.3",
     "babel-plugin-react-compiler": "^1.0.0",
     "eslint": "^9.39.1",
-    "eslint-config-next": "16.0.3",
+    "eslint-config-next": "16.0.10",
     "tailwindcss": "^4.1.17",
     "turbo": "^2.6.1",
     "typescript": "^5.9.3"

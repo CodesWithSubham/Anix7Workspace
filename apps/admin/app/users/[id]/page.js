@@ -1,11 +1,11 @@
-import getUserModel from "@shared/lib/db/models/User";
+
+import { auth } from "@shared/auth";
 import UserClientPage from "./user";
 
 export default async function UserPage({ params }) {
-  const User = await getUserModel();
-  const userId = (await params).id;
+  const id = (await params).id;
 
-  const user = await User.findOne({ userId }).lean();
+  const user = null; //await getUserById(id);
 
   if (!user)
     return (
