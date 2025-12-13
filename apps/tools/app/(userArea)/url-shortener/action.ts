@@ -1,13 +1,16 @@
 // app/(userArea)/url-shortener/action.js
 "use server";
 
-import { auth } from "@shared/lib/auth";
+import { auth } from "@shared/auth";
 import { disallowedDomains } from "./disallowedDomains";
 import getShortUrlModel from "@shared/lib/db/models/ShortUrl";
+import { headers } from "next/headers";
 
 export async function checkAlias({ alias }: { alias: string }) {
   try {
-    const session = await auth();
+    const session = await auth.api.getSession({
+      headers: await headers(),
+    });
 
     if (!session) {
       return { success: false, message: "Unauthorized", code: 401 };
@@ -77,12 +80,14 @@ async function generateAlias() {
 
 export async function createShortUrl({ longUrl, alias }: { longUrl: string; alias?: string }) {
   try {
-    const session = await auth();
+    const session = await auth.api.getSession({
+      headers: await headers(),
+    });
 
     if (!session || !session.user) {
       return { success: false, message: "Unauthorized" };
     }
-    const uploadedBy = session.user.userId;
+    const uploadedBy = session.user.id;
 
     // Connect to the database
     const ShortUrl = await getShortUrlModel();
@@ -159,7 +164,9 @@ export async function createShortUrl({ longUrl, alias }: { longUrl: string; alia
 
 export async function modifyAds({ alias, ad }: { alias: string; ad: number }) {
   try {
-    const session = await auth();
+    const session = await auth.api.getSession({
+      headers: await headers(),
+    });
 
     if (!session) return { success: false, message: "Unauthorized" };
 
@@ -196,7 +203,9 @@ export async function modifyAds({ alias, ad }: { alias: string; ad: number }) {
 
 export async function deleteShortUrl({ alias }: { alias: string }) {
   try {
-    const session = await auth();
+    const session = await auth.api.getSession({
+      headers: await headers(),
+    });
     if (!session || !session.user) return { success: false, error: "Unauthorized" };
 
     if (!alias || alias.trim().length !== 6 || !/^[a-zA-Z0-9]+$/.test(alias))
@@ -206,7 +215,7 @@ export async function deleteShortUrl({ alias }: { alias: string }) {
 
     const url = await ShortUrl.findOneAndDelete({
       alias,
-      uploadedBy: session.user.userId,
+      uploadedBy: session.user.id,
     });
 
     if (!url) return { success: false, error: "Nothing to Delete!" };
@@ -220,12 +229,14 @@ export async function deleteShortUrl({ alias }: { alias: string }) {
 
 export async function editShortUrl({ editedUrl, alias }: { editedUrl: string; alias: string }) {
   try {
-    const session = await auth();
+    const session = await auth.api.getSession({
+      headers: await headers(),
+    });
 
     if (!session || !session.user) {
       return { success: false, message: "Unauthorized" };
     }
-    const uploadedBy = session.user.userId;
+    const uploadedBy = session.user.id;
 
     // Connect to the database
     const ShortUrl = await getShortUrlModel();

@@ -2,9 +2,9 @@
 
 import Section, { Card, CardSection } from "@shared/components/ui/Section";
 import ReverseTextPage from "./reverseTextPage";
-import { IfLoggedOut } from "@shared/components/auth/LoggedInWrapper";
 import { WorkBox } from "@shared/components/ui/Boxes";
 import { Button } from "@shared/components/ui/Button";
+import { IfLoggedOut } from "@shared/auth/LoggedInWrapper";
 
 export const metadata = {
   title: "Reverse Text Generator - Flip, Mirror & Reverse Words Instantly",

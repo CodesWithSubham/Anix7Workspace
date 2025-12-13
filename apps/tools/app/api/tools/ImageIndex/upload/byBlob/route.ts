@@ -1,8 +1,9 @@
 // app\api\tools\ImageIndex\upload\route.js
 
-import { auth } from "@shared/lib/auth";
+import { auth } from "@shared/auth";
 import getImageUploadModel from "@shared/lib/db/models/ImageUpload";
 import { del } from "@vercel/blob";
+import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 
 const blobBaseUrl = process.env.BLOB_BASE_URL;
@@ -29,11 +30,13 @@ export async function POST(req: Request) {
   }
 
   try {
-    const session = await auth();
+    const session = await auth.api.getSession({
+    headers: await headers(),
+  });
     if (!session || !session.user) {
       return NextResponse.json({ success: false, message: "Unauthorized" }, { status: 401 });
     }
-    const uploadedBy = session.user.userId;
+    const uploadedBy = session.user.id;
 
     if (!isAllowed(image)) {
       console.log("Invalid Image URL:", image);

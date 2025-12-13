@@ -1,10 +1,10 @@
 // apps/tools/app/(userArea)/(tools)/(Calculators)/age-calculator/page.tsx
 
-import { IfLoggedOut } from "@shared/components/auth/LoggedInWrapper";
 import AgeCalculatorClient from "./AgeCalculatorClient";
 import Section, { Card, CardSection } from "@shared/components/ui/Section";
 import { WorkBox } from "@shared/components/ui/Boxes";
 import { Button } from "@shared/components/ui/Button";
+import { IfLoggedOut } from "@shared/auth/LoggedInWrapper";
 
 export const metadata = {
   title: "Age Calculator - Calculate Age in Years, Months and Days",

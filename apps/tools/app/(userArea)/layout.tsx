@@ -1,5 +1,5 @@
 // /app/(pages)/layout.js
-import { IfLoggedIn } from "@shared/components/auth/LoggedInWrapper";
+import { IfLoggedIn } from "@shared/auth/LoggedInWrapper";
 import MobileMenu from "@shared/components/navigation/MobileMenu";
 
 export default function PagesLayout({ children }: { children: React.ReactNode }) {

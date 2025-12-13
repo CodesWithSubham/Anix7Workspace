@@ -1,4 +1,4 @@
-import { useSession } from "next-auth/react";
+import { useSession } from "@shared/auth/client";
 import { useRouter } from "next/navigation";
 
 // /app/(pages)/layout.js

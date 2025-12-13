@@ -1,10 +1,14 @@
-import { auth } from "@shared/lib/auth";
+
+import { auth } from "@shared/auth";
 import getImageUploadModel from "@shared/lib/db/models/ImageUpload";
+import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
-    const session = await auth();
+    const session = await auth.api.getSession({
+    headers: await headers(),
+  });
 
     if (!session || !session.user) {
       return NextResponse.json({ success: false, message: "Unauthorized" }, { status: 401 });

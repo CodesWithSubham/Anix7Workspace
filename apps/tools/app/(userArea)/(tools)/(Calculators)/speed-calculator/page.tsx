@@ -1,9 +1,9 @@
-import { IfLoggedOut } from "@shared/components/auth/LoggedInWrapper";
 import SpeedCalculatorPage from "./SpeedCalculatorPage";
 import { WorkBox } from "@shared/components/ui/Boxes";
 import { Button } from "@shared/components/ui/Button";
 import Section, { Card, CardSection } from "@shared/components/ui/Section";
 import { units } from "./speedUnits";
+import { IfLoggedOut } from "@shared/auth/LoggedInWrapper";
 
 // Generate all unique pairs of units for SEO content
 const pairs = units.flatMap((u1) =>

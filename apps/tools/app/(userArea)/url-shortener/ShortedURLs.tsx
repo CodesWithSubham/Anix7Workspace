@@ -4,7 +4,6 @@ import { PopUpBox } from "@shared/components/ui/Boxes";
 import { Button } from "@shared/components/ui/Button";
 import { Input } from "@shared/components/ui/Input";
 import copyToClipboard from "@shared/utils/CopyToClipboard";
-import { useSession } from "next-auth/react";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 import { deleteShortUrl, editShortUrl, modifyAds } from "./action";
@@ -12,6 +11,7 @@ import { ErrorText } from "@shared/components/ui/Paragraph";
 import { Urls } from "./types";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { IoDocumentTextOutline } from "react-icons/io5";
+import { useSession } from "@shared/auth/client";
 
 export default function ShortedURLs({
   urls,

@@ -1,14 +1,17 @@
-import { auth } from "@shared/lib/auth";
+import { auth } from "@shared/auth";
 import getImageUploadModel from "@shared/lib/db/models/ImageUpload";
+import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 
 export async function DELETE(req: Request) {
   try {
-    const session = await auth();
+    const session = await auth.api.getSession({
+      headers: await headers(),
+    });
     if (!session || !session.user) {
       return NextResponse.json({ success: false, error: "Unauthorized" }, { status: 401 });
     }
-    const uploadedBy = session.user.userId;
+    const uploadedBy = session.user.id;
 
     const { alias } = await req.json();
 

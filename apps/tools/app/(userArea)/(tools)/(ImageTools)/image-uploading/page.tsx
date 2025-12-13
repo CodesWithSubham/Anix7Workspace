@@ -1,8 +1,8 @@
 // /app/(userArea)/image-uploading/page.js
 
+import { IfLoggedIn, IfLoggedOut } from "@shared/auth/LoggedInWrapper";
 import ImageUploader from "./ImageUploader";
 import { WorkBox } from "@shared/components/ui/Boxes";
-import { IfLoggedIn, IfLoggedOut } from "@shared/components/auth/LoggedInWrapper";
 import { Button } from "@shared/components/ui/Button";
 import Section, { Card, CardSection } from "@shared/components/ui/Section";
 

@@ -1,9 +1,10 @@
-import { auth } from "@shared/lib/auth";
+import { auth } from "@shared/auth";
 import getShortUrlModel from "@shared/lib/db/models/ShortUrl";
+import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 
 // Function to get URLs by uploadedBy with pagination (start and limit of 10)
-async function getUrlsByUploadedBy(uploadedBy: number, start = 0, limit = 10) {
+async function getUrlsByUploadedBy(uploadedBy: string, start = 0, limit = 10) {
   const ShortUrl = await getShortUrlModel();
 
   // Get the URLs for a given uploadedBy with pagination
@@ -26,21 +27,22 @@ async function getUrlsByUploadedBy(uploadedBy: number, start = 0, limit = 10) {
 
 export async function POST(req: Request) {
   try {
-    const session = await auth();
+    const session = await auth.api.getSession({
+      headers: await headers(),
+    });
 
     if (!session || !session.user) {
       return NextResponse.json({ success: false, message: "Unauthorized" }, { status: 401 });
     }
-    const { userId } = session.user;
-    // const userId = 1234567890
+    const { id } = session.user;
 
     const { page } = await req.json(); // Destructure directly from req.json()
 
     const limit = 20;
     const skip = page ? page * limit : 0;
 
-    // Get the URL using the userId
-    const results = await getUrlsByUploadedBy(userId, skip, limit);
+    // Get the URL using the id
+    const results = await getUrlsByUploadedBy(id, skip, limit);
 
     // Return the response with availability status
     return NextResponse.json({
