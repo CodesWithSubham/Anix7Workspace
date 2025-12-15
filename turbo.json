@@ -11,28 +11,35 @@
       "outputs": ["dist/**", ".next/**", "!.next/cache/**"],
       "env": [
         "NODE_ENV",
-        "BASE_URL",
-        "ROOT_URL",
-        "AUTH_SECRET",
-        "AUTH_GOOGLE_SECRET",
-        "AUTH_GOOGLE_ID",
-        "AUTH_BASE_URL",
-        "SHORT_URL",
-        "URL_SHORTENER_TOKEN",
-        "IMGUR_CLIENT_ID_1",
-        "IMGUR_IMAGE_URL",
-        "IMGUR_CLIENT_SECRET_1",
-        "MONGODB_URI_USERS",
+        "OWNER_EMAIL",
+        "MONGODB_URI_AUTH",
         "MONGODB_URI_SHORTURLS",
         "MONGODB_URI_IMAGEUPLOADS",
+        "AUTH_GOOGLE_ID",
+        "AUTH_GOOGLE_SECRET",
+        "BETTER_AUTH_SECRET",
+        "BETTER_AUTH_BASE_URL",
+        "SHORT_URL",
+        "URL_SHORTENER_TOKEN",
         "EMAIL_HOST",
         "EMAIL_PASSWORD",
         "NO_REPLY_EMAIL",
-        "OWNER_EMAIL",
         "CONTACT_EMAIL",
+
+        "BASE_URL",
+
+        "ROOT_URL",
+        "WHERE_TO_REDIRECT_AFTER_PROCESSING",
+
+        "IMGUR_IMAGE_URL",
+        "IMGUR_CLIENT_ID_1",
+        "IMGUR_CLIENT_SECRET_1",
         "BLOB_READ_WRITE_TOKEN",
         "BLOB_BASE_URL",
-        "WHERE_TO_REDIRECT_AFTER_PROCESSING"
+
+        "MONGODB_URI_ANIPIC",
+
+        "PORT"
       ]
     },
     "start": {

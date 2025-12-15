@@ -5,11 +5,10 @@ interface CachedConnection {
   promise: Promise<Connection> | null;
 }
 
-// Extend the NodeJS global object to include _userDb
+// Extend the NodeJS global object to include
 declare global {
   // Avoid TS error on redeclaration in hot reload
   // eslint-disable-next-line no-var
-  var _userDb: CachedConnection | undefined;
   var _imageUploadDb: CachedConnection | undefined;
   var _shortUrlDb: CachedConnection | undefined;
   var _aniPicDb: CachedConnection | undefined;
