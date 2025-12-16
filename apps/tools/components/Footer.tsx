@@ -61,14 +61,15 @@ const importantLinks = [
 ];
 
 export default function Footer() {
+  "use cache";
+  cacheLife("days");
+
   return (
     <footer className="mb-8 mt-10">
       <Section className="text-center">
         {/* <!-- About --> */}
         <div>
-          <div className="text-gray-500 dark:text-gray-200">
-            Made with ❤️ by
-          </div>
+          <div className="text-gray-500 dark:text-gray-200">Made with ❤️ by</div>
           <Image
             className="w-1/3 max-w-60 aspect-square mt-2 mb-1 mx-auto"
             src="/assets/img/logo.png"
@@ -79,8 +80,8 @@ export default function Footer() {
           <div>
             <h2>Anix7 - Tools</h2>
             <p>
-              Anix7 Tools offers fast, simple, and secure online tools including
-              a URL shortener, QR Code Generator and image uploader.
+              Anix7 Tools offers fast, simple, and secure online tools including a URL shortener, QR
+              Code Generator and image uploader.
             </p>
           </div>
         </div>
