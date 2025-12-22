@@ -64,7 +64,10 @@ const commonQuickURLs = [
   { url: "https://www.anix7.in/page/privacy-policy", label: "Privacy Policy" },
 ];
 
-export default function SlideBarLayout({ menuItem = [], quickURLs = [] }: {
+export default function SlideBarLayout({
+  menuItem = [],
+  quickURLs = [],
+}: {
   menuItem?: MenuItem[];
   quickURLs?: { url: string; label: string }[];
 }) {
@@ -117,7 +120,7 @@ export default function SlideBarLayout({ menuItem = [], quickURLs = [] }: {
           showSideBar ? "ml-0 md:w-56" : "md:w-16 ml-[-100%] md:ml-0"
         }`}
       >
-        <div className="mnBr w-11/12 max-w-md md:w-auto relative md:sticky md:top-[58px] lg:top-[61px] xl:top-16 max-[767.98px]:h-full max-[767.98px]:rounded-r-xl max-[767.98px]:z-3 max-[767.98px]:overflow-hidden">
+        <div className="mnBr w-11/12 max-w-md md:w-auto relative md:sticky md:top-14.5 lg:top-15.25 xl:top-16 max-[767.98px]:h-full max-[767.98px]:rounded-r-xl max-[767.98px]:z-3 max-[767.98px]:overflow-hidden">
           <div className="mnBrs md:h-[calc(100vh-58px)] lg:h-[calc(100vh-61px)] xl:h-[calc(100vh-64px)] bg-(--contentB) dark:bg-(--darkB) md:*:w-full md:flex md:relative md:shadow-[0_0_15px_rgba(0,0,0,0.07)] pt-14 md:pt-0 max-[767.98px]:pt-14 max-[767.98px]:overflow-y-scroll max-[767.98px]:overflow-x-hidden max-[767.98px]:w-full max-[767.98px]:h-full">
             <div className="absolute z-10 top-0 left-0 bg-inherit flex items-center pl-4 md:hidden w-full h-16 shadow-2xs">
               <label
@@ -329,7 +332,7 @@ function SideBarItem({ item, showSideBar }: { item: MenuItem; showSideBar: boole
                       {subItem.label}
                     </CompWrapper>
                     {showSideBar && (
-                      <span className="border-b border-dotted absolute rounded-none -left-[21px] top-1/2 -translate-y-1/2 w-5 peer-hover:border-(--linkC)" />
+                      <span className="border-b border-dotted absolute rounded-none -left-5.25 top-1/2 -translate-y-1/2 w-5 peer-hover:border-(--linkC)" />
                     )}
                   </li>
                 );

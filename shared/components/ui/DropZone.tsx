@@ -263,7 +263,7 @@ export default function DropZone({
           >
             &times;
           </Button>
-          <div className="flex-grow flex justify-center items-center p-4">
+          <div className="grow flex justify-center items-center p-4">
             {previewFile.type.startsWith("image/") && (
               <div className="relative w-full h-full">
                 {/* Blurred full-background layer */}

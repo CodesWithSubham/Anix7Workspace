@@ -127,7 +127,7 @@ export default function ReverseTextPage() {
       {/* Result output */}
       {result && (
         <div className="relative bg-inherit">
-          <h2 className="absolute bg-inherit top-[7px] left-px right-px rounded-t-lg text-sm text-gray-400 pl-2">
+          <h2 className="absolute bg-inherit top-1.75 left-px right-px rounded-t-lg text-sm text-gray-400 pl-2">
             Result:
           </h2>
           <TextArea className="pt-5" value={result} onFocus={(e) => e.target.select()} readOnly />
