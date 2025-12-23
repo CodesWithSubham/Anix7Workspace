@@ -1,5 +1,3 @@
-"use client";
-
 import SlideBarLayout from "@shared/components/navigation/SlideBarLayout";
 import { RxImage } from "react-icons/rx";
 import { PiResize } from "react-icons/pi";
@@ -8,6 +6,7 @@ import { FcManager } from "react-icons/fc";
 import { IoQrCodeOutline } from "react-icons/io5";
 import { HiOutlineLink } from "react-icons/hi2";
 import { RiQuestionAnswerLine } from "react-icons/ri";
+import { Suspense } from "react";
 
 const menuItem = [
   {
@@ -67,5 +66,9 @@ const menuItem = [
 ];
 
 export default function SlideBar() {
-  return <SlideBarLayout menuItem={menuItem} />;
+  return (
+    <Suspense>
+      <SlideBarLayout menuItem={menuItem} />
+    </Suspense>
+  );
 }
