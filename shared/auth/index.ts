@@ -6,6 +6,11 @@ import { betterAuth } from "better-auth";
 import { sendNoReplyMail } from "@shared/lib/sendMail";
 
 const NODE_ENV = process.env.NODE_ENV;
+const NEXT_PUBLIC_AUTH_BASE_URL = process.env.NEXT_PUBLIC_AUTH_BASE_URL;
+
+if (!NEXT_PUBLIC_AUTH_BASE_URL) {
+  throw new Error("Missing NEXT_PUBLIC_AUTH_BASE_URL env");
+}
 
 // MongoDB
 let mongoClient: MongoClient;
@@ -31,7 +36,7 @@ const db = getMongoClient().db("BetterAuth");
 // Auth config
 export const auth = betterAuth({
   appName: "Anix7",
-  baseURL: process.env.BETTER_AUTH_BASE_URL!,
+  baseURL: NEXT_PUBLIC_AUTH_BASE_URL,
   trustedOrigins: NODE_ENV === "development" ? ["*"] : ["https://*.anix7.com"],
 
   database: mongodbAdapter(db),
@@ -44,6 +49,14 @@ export const auth = betterAuth({
     enabled: true,
     requireEmailVerification: true,
   },
+
+  socialProviders: {
+    google: {
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+    },
+  },
+
   // advanced: {
   //   crossSubDomainCookies: {
   //     enabled: true,

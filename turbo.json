@@ -18,7 +18,7 @@
         "AUTH_GOOGLE_ID",
         "AUTH_GOOGLE_SECRET",
         "BETTER_AUTH_SECRET",
-        "BETTER_AUTH_BASE_URL",
+        "NEXT_PUBLIC_AUTH_BASE_URL",
         "SHORT_URL",
         "URL_SHORTENER_TOKEN",
         "EMAIL_HOST",

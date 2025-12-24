@@ -1,7 +1,6 @@
 @import "tailwindcss";
 
-
-@source "../../../shared/components/**/*{.js,.ts,.jsx,.tsx}";
+@source "../../../shared/**/*{.js,.jsx,.tsx}";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -9,9 +8,8 @@
   --color-primary: oklch(93% 0.22 121);
 }
 
-.test{
+.test {
   --color-primary: oklch(93% 0.22 121);
-
 }
 
 @layer base {

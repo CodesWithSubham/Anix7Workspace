@@ -10,7 +10,7 @@ import {
 } from "better-auth/client/plugins";
 
 export const authClient = createAuthClient({
-  baseURL: process.env.BETTER_AUTH_BASE_URL ?? "http://localhost:3007",
+  baseURL: process.env.NEXT_PUBLIC_AUTH_BASE_URL,
   plugins: [
     inferAdditionalFields<typeof auth>(),
     twoFactorClient(),
