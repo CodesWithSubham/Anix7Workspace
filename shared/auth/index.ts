@@ -33,11 +33,16 @@ function getMongoClient() {
 
 const db = getMongoClient().db("BetterAuth");
 
+const trustedOrigins =
+  process.env.ALLOW_AUTH_ORIGIN_DIVIDE_BY_COMMA?.split(",")
+    .map((origin) => origin.trim())
+    .filter(Boolean) ?? [];
+
 // Auth config
 export const auth = betterAuth({
   appName: "Anix7",
   baseURL: NEXT_PUBLIC_AUTH_BASE_URL,
-  trustedOrigins: NODE_ENV === "development" ? ["*"] : ["https://*.anix7.com"],
+  trustedOrigins,
 
   database: mongodbAdapter(db),
 
