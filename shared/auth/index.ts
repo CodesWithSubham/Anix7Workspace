@@ -66,7 +66,7 @@ export const auth = betterAuth({
     ...(NODE_ENV === "production" && {
       crossSubDomainCookies: {
         enabled: true,
-        domain: ".anix7.com",
+        domain: "anix7.in",
       },
       useSecureCookies: true,
     }),
