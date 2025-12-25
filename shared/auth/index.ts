@@ -62,12 +62,17 @@ export const auth = betterAuth({
     },
   },
 
-  // advanced: {
-  //   crossSubDomainCookies: {
-  //     enabled: true,
-  //     domain: "anix7.com",
-  //   },
-  // },
+  advanced: {
+    ...(NODE_ENV === "production" && {
+      crossSubDomainCookies: {
+        enabled: true,
+        domain: ".anix7.com",
+      },
+      useSecureCookies: true,
+    }),
+
+    cookiePrefix: "anix7-auth",
+  },
 
   emailVerification: {
     sendVerificationEmail: async ({ user, url }) => {
@@ -76,15 +81,19 @@ export const auth = betterAuth({
         return;
       }
 
-      void sendNoReplyMail({
-        sendTo: user.email,
-        subject: "Verify your email address",
-        html: `
-          <p>Hello ${user.name ?? ""},</p>
-          <p>Please verify your email by clicking the link below:</p>
-          <a href="${url}">${url}</a>
-        `,
-      });
+      try {
+        await sendNoReplyMail({
+          sendTo: user.email,
+          subject: "Verify your email address",
+          html: `
+            <p>Hello ${user.name ?? ""},</p>
+            <p>Please verify your email by clicking the link below:</p>
+            <a href="${url}">${url}</a>
+          `,
+        });
+      } catch (error) {
+        console.error("Verify email send failed", error);
+      }
     },
   },
 
@@ -109,12 +118,16 @@ export const auth = betterAuth({
           return;
         }
 
-        void sendNoReplyMail({
-          sendTo: email,
-          subject,
-          html,
-          fromName: "Anix7 Verification",
-        });
+        try {
+          await sendNoReplyMail({
+            sendTo: email,
+            subject,
+            html,
+            fromName: "Anix7 Verification",
+          });
+        } catch (error) {
+          console.error("OTP email send failed", error);
+        }
       },
     }),
 

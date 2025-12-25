@@ -10,7 +10,7 @@ export function Button({
   loadingText = "Loading...",
   className = "",
   svg,
-  loadingSvg = <AiOutlineLoading className="text-white" />,
+  loadingSvg = <AiOutlineLoading className="text-white animate-spin" />,
   as = "button", // 'button' by default
   ...props
 }: ButtonProps) {
