@@ -45,7 +45,7 @@ export default async function Home() {
           <Link
             href={drop.url}
             key={index}
-            className="w-full max-w-md flex justify-center items-center shadow-[inset_20px_20px_20px_rgba(0,0,0,.05),_25px_35px_20px_rgba(0,0,0,.05),_25px_30px_30px_rgba(0,0,0,.05),_inset_-20px_-20px_25px_rgba(255,255,255,.9)] dark:shadow-[inset_20px_20px_20px_rgba(255,255,255,.05),_25px_35px_20px_rgba(255,255,255,.05),_25px_30px_30px_rgba(255,255,255,.05),_inset_-20px_-20px_25px_rgba(0,0,0,.9)] flex-col text-center min-h-[250px]"
+            className="w-full max-w-md flex justify-center items-center shadow-[inset_20px_20px_20px_rgba(0,0,0,.05),25px_35px_20px_rgba(0,0,0,.05),25px_30px_30px_rgba(0,0,0,.05),inset_-20px_-20px_25px_rgba(255,255,255,.9)] dark:shadow-[inset_20px_20px_20px_rgba(255,255,255,.05),25px_35px_20px_rgba(255,255,255,.05),25px_30px_30px_rgba(255,255,255,.05),inset_-20px_-20px_25px_rgba(0,0,0,.9)] flex-col text-center min-h-62.5"
           >
             <div className="overflow-hidden w-full">
               <Image

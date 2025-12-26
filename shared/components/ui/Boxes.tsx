@@ -10,7 +10,7 @@ export function WorkBox({ children, className = "", ...props }: React.HTMLProps<
   return (
     <div
       className={twMerge(
-        "my-3 mx-auto p-5 bg-transparent text-center shadow-[0_5px_35px_rgba(0,0,0,0.1)] rounded-xl relative",
+        "my-3 mx-auto p-5 bg-transparent text-center shadow-[0_5px_35px] shadow-black/5 rounded-xl relative",
         className
       )}
       {...props}

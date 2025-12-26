@@ -3,6 +3,8 @@ import Image from "next/image";
 import Section from "@shared/components/ui/Section";
 import { cacheLife } from "next/cache";
 import Hr from "@shared/components/ui/Hr";
+import { Suspense } from "react";
+import CurrentYear from "@shared/components/currentYear";
 
 // Updated importantLinks constant with multiple categories
 const importantLinks = [
@@ -60,9 +62,6 @@ const importantLinks = [
 ];
 
 export default async function Footer() {
-  "use cache";
-  cacheLife("days");
-
   return (
     <footer className="mb-8 mt-10">
       <Section className="text-center">
@@ -107,7 +106,10 @@ export default async function Footer() {
         <div className="inline-flex items-center">
           <span>
             <span className="font-sans">&copy;</span>
-            <span>{new Date().getFullYear()}</span> &nbsp;&middot;&nbsp;&nbsp;
+            <Suspense>
+              <CurrentYear />
+            </Suspense>{" "}
+            &nbsp;&middot;&nbsp;&nbsp;
             <bdi>
               <Link href="/" className=" inline-flex items-center text-lg">
                 Anix7 - Tools

@@ -62,9 +62,7 @@ export default function MobileMenu() {
                 role="button"
               >
                 {icon}
-                <span className=" whitespace-nowrap text-ellipsis text-xs">
-                  {label}
-                </span>
+                <span className=" whitespace-nowrap text-ellipsis text-xs">{label}</span>
               </Link>
             </li>
           ))}

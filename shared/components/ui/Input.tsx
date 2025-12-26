@@ -96,6 +96,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, InputProps>(
           name={name}
           placeholder={placeholder}
           className={className}
+          aria-label={showPass ? "Hide password" : "Show password"}
           {...props}
         />
         <button

@@ -48,7 +48,7 @@ export default function Section({
     <section
       {...props}
       className={twMerge(
-        "relative bg-white dark:bg-neutral-800 px-5 py-8 mt-5 mb-12 mx-auto shadow-[0_5px_35px_rgba(0,0,0,.07)] rounded-xl text-justify",
+        "relative bg-white dark:bg-neutral-800 px-5 py-8 mt-5 mb-12 mx-auto shadow-[0_5px_35px] shadow-black/5 rounded-xl text-justify",
         className
       )}
       style={{ paddingTop: title ? titleHeight : 0 }}
@@ -131,7 +131,7 @@ export function Card({
       {image && (
         <div
           className={twMerge(
-            "w-1/4 max-w-24 aspect-square flex-shrink-0 flex items-center justify-center overflow-hidden",
+            "w-1/4 max-w-24 aspect-square shrink-0 flex items-center justify-center overflow-hidden",
             imageClassName
           )}
         >

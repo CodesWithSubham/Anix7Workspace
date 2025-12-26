@@ -101,10 +101,10 @@ export function CardButton({
     <Link
       className={twMerge(
         "w-full relative flex h-full flex-row items-center gap-4 p-4 overflow-hidden hover:scale-102 transition-all",
-        "shadow-[0px_3px_10px_rgba(0,0,0,.20),_inset_20px_20px_18px_rgba(255,255,255,.9),_inset_-20px_-20px_18px_rgba(0,0,0,.07)]",
-        "dark:shadow-[inset_20px_20px_18px_rgba(255,255,255,.07),_inset_-20px_-20px_18px_rgba(0,0,0,.9)]",
-        "hover:shadow-[0px_3px_10px_rgba(0,0,0,.20),_inset_20px_20px_18px_rgba(0,0,0,.07),_inset_-20px_-20px_18px_rgba(255,255,255,.9)]",
-        "dark:hover:shadow-[0px_-1px_10px_rgba(255,255,255,.10),inset_20px_20px_18px_rgba(0,0,0,.9),_inset_-20px_-20px_18px_rgba(255,255,255,.07)]",
+        "shadow-[0px_3px_10px_rgba(0,0,0,.20),inset_20px_20px_18px_rgba(255,255,255,.9),inset_-20px_-20px_18px_rgba(0,0,0,.07)]",
+        "dark:shadow-[inset_20px_20px_18px_rgba(255,255,255,.07),inset_-20px_-20px_18px_rgba(0,0,0,.9)]",
+        "hover:shadow-[0px_3px_10px_rgba(0,0,0,.20),inset_20px_20px_18px_rgba(0,0,0,.07),inset_-20px_-20px_18px_rgba(255,255,255,.9)]",
+        "dark:hover:shadow-[0px_-1px_10px_rgba(255,255,255,.10),inset_20px_20px_18px_rgba(0,0,0,.9),inset_-20px_-20px_18px_rgba(255,255,255,.07)]",
         className
       )}
       {...props}
@@ -112,7 +112,7 @@ export function CardButton({
       {/* Ribbon */}
       {isNew && (
         <div className="absolute z-10 top-0 left-0 w-10 aspect-square grid place-items-center">
-          <div className="absolute rotate-[-45deg] bg-gradient-to-r from-red-600 to-red-500 text-white font-bold text-[10px] px-8 py-0.5 text-center ring-2 ring-red-600 border border-white shadow-md">
+          <div className="absolute -rotate-45 bg-linear-to-r from-red-600 to-red-500 text-white font-bold text-[10px] px-8 py-0.5 text-center ring-2 ring-red-600 border border-white shadow-md">
             NEW
           </div>
         </div>
@@ -120,7 +120,7 @@ export function CardButton({
       {image && (
         <div
           className={twMerge(
-            "w-1/4 max-w-24 aspect-square flex-shrink-0 flex items-center justify-center overflow-hidden",
+            "w-1/4 max-w-24 aspect-square shrink-0 flex items-center justify-center overflow-hidden",
             imageClassName
           )}
         >
