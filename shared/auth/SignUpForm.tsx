@@ -1,3 +1,5 @@
+"use client"
+
 import { Input, PasswordInput } from "@shared/components/ui/Input";
 import { AgreeAndSubmitButton, SignUpErrors } from "./LoginSignup";
 
@@ -130,17 +132,17 @@ export default function SignUpForm() {
   return (
     <form className="px-1" onSubmit={onSubmit} onChange={handleFormChange}>
       <div className="flex gap-2">
-        <Input name="firstName" placeholder="First Name" />
-        <Input name="lastName" placeholder="Last Name" />
+        <Input name="firstName" placeholder="First Name" autoComplete="given-name"/>
+        <Input name="lastName" placeholder="Last Name" autoComplete="family-name"/>
       </div>
       {errors.firstName && <p className="text-xs pl-2 -mt-1 text-red-600">{errors.firstName}</p>}
       {errors.lastName && <p className="text-xs pl-2 -mt-1 text-red-600">{errors.lastName}</p>}
-      <Input type="email" name="email" placeholder="Email" />
+      <Input type="email" name="email" placeholder="Email" autoComplete="email"/>
       {errors.email && <p className="text-xs pl-2 -mt-1 text-red-600">{errors.email}</p>}
 
-      <PasswordInput name="password" placeholder="Password" />
+      <PasswordInput name="password" placeholder="Password" autoComplete="new-password"/>
       {errors.password && <p className="text-xs pl-2 -mt-1 text-red-600">{errors.password}</p>}
-      <PasswordInput name="confirmPassword" placeholder="Confirm Password" />
+      <PasswordInput name="confirmPassword" placeholder="Confirm Password" autoComplete="new-password"/>
       {errors.confirmPassword && (
         <p className="text-xs pl-2 -mt-1 text-red-600">{errors.confirmPassword}</p>
       )}

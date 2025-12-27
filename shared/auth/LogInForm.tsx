@@ -1,3 +1,5 @@
+"use client";
+
 import { signInSchema } from "@shared/lib/zod";
 import { useState, useTransition } from "react";
 import { toast } from "react-toastify";
@@ -78,9 +80,9 @@ export default function LogInForm() {
 
   return (
     <form onSubmit={handleSignIn} className="px-1" onChange={() => setSignInError({})}>
-      <Input type="email" name="email" placeholder="Email" />
+      <Input type="email" name="email" placeholder="Email" autoComplete="email" />
       {signInError?.email && <p className="text-xs pl-2  text-red-600">{signInError.email}</p>}
-      <PasswordInput name="password" placeholder="Password" />
+      <PasswordInput name="password" placeholder="Password" autoComplete="current-password" />
 
       {signInError?.password && (
         <p className="text-xs pl-2  text-red-600">{signInError.password}</p>

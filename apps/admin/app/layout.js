@@ -46,11 +46,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <DefaultHead />
       </head>
-      <body suppressHydrationWarning>
+      <body>
         <Providers>
           <div className="absolute w-48 h-56 bg-neutral-500/5 dark:bg-black/15 -z-10 top-0 right-0 rounded-bl-full" />
 
