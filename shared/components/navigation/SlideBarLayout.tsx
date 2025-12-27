@@ -53,7 +53,14 @@ const commonMenu: MenuItem[] = [
   {
     label: "Logout",
     icon: <IoPower />,
-    onClick: () => signOut(),
+    onClick: () =>
+      signOut({
+        fetchOptions: {
+          onSuccess: () => {
+            window.location.reload();
+          },
+        },
+      }),
     hr: true,
     showOnLoggedIn: true,
   },

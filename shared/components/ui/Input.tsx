@@ -17,7 +17,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       type = "text",
       name = "text",
       className = "",
-      maxLength = 256,
+      maxLength = 512,
       onChange = () => {},
       label = "",
       labelClassName = "",

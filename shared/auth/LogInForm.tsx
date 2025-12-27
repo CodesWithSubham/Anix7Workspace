@@ -38,12 +38,11 @@ export default function LogInForm() {
           {
             email: credentials.email,
             password: credentials.password,
-            callbackURL: new URL(goNext || "/", window.location.origin).href,
+            ...(goNext && { callbackURL: new URL(goNext, window.location.origin).href }),
           },
           {
             onSuccess() {
               toast.success("Sign in successful");
-              window.location.href = goNext || window.location.href;
             },
 
             onError(ctx) {

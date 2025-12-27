@@ -9,7 +9,8 @@ import { cn } from "@shared/utils/cn";
 import { BsEnvelopeAt } from "react-icons/bs";
 import SignUpForm from "./SignUpForm";
 import LogInForm from "./LogInForm";
-import { useSession } from "./client";
+import { authClient, useSession } from "./client";
+import { FcGoogle } from "react-icons/fc";
 
 type SignUpFormData = {
   firstName: string;
@@ -32,6 +33,26 @@ export default function LoginSignup() {
   const defaultOpen = searchParams.has("openLogin");
 
   if (session) return null;
+
+  const doSocialLogin = async (formData: FormData) => {
+    const action = formData.get("action")?.toString();
+
+    const goNext = searchParams.get("next") ?? window.location.pathname;
+
+    const safeNext = goNext.startsWith("/") ? goNext : window.location.pathname; // prevent open redirect
+
+    const callbackURL = new URL(safeNext, window.location.origin).href;
+
+    switch (action) {
+      case "google":
+        await authClient.signIn.social({ provider: "google", callbackURL });
+        break;
+
+      default:
+        console.error("Unknown auth provider:", action);
+        return;
+    }
+  };
 
   return (
     <PopUpBox
@@ -66,6 +87,25 @@ export default function LoginSignup() {
       }
     >
       {isLoginTab ? <LogInForm /> : <SignUpForm />}
+      <div className=" relative inline-flex items-center justify-center w-full">
+        <hr className="w-5/6 h-px my-8 bg-gray-300 border-0 dark:bg-gray-700" />
+        <span className="absolute px-3 font-medium text-gray-900 -translate-x-1/2 bg-slate-50 left-1/2 dark:text-white dark:bg-neutral-900">
+          or
+        </span>
+      </div>
+
+      <form action={doSocialLogin} className="w-full flex flex-row gap-3 justify-center">
+        {/* {referBy && <input type="hidden" name="referCode" value={referBy} />} */}
+        <Button
+          className="text-lg flex bg-transparent text-inherit items-center gap-1 border-2 shadow-md hover:scale-100 hover:shadow-inner"
+          type="submit"
+          name="action"
+          value="google"
+          svg={<FcGoogle />}
+        >
+          Sign In With Google
+        </Button>
+      </form>
     </PopUpBox>
   );
 }

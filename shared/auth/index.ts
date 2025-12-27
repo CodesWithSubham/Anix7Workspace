@@ -11,6 +11,16 @@ const NEXT_PUBLIC_AUTH_BASE_URL = process.env.NEXT_PUBLIC_AUTH_BASE_URL;
 if (!NEXT_PUBLIC_AUTH_BASE_URL) {
   throw new Error("Missing NEXT_PUBLIC_AUTH_BASE_URL env");
 }
+const AUTH_GOOGLE_ID = process.env.AUTH_GOOGLE_ID;
+
+if (!AUTH_GOOGLE_ID) {
+  throw new Error("Missing AUTH_GOOGLE_ID env");
+}
+const AUTH_GOOGLE_SECRET = process.env.AUTH_GOOGLE_SECRET;
+
+if (!AUTH_GOOGLE_SECRET) {
+  throw new Error("Missing AUTH_GOOGLE_SECRET env");
+}
 
 // MongoDB
 let mongoClient: MongoClient;
@@ -57,8 +67,8 @@ export const auth = betterAuth({
 
   socialProviders: {
     google: {
-      clientId: process.env.GOOGLE_CLIENT_ID as string,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+      clientId: AUTH_GOOGLE_ID,
+      clientSecret: AUTH_GOOGLE_SECRET,
     },
   },
 
@@ -95,6 +105,11 @@ export const auth = betterAuth({
         console.error("Verify email send failed", error);
       }
     },
+
+    sendOnSignUp: true,
+    sendOnSignIn: true,
+
+    autoSignInAfterVerification: true,
   },
 
   plugins: [

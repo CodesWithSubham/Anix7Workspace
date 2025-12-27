@@ -48,10 +48,10 @@ export default function Section({
     <section
       {...props}
       className={twMerge(
-        "relative bg-white dark:bg-neutral-800 px-5 py-8 mt-5 mb-12 mx-auto shadow-[0_5px_35px] shadow-black/5 rounded-xl text-justify",
+        "relative bg-white dark:bg-neutral-800 p-5 mt-5 mb-12 mx-auto shadow-[0_5px_35px] shadow-black/5 rounded-xl text-justify",
         className
       )}
-      style={{ paddingTop: title ? titleHeight : 0 }}
+      style={{ ...(title && { paddingTop: titleHeight }) }}
     >
       {title && (
         <h2
