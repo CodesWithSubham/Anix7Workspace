@@ -12,7 +12,7 @@ export function NotFoundAnimatedSvg({
       version="1.1"
       viewBox="0 0 100 100"
       className={cn(
-        "drop-shadow-lg dark:drop-shadow-[0_35px_35px_rgba(0,100,0,0.25)] w-3/5! max-w-[40vh] h-3/5! max-h-[40vh]",
+        "drop-shadow-[0_35px_35px] drop-shadow-theme-500/40 w-3/5! max-w-[40vh] h-3/5! max-h-[40vh]",
         className
       )}
       xmlns="http://www.w3.org/2000/svg"

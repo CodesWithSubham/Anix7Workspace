@@ -300,7 +300,7 @@ export default function Resizer() {
               .map((img) => (
                 <div
                   key={img.uid}
-                  className="w-full max-w-48 flex flex-col rounded-lg overflow-hidden bg-white dark:bg-(--headerB) border-2 border-dotted border-(--linkC) text-center"
+                  className="w-full max-w-48 flex flex-col rounded-lg overflow-hidden bg-theme-50 dark:bg-neutral-800 border-2 border-dotted border-theme-450 text-center"
                 >
                   <div
                     className="w-full aspect-square bg-contain bg-center bg-no-repeat mb-1"

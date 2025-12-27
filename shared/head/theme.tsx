@@ -6,27 +6,37 @@ export default function ThemeHead() {
       {`
         (function () {
           try {
+            var root = document.documentElement;
+
             // Get cookie helper
             function getCookie(name) {
-              const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+              var match = document.cookie.match(
+                new RegExp('(^| )' + name + '=([^;]+)')
+              );
               return match ? decodeURIComponent(match[2]) : null;
             }
 
             // Set cookie helper (2 years)
             function setCookie(name, value) {
-              const isLocalhost = location.hostname === "localhost";
-              const baseCookie = name + '=' + encodeURIComponent(value) +
+              var isLocalhost = location.hostname === "localhost";
+              var baseCookie =
+                name +
+                '=' +
+                encodeURIComponent(value) +
                 '; path=/' +
-                '; max-age=' + 60 * 60 * 24 * 365 * 2;
-              const domain = location.hostname.split('.').slice(-2).join('.');
+                '; max-age=' +
+                60 * 60 * 24 * 365 * 2;
 
-              document.cookie = baseCookie + (isLocalhost ? "" : '; domain=' + domain);
+              var domain = location.hostname.split('.').slice(-2).join('.');
+
+              document.cookie =
+                baseCookie + (isLocalhost ? '' : '; domain=' + domain);
             }
 
-            let mode = getCookie("themeMode");
-            let colorClass = getCookie("themeColor");
+            var mode = getCookie("themeMode");
+            var colorClass = getCookie("themeColor");
 
-            let isSystem = mode === "system";
+            var isSystem = mode === "system";
 
             // If cookie not found, try localStorage
             if (!mode) {
@@ -34,42 +44,47 @@ export default function ThemeHead() {
               colorClass = localStorage.getItem("themeColor");
               isSystem = mode === "system";
 
-              // If found in localStorage, update cookies
               if (mode) setCookie("themeMode", mode);
               if (colorClass) setCookie("themeColor", colorClass);
             } else {
-              // If found in cookie, sync to localStorage
               localStorage.setItem("themeMode", mode);
               if (colorClass) localStorage.setItem("themeColor", colorClass);
             }
 
-            // Default to system if still not found
+            // Default to system
             if (!mode) {
-              const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+              var systemPrefersDark = window.matchMedia(
+                '(prefers-color-scheme: dark)'
+              ).matches;
+
               mode = systemPrefersDark ? "dark" : "light";
               isSystem = true;
+
               localStorage.setItem("themeMode", "system");
               setCookie("themeMode", "system");
             }
 
             // If system mode, recalculate dark/light
             if (isSystem) {
-              const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-              mode = systemPrefersDark ? "dark" : "light";
+              var prefersDark = window.matchMedia(
+                '(prefers-color-scheme: dark)'
+              ).matches;
+
+              mode = prefersDark ? "dark" : "light";
             }
 
-            document.body.classList.toggle("dark", mode === "dark");
-            document.body.classList.toggle("system", isSystem);
+            root.classList.toggle("dark", mode === "dark");
+            root.classList.toggle("system", isSystem);
 
             if (colorClass) {
-              document.body.classList.remove(
-                ...(document.body.className.match(/theme\\d+/g) || [])
+              root.classList.remove(
+                ...(root.className.match(/theme\\d+/g) || [])
               );
-              document.body.classList.add(colorClass);
+              root.classList.add(colorClass);
             }
 
             // Theme color meta
-            const themeColorMap = [
+            var themeColorMap = [
               "#482dff",
               "#D32F2F",
               "#00796B",
@@ -83,7 +98,7 @@ export default function ThemeHead() {
               "#283593",
             ];
 
-            const themeColor =
+            var themeColor =
               mode === "dark"
                 ? "#1d1d1d"
                 : colorClass
@@ -91,7 +106,7 @@ export default function ThemeHead() {
                 : "#fffdfc";
 
             if (themeColor) {
-              let meta = document.querySelector("meta[name='theme-color']");
+              var meta = document.querySelector("meta[name='theme-color']");
               if (!meta) {
                 meta = document.createElement("meta");
                 meta.name = "theme-color";
@@ -99,7 +114,6 @@ export default function ThemeHead() {
               }
               meta.setAttribute("content", themeColor);
             }
-
           } catch (e) {
             console.error("Theme load failed:", e);
           }

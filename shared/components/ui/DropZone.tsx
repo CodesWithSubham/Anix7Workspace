@@ -221,7 +221,7 @@ export default function DropZone({
         >
           <input {...getInputProps()} />
           {isDragActive ? (
-            <div className="fixed bottom-1/6 inset-0 bg-(--linkC) z-50 flex justify-center items-center text-white text-xl font-semibold">
+            <div className="fixed bottom-1/6 inset-0 bg-theme-450 z-50 flex justify-center items-center text-white text-xl font-semibold">
               Drop your files here...
             </div>
           ) : (

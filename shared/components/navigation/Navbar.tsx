@@ -34,7 +34,7 @@ export default async function Navbar({
   return (
     <>
       <header className="w-full z-20 sticky top-0 shadow-xs border-b md:dark:border-b-gray-900/25">
-        <div className="relative flex justify-between items-center h-14 md:h-14.5 lg:h-15.25 xl:h-16 dark:bg-(--darkB) bg-(--headerB)">
+        <div className="relative flex justify-between items-center h-14 md:h-14.5 lg:h-15.25 xl:h-16 dark:bg-neutral-900 bg-theme-50">
           <div className="flex items-center w-56 pl-4 md:pl-5 transition-all">
             <div className="basis-7 text-xs flex">
               <IconButton className="tNav mx-0" htmlFor="SideBarInput">

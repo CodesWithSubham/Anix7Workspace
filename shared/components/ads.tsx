@@ -99,7 +99,7 @@ export function AdsterraNativeBanner() {
     <>
       <div className="mt-3 mb-2">
         <p className="ml-2">
-          &#9733; <span className="border-b-2 pb-0.5 pr-2 border-(--linkC)">Sponsored</span>
+          &#9733; <span className="border-b-2 pb-0.5 pr-2 border-theme-450">Sponsored</span>
         </p>
         <div id="container-fa1a6360539a28084530bb8980474d9a" />
       </div>

@@ -121,7 +121,7 @@ export default function SlideBarLayout({
         }`}
       >
         <div className="mnBr w-11/12 max-w-md md:w-auto relative md:sticky md:top-14.5 lg:top-15.25 xl:top-16 max-[767.98px]:h-full max-[767.98px]:rounded-r-xl max-[767.98px]:z-3 max-[767.98px]:overflow-hidden">
-          <div className="mnBrs md:h-[calc(100vh-58px)] lg:h-[calc(100vh-61px)] xl:h-[calc(100vh-64px)] bg-(--contentB) dark:bg-(--darkB) md:*:w-full md:flex md:relative md:shadow-[0_0_15px_rgba(0,0,0,0.07)] pt-14 md:pt-0 max-[767.98px]:pt-14 max-[767.98px]:overflow-y-scroll max-[767.98px]:overflow-x-hidden max-[767.98px]:w-full max-[767.98px]:h-full">
+          <div className="mnBrs md:h-[calc(100vh-58px)] lg:h-[calc(100vh-61px)] xl:h-[calc(100vh-64px)] bg-theme-50 dark:bg-neutral-900 md:*:w-full md:flex md:relative md:shadow-[0_0_15px] md:shadow-black/5 pt-14 md:pt-0 max-[767.98px]:pt-14 max-[767.98px]:overflow-y-scroll max-[767.98px]:overflow-x-hidden max-[767.98px]:w-full max-[767.98px]:h-full">
             <div className="absolute z-10 top-0 left-0 bg-inherit flex items-center pl-4 md:hidden w-full h-16 shadow-2xs">
               <label
                 aria-label="Close"
@@ -134,7 +134,7 @@ export default function SlideBarLayout({
             </div>
 
             <div
-              className={`transition-all duration-300 self-end border-t bottom-0 left-0 right-0 absolute text-center bg-inherit shadow-[-5px_-5px_15px_rgba(0,0,0,0.1)] z-1 pt-4 ${
+              className={`transition-all duration-300 self-end border-t bottom-0 left-0 right-0 absolute text-center bg-inherit shadow-[-5px_-5px_15px] shadow-black/5 z-1 pt-4 ${
                 showSideBar ? "md:w-56" : "md:w-16 md:pb-4"
               }`}
             >
@@ -267,7 +267,7 @@ function SideBarItem({ item, showSideBar }: { item: MenuItem; showSideBar: boole
             type="checkbox"
           />
           <label
-            className={`flex items-center gap-2 relative w-full rounded-lg cursor-pointer py-2.5 px-1 hover:bg-black/10 transition-all duration-300 peer-checked:[&>.d]:rotate-180 hover:*:text-(--linkC) ${
+            className={`flex items-center gap-2 relative w-full rounded-lg cursor-pointer py-2.5 px-1 hover:bg-black/10 transition-all duration-300 peer-checked:[&>.d]:rotate-180 hover:*:text-theme-450 ${
               showSideBar ? "" : "md:max-w-10 md:rounded-2xl"
             }`}
             htmlFor={`drpDwn-${item.label.replace(" ", "-")}`}
@@ -277,7 +277,7 @@ function SideBarItem({ item, showSideBar }: { item: MenuItem; showSideBar: boole
               className={`block whitespace-nowrap overflow-hidden text-ellipsis grow shrink-0 text-left ${
                 showSideBar
                   ? ""
-                  : "md:absolute md:left-9 md:top-1 md:mx-1 md:px-2.5 md:py-2 md:rounded-2xl md:rounded-tl-sm md:bg-(--contentB) md:dark:bg-(--darkBa) md:opacity-0 md:invisible md:z-10"
+                  : "md:absolute md:left-9 md:top-1 md:mx-1 md:px-2.5 md:py-2 md:rounded-2xl md:rounded-tl-sm md:bg-theme-100 md:dark:bg-neutral-900 md:opacity-0 md:invisible md:z-10"
               }`}
             >
               {item.label}
@@ -304,7 +304,7 @@ function SideBarItem({ item, showSideBar }: { item: MenuItem; showSideBar: boole
               className={twJoin(
                 "ml-2",
                 !showSideBar &&
-                  "md:px-2.5 md:py-2 md:rounded-3xl md:rounded-tl-sm md:bg-(--contentB) md:dark:bg-(--darkBa) md:shadow"
+                  "md:px-2.5 md:py-2 md:rounded-3xl md:rounded-tl-sm md:bg-theme-100 md:dark:bg-neutral-900 md:shadow"
               )}
             >
               {item.subMenu.map((subItem, i) => {
@@ -313,7 +313,7 @@ function SideBarItem({ item, showSideBar }: { item: MenuItem; showSideBar: boole
                     key={i}
                     itemProp="name"
                     className={twMerge(
-                      `relative block whitespace-nowrap overflow-hidden text-ellipsis grow shrink-0 *:text-inherit hover:*:text-(--linkC)`,
+                      `relative block whitespace-nowrap overflow-hidden text-ellipsis grow shrink-0 *:text-inherit hover:*:text-theme-450`,
                       showSideBar ? "overflow-visible w-full mt-2" : "rounded-none"
                     )}
                   >
@@ -324,7 +324,7 @@ function SideBarItem({ item, showSideBar }: { item: MenuItem; showSideBar: boole
                       onClick={subItem.onClick}
                       className={`peer flex items-center gap-2 relative w-full rounded-lg cursor-pointer py-2 px-2 hover:bg-black/10 transition-all duration-300 *:line-clamp-1 *:flex [&>svg]:mr-1 ${
                         showSideBar
-                          ? "hover:[&>svg]:fill-(--linkC) hover:[&>.line]:fill-none hover:[&>.line]:stroke-(--linkC) border border-dotted hover:border-(--linkC)"
+                          ? "hover:[&>svg]:fill-theme-450 hover:[&>.line]:fill-none hover:[&>.line]:stroke-theme-450 border border-dotted hover:border-theme-450"
                           : ""
                       }`}
                     >
@@ -332,7 +332,7 @@ function SideBarItem({ item, showSideBar }: { item: MenuItem; showSideBar: boole
                       {subItem.label}
                     </CompWrapper>
                     {showSideBar && (
-                      <span className="border-b border-dotted absolute rounded-none -left-5.25 top-1/2 -translate-y-1/2 w-5 peer-hover:border-(--linkC)" />
+                      <span className="border-b border-dotted absolute rounded-none -left-5.25 top-1/2 -translate-y-1/2 w-5 peer-hover:border-theme-450" />
                     )}
                   </li>
                 );
@@ -346,7 +346,7 @@ function SideBarItem({ item, showSideBar }: { item: MenuItem; showSideBar: boole
           aria-label={item.label}
           className={twJoin(
             "flex items-center gap-2 relative w-full rounded-lg cursor-pointer py-2.5 px-1 hover:bg-black/10 transition-all duration-300 text-inherit",
-            showSideBar ? "hover:text-(--linkC)" : "md:max-w-10 md:rounded-full"
+            showSideBar ? "hover:text-theme-450" : "md:max-w-10 md:rounded-full"
           )}
           onClick={item.onClick}
         >
@@ -362,7 +362,7 @@ function SideBarItem({ item, showSideBar }: { item: MenuItem; showSideBar: boole
             <span
               className={twJoin(
                 !showSideBar &&
-                  "md:block md:py-2 md:px-3 md:rounded-full md:rounded-tl-sm md:bg-(--contentB) md:dark:bg-(--darkBa) hover:text-(--linkC) md:shadow"
+                  "md:block md:py-2 md:px-3 md:rounded-full md:rounded-tl-sm md:bg-theme-100 md:dark:bg-neutral-900 hover:text-theme-450 md:shadow"
               )}
             >
               {item.label}

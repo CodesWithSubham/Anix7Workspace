@@ -153,7 +153,7 @@ export default function SignUpForm() {
             <div
               id="enterRef"
               onClick={() => setIsRefer((prev) => !prev)}
-              className={`mt-2 cursor-pointer  ${isRefer ? "text-red-500" : "text-(--linkC)"}`}
+              className={`mt-2 cursor-pointer  ${isRefer ? "text-red-500" : "text-theme-450"}`}
             >
               {isRefer ? <>&times; Remove Refer Code</> : <>&#43; Enter Refer Code</>}
             </div>

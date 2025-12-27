@@ -178,7 +178,7 @@ export default async function QrCode() {
       </div>
       <section className="my-16 px-4 text-center">
         <h2 className="text-2xl font-bold mb-4">
-          Benefits from <span className="text-(--linkC)">QR by Anix7 Tools</span>
+          Benefits from <span className="text-theme-450">QR by Anix7 Tools</span>
         </h2>
         <p className="text-muted-foreground max-w-xl mx-auto">
           {/* With QR by Anix7 Tools, you can track how many people scan your QR
@@ -220,7 +220,7 @@ export default async function QrCode() {
       // Dynamic QR Code Card
     }
     <div className="border rounded-xl p-6 shadow-xs bg-background">
-      <h3 className="text-xl font-semibold mb-2 text-(--linkC)">
+      <h3 className="text-xl font-semibold mb-2 text-theme-450">
         DYNAMIC
       </h3>
       <div className="h-32 w-full bg-muted/30 rounded-md mb-4 flex items-center justify-center">
@@ -249,7 +249,7 @@ export default async function QrCode() {
       //Static QR Code Card
     }
     <div className="border rounded-xl p-6 shadow-xs bg-background">
-      <h3 className="text-xl font-semibold mb-2 text-(--linkC)">
+      <h3 className="text-xl font-semibold mb-2 text-theme-450">
         STATIC
       </h3>
       <div className="h-32 w-full bg-muted/30 rounded-md mb-4 flex items-center justify-center">
@@ -278,7 +278,7 @@ export default async function QrCode() {
         <h2 className="text-2xl font-bold text-center mb-6">How to Use</h2>
         <p className="text-center text-muted-foreground max-w-2xl mx-auto mb-10">
           Creating QR Codes with{" "}
-          <span className="text-(--linkC) font-medium">QR by Anix7 Tools</span> is simple and
+          <span className="text-theme-450 font-medium">QR by Anix7 Tools</span> is simple and
           efficient. Just follow these steps:
         </p>
 

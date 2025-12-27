@@ -52,7 +52,7 @@ export default function ThemePicker({ className = "" }) {
     const themeColor =
       mode === "dark"
         ? "#1d1d1d"
-        : getComputedStyle(document.body).getPropertyValue("--linkC")?.trim() || "#fffdfc";
+        : getComputedStyle(document.documentElement).getPropertyValue("--themeC")?.trim() || "#fffdfc";
 
     let themeMeta = document.querySelector<HTMLMetaElement>("meta[name='theme-color']");
     if (!themeMeta) {
@@ -76,16 +76,16 @@ export default function ThemePicker({ className = "" }) {
       mode = systemPrefersDark ? "dark" : "light";
     }
 
-    document.body.classList.toggle("dark", mode === "dark");
-    document.body.classList.toggle("system", isSystem);
+    document.documentElement.classList.toggle("dark", mode === "dark");
+    document.documentElement.classList.toggle("system", isSystem);
     setMetaThemeColor(mode);
   };
 
   const setThemeColor = (index: number) => {
     const colorClass = `theme${index}`;
     // Remove old theme color classes
-    document.body.classList.remove(...(document.body.className.match(/theme\d+/g) || []));
-    document.body.classList.add(colorClass); // Apply the new theme to body
+    document.documentElement.classList.remove(...(document.documentElement.className.match(/theme\d+/g) || []));
+    document.documentElement.classList.add(colorClass); // Apply the new theme to documentElement
 
     localStorage.setItem("themeColor", colorClass);
     setCookie("themeColor", colorClass);
@@ -98,20 +98,20 @@ export default function ThemePicker({ className = "" }) {
       <div className="flex justify-center gap-2 flex-wrap *:p-2 *:border-2 *:rounded-md *:cursor-pointer">
         <button
           onClick={() => setMode("light")}
-          className="not-dark:not-[.system_*]:border-(--linkC) hover:border-dotted hover:border-(--linkC)"
+          className="not-dark:not-[.system_*]:border-theme-450 hover:border-dotted hover:border-theme-450"
         >
           Light
         </button>
         <button
           onClick={() => setMode("dark")}
-          className="dark:not-[.system_*]:border-(--linkC) hover:border-dotted hover:border-(--linkC)"
+          className="dark:not-[.system_*]:border-theme-450 hover:border-dotted hover:border-theme-450"
         >
           Dark
         </button>
         {showSystemButton && (
           <button
             onClick={() => setMode("system")}
-            className="in-[.system]:border-(--linkC) hover:border-dotted hover:border-(--linkC)"
+            className="in-[.system]:border-theme-450 hover:border-dotted hover:border-theme-450"
           >
             System
           </button>

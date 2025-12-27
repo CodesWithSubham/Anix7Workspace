@@ -73,7 +73,7 @@ export default function ReverseTextPage() {
           <Button
             onClick={() => setReverseAction((p) => (p === "full" ? null : "full"))}
             className={cn(
-              "opacity-100 border-2 border-(--linkC)",
+              "opacity-100 border-2 border-theme-450",
               reverseAction !== "full" && "bg-transparent not-dark:text-gray-600"
             )}
           >
@@ -82,7 +82,7 @@ export default function ReverseTextPage() {
           <Button
             onClick={() => setReverseAction((p) => (p === "word" ? null : "word"))}
             className={cn(
-              "opacity-100 border-2 border-(--linkC)",
+              "opacity-100 border-2 border-theme-450",
               reverseAction !== "word" && "bg-transparent not-dark:text-gray-600"
             )}
           >
@@ -93,7 +93,7 @@ export default function ReverseTextPage() {
               setReverseAction((p) => (p === "each-word-letter" ? null : "each-word-letter"))
             }
             className={cn(
-              "opacity-100 border-2 border-(--linkC)",
+              "opacity-100 border-2 border-theme-450",
               reverseAction !== "each-word-letter" && "bg-transparent not-dark:text-gray-600"
             )}
           >
@@ -105,7 +105,7 @@ export default function ReverseTextPage() {
           <Button
             onClick={() => setFlipAction((p) => (p === "upside-down" ? null : "upside-down"))}
             className={cn(
-              "opacity-100 border-2 border-(--linkC)",
+              "opacity-100 border-2 border-theme-450",
               flipAction !== "upside-down" && "bg-transparent not-dark:text-gray-600"
             )}
           >
@@ -114,7 +114,7 @@ export default function ReverseTextPage() {
           <Button
             onClick={() => setFlipAction((p) => (p === "mirror" ? null : "mirror"))}
             className={cn(
-              "opacity-100 border-2 border-(--linkC)",
+              "opacity-100 border-2 border-theme-450",
               flipAction !== "mirror" && "bg-transparent not-dark:text-gray-600"
             )}
           >

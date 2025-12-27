@@ -199,7 +199,7 @@ export function Note({
 } & React.HTMLProps<HTMLDivElement>) {
   return (
     <div
-      className="my-2 relative pt-5 pl-12 pr-5 bg-(--headerB) dark:bg-neutral-800 rounded-xl overflow-hidden"
+      className="my-2 relative pt-5 pl-12 pr-5 bg-theme-100 dark:bg-neutral-800 rounded-xl overflow-hidden"
       {...props}
     >
       <div className="absolute w-14 h-14 bg-black/5 rounded-full -top-3 -left-3" />

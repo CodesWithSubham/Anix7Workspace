@@ -96,7 +96,7 @@ export default function ToolSearch() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search tools..."
-            className={cn("px-8 rounded-full border-neutral-500", isFocused && "bg-(--headerB)")}
+            className={cn("px-8 rounded-full border-neutral-500", isFocused && "bg-theme-100")}
           />
           <GoSearch className="absolute left-1.5 top-1/2 -translate-y-1/2 text-neutral-500 scale-90" />
           <IoCloseCircleOutline

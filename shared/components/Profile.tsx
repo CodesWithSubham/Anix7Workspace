@@ -38,7 +38,7 @@ export default function Profile() {
           />
           {profilePop && (
             <div
-              className="fixed top-16 right-2 bg-(--headerB) z-20 shadow-2xl p-4 rounded-md w-56 sm:w-xs max-w-screen"
+              className="fixed top-16 right-2 bg-theme-100 dark:bg-neutral-800 z-20 shadow dark:shadow-neutral-600 p-4 rounded-md w-56 sm:w-xs max-w-screen"
               style={{ position: "fixed" }}
             >
               <ul className="flex flex-col gap-2 *:flex  *:items-center *:gap-2">
@@ -64,13 +64,13 @@ export default function Profile() {
                 <li className="border-b"></li>
 
                 <li>
-                  <Link href="/setting" className="text-inherit hover:text-(--linkC) flex gap-2">
+                  <Link href="/setting" className="text-inherit hover:text-theme-450 flex gap-2">
                     <IoSettingsOutline /> Setting
                   </Link>
                 </li>
                 <li
                   onClick={() => setThemePop(!themePop)}
-                  className="hover:text-(--linkC) cursor-pointer"
+                  className="hover:text-theme-450 cursor-pointer"
                 >
                   <IoColorPaletteOutline /> Change Theme
                 </li>

@@ -53,24 +53,24 @@ export default function LoginSignup() {
         </svg>
       }
       header={
-        <div className="font-extrabold text-lg relative flex p-1 border border-(--linkC) rounded-full *:p-1.5 *:flex-1 *:w-1/2 *:rounded-full *:transition-all *:duration-500 *:ease-in-out">
+        <div className="font-extrabold text-lg relative flex p-1 border border-theme-450 rounded-full *:p-1.5 *:flex-1 *:w-1/2 *:rounded-full *:transition-all *:duration-500 *:ease-in-out">
           <button
             aria-label="Login"
-            className={isLoginTab ? "text-white" : "text-(--linkC) cursor-pointer"}
+            className={isLoginTab ? "text-white" : "text-theme-450 cursor-pointer"}
             onClick={() => setIsLoginTab(true)}
           >
             Login
           </button>
           <button
             aria-label="Sign Up"
-            className={!isLoginTab ? "text-white" : "text-(--linkC) cursor-pointer"}
+            className={!isLoginTab ? "text-white" : "text-theme-450 cursor-pointer"}
             onClick={() => setIsLoginTab(false)}
           >
             Sign Up
           </button>
           {/* Sliding background */}
           <span
-            className={`z-[-1] absolute top-px bottom-px w-1/2 bg-(--linkC) rounded-full ${
+            className={`z-[-1] absolute top-px bottom-px w-1/2 bg-theme-450 rounded-full ${
               isLoginTab ? "left-px" : "left-[calc(50%-1px)]"
             }`}
           ></span>

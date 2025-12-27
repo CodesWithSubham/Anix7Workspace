@@ -82,7 +82,7 @@ export default function ImageUploader() {
 
       {uploadedURL && (
         <div className="w-5/6 max-w-xs mt-4">
-          <p className="text-xs text-(--linkC) ml-2 -mb-1">Uploaded Image URL</p>
+          <p className="text-xs text-theme-450 ml-2 -mb-1">Uploaded Image URL</p>
           <CopyInput value={uploadedURL} />
         </div>
       )}

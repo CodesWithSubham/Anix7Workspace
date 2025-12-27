@@ -43,7 +43,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         {label && (
           <label
             className={twMerge(
-              "text-xs text-(--linkC) font-semibold absolute -top-2.5 left-1.5",
+              "text-xs text-theme-450 font-semibold absolute -top-2.5 left-1.5",
               labelClassName
             )}
           >
@@ -55,7 +55,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           type={type}
           name={name}
           className={twMerge(
-            "w-full h-9 p-2 my-1.5 outline-hidden border hover:border-(--linkC) focus:border-(--linkC) focus:shadow-[0px_0px_5px_0px_var(--linkC)] select-none rounded-lg disabled:cursor-not-allowed disabled:bg-gray-200 disabled:border-gray-300 disabled:text-gray-500 disabled:placeholder:text-gray-500",
+            "w-full h-9 p-2 my-1.5 outline-hidden border hover:border-theme-450 focus:border-theme-450 focus:shadow-[0px_0px_5px_0px] focus:shadow-theme-450 select-none rounded-lg disabled:cursor-not-allowed disabled:bg-gray-200 disabled:border-gray-300 disabled:text-gray-500 disabled:placeholder:text-gray-500",
             className
           )}
           maxLength={maxLength}
@@ -77,7 +77,7 @@ export function CopyInput({ value, className = "", ...props }: React.HTMLProps<H
         role="button"
         viewBox="0 0 24 24"
         onClick={() => copyToClipboard((value || "").toString())}
-        className="fill-(--linkC) absolute top-1/2 -translate-y-1/2 right-1 hover:scale-110 cursor-pointer transition-all duration-500"
+        className="fill-theme-450 absolute top-1/2 -translate-y-1/2 right-1 hover:scale-110 cursor-pointer transition-all duration-500"
       >
         <path d="M16 20H8a3 3 0 0 1-3-3V7a1 1 0 0 0-2 0v10a5 5 0 0 0 5 5h8a1 1 0 0 0 0-2Zm5-11.06a1.31 1.31 0 0 0-.06-.27v-.09a1.07 1.07 0 0 0-.19-.28l-6-6a1.07 1.07 0 0 0-.28-.19h-.09L14.06 2H10a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V8.94Zm-6-3.53L17.59 8H16a1 1 0 0 1-1-1ZM19 15a1 1 0 0 1-1 1h-8a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h3v3a3 3 0 0 0 3 3h3Z" />
       </svg>
@@ -135,7 +135,7 @@ export function ColorInput({ value = "#000000", className = "", ...props }) {
       name=""
       {...props}
       value={value}
-      className={`h-9 px-1 py-0.5 my-1.5 outline-hidden border  border-(--linkC) focus:shadow-[0px_0px_5px_0px_var(--linkC)] select-none rounded-lg ${className}`}
+      className={`h-9 px-1 py-0.5 my-1.5 outline-hidden border  border-theme-450 focus:shadow-[0px_0px_5px_0px] focus:shadow-theme-450 select-none rounded-lg ${className}`}
     />
   );
 }
@@ -206,13 +206,13 @@ export function SliderWithTooltip({
       {/* Tooltip */}
       <div className="relative mr-3 ml-1">
         <div
-          className="absolute -top-12 flex justify-center items-center w-10 h-10 shrink-0 text-white bg-(--linkC) rounded-md shadow-md transition-all duration-300 invisible group-hover:visible opacity-0 group-hover:opacity-100 z-20"
+          className="absolute -top-12 flex justify-center items-center w-10 h-10 shrink-0 text-white bg-theme-450 rounded-md shadow-md transition-all duration-300 invisible group-hover:visible opacity-0 group-hover:opacity-100 z-20"
           style={{
             left: `calc(${((v - min) / (max - min)) * 100}% - 1rem)`,
           }}
         >
           {v}
-          <div className="absolute -bottom-1 rotate-45 w-3 h-3 bg-(--linkC) z-10" />
+          <div className="absolute -bottom-1 rotate-45 w-3 h-3 bg-theme-450 z-10" />
         </div>
       </div>
 
@@ -225,7 +225,7 @@ export function SliderWithTooltip({
         step={step}
         value={v}
         onChange={handleChange}
-        className="w-full h-2 bg-gray-300 rounded-lg appearance-none cursor-pointer accent-(--linkC)"
+        className="w-full h-2 bg-gray-300 rounded-lg appearance-none cursor-pointer accent-theme-450"
         {...props}
       />
     </div>
@@ -258,7 +258,7 @@ export function TextArea({
     <div>
       <textarea
         name={name}
-        className={`w-full h-20 min-h-9 max-h-60 p-2 my-1.5 outline-hidden border bg-transparent border-(--linkC) focus:shadow-[0px_0px_5px_0px_var(--linkC)] select-none rounded-lg ${className} `}
+        className={`w-full h-20 min-h-9 max-h-60 p-2 my-1.5 outline-hidden border bg-transparent border-theme-450 focus:shadow-[0px_0px_5px_0px] focus:shadow-theme-450 select-none rounded-lg ${className} `}
         placeholder={placeholder}
         maxLength={maxLength}
         onChange={handleChange}
@@ -299,7 +299,7 @@ export function Select({
       {label && (
         <label
           className={twMerge(
-            "text-xs text-(--linkC) font-semibold absolute -top-2.5 left-1.5",
+            "text-xs text-theme-450 font-semibold absolute -top-2.5 left-1.5",
             labelClassName
           )}
         >
@@ -309,7 +309,7 @@ export function Select({
       <select
         name={name}
         value={value}
-        className={`w-full h-9 p-2 my-1.5 outline-hidden border bg-transparent border-(--linkC) focus:shadow-[0px_0px_5px_0px_var(--linkC)] select-none rounded-lg ${className}`}
+        className={`w-full h-9 p-2 my-1.5 outline-hidden border bg-transparent border-theme-450 focus:shadow-[0px_0px_5px_0px] focus:shadow-theme-450 select-none rounded-lg ${className}`}
         {...props}
       >
         {options.map((option, i) => {
@@ -347,7 +347,7 @@ export function Checkbox({
         type="checkbox"
         name={name}
         checked={ck}
-        className="w-5 h-5 accent-(--linkC) cursor-pointer"
+        className="w-5 h-5 accent-theme-450 cursor-pointer"
         onChange={handleChange}
         {...props}
       />

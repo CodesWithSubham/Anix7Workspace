@@ -20,7 +20,7 @@ export default function DateInput({ label, labelClassName, className, ...props }
           "w-full h-9 p-2 my-1.5 outline-hidden border select-none rounded-lg",
           props.disabled
             ? "cursor-not-allowed bg-gray-200 border-gray-300 text-gray-500"
-            : "hover:border-(--linkC) focus:shadow-[0px_0px_5px_0px_var(--linkC)]",
+            : "hover:border-theme-450 focus:shadow-[0px_0px_5px_0px] focus:shadow-theme-450",
           className
         )}
         openCalendarOnFocus={false}

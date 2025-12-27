@@ -57,7 +57,7 @@ export default function Section({
         <h2
           ref={h2Ref}
           className={twMerge(
-            "absolute top-5 w-[calc(100%-40px)] left-1/2 -translate-x-1/2 text-center after:content-[''] after:block after:w-40 after:h-[3px] after:bg-(--linkC) after:rounded-full after:mx-auto after:mt-1",
+            "absolute top-5 w-[calc(100%-40px)] left-1/2 -translate-x-1/2 text-center after:content-[''] after:block after:w-40 after:h-0.75 after:bg-theme-450 after:rounded-full after:mx-auto after:mt-1",
             titleClassName
           )}
         >

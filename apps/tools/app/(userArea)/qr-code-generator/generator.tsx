@@ -579,8 +579,8 @@ export default function QRCodeGenerator() {
         <div className="flex-1 flex flex-col md:flex-row-reverse gap-2">
           {/* Sidebar with dynamic positioning */}
           <div className="flex-1">
-            <div className="w-full md:sticky md:top-20 bg-(--waveB) py-4 px-6 rounded-lg flex flex-col items-center scale-75 -my-12 md:scale-100 md:my-0">
-              <h1 className="text-lg font-semibold text-(--linkC) mb-2">Preview QR Code</h1>
+            <div className="w-full md:sticky md:top-20 bg-theme-150 py-4 px-6 rounded-lg flex flex-col items-center scale-75 -my-12 md:scale-100 md:my-0">
+              <h1 className="text-lg font-semibold text-theme-450 mb-2">Preview QR Code</h1>
               {/* <div> */}
               <div
                 ref={downloadRef}
@@ -625,7 +625,7 @@ export default function QRCodeGenerator() {
             <div className="flex justify-around gap-1 p-0.5 border rounded-md md:hidden">
               <div
                 className={`w-full py-1.5 font-bold text-center rounded-l-[4px] transition-all duration-300 ${
-                  tab ? "bg-transparent cursor-pointer" : "bg-(--linkC) text-white"
+                  tab ? "bg-transparent cursor-pointer" : "bg-theme-450 text-white"
                 }`}
                 onClick={() => setTab(() => false)}
               >
@@ -633,7 +633,7 @@ export default function QRCodeGenerator() {
               </div>
               <div
                 className={`w-full py-1.5 font-bold text-center rounded-r-[4px] transition-all duration-300 ${
-                  tab ? "bg-(--linkC) text-white" : "bg-transparent cursor-pointer"
+                  tab ? "bg-theme-450 text-white" : "bg-transparent cursor-pointer"
                 }`}
                 onClick={() => setTab(() => true)}
               >
@@ -648,7 +648,7 @@ export default function QRCodeGenerator() {
                   <Button
                     key={`con-${index}`}
                     className={`flex-1 min-w-14 font-semibold mx-0 border ${
-                      content == item ? "bg-(--linkC) text-white" : "bg-transparent text-inherit"
+                      content == item ? "bg-theme-450 text-white" : "bg-transparent text-inherit"
                     }`}
                     onClick={() => setContent(item)}
                   >
@@ -748,7 +748,7 @@ export default function QRCodeGenerator() {
                   <Button
                     key={`con-${index}`}
                     className={`w-full px-0.5 py-2 m-0 font-semibold rounded-t-md rounded-b-none hover:scale-100 ${
-                      designTab == item ? "bg-(--linkC) text-white" : "bg-transparent text-inherit"
+                      designTab == item ? "bg-theme-450 text-white" : "bg-transparent text-inherit"
                     }`}
                     onClick={() => setDesignTab(item)}
                   >
@@ -756,7 +756,7 @@ export default function QRCodeGenerator() {
                   </Button>
                 ))}
               </div>
-              <div className="w-full border border-(--linkC) p-2">
+              <div className="w-full border border-theme-450 p-2">
                 {designTab === "Frame" && (
                   <>
                     <div className="flex flex-wrap justify-stretch gap-2 mb-5">
@@ -765,7 +765,7 @@ export default function QRCodeGenerator() {
                         <button
                           key={`con-${i}`}
                           className={`flex-1 p-1.5 min-w-16 h-16 md:min-w-20 md:h-20 flex justify-center items-center border-[3px] font-semibold rounded-md cursor-pointer ${
-                            frame.type == i ? "border-(--linkC)" : ""
+                            frame.type == i ? "border-theme-450" : ""
                           } `}
                           onClick={() => setFrame((prev) => ({ ...prev, type: i }))}
                         >
@@ -866,7 +866,7 @@ export default function QRCodeGenerator() {
                           <button
                             key={`con-${i}`}
                             className={`flex-1 p-1.5 min-w-14 h-14 md:min-w-16 md:h-16 flex justify-center items-center border-[3px] font-semibold rounded-md cursor-pointer ${
-                              qrSetting.qrStyle == type ? "border-(--linkC)" : ""
+                              qrSetting.qrStyle == type ? "border-theme-450" : ""
                             } `}
                             onClick={() =>
                               setQrSetting((prev) => ({
@@ -900,7 +900,7 @@ export default function QRCodeGenerator() {
                           <button
                             key={`con-${i}`}
                             className={`flex-1 p-1.5 min-w-14 h-14 md:min-w-16 md:h-16 flex justify-center items-center border-[3px] font-semibold rounded-md cursor-pointer ${
-                              eyeStyle.inner == i ? "border-(--linkC)" : ""
+                              eyeStyle.inner == i ? "border-theme-450" : ""
                             } `}
                             onClick={() => {
                               setEyeStyle((p) => ({ ...p, inner: i }));
@@ -927,7 +927,7 @@ export default function QRCodeGenerator() {
                           <button
                             key={`con-${i}`}
                             className={`flex-1 p-1.5 min-w-14 h-14 md:min-w-16 md:h-16 flex justify-center items-center border-[3px] font-semibold rounded-md cursor-pointer ${
-                              eyeStyle.outer == i ? "border-(--linkC)" : ""
+                              eyeStyle.outer == i ? "border-theme-450" : ""
                             } `}
                             onClick={() => {
                               setEyeStyle((p) => ({ ...p, outer: i }));
@@ -955,7 +955,7 @@ export default function QRCodeGenerator() {
                         <button
                           key={`con-${i}`}
                           className={`flex-1 p-1.5 min-w-16 h-16 md:min-w-20 md:h-20 flex justify-center items-center border-[3px] font-semibold rounded-md cursor-pointer ${
-                            qrSetting.logoImage == item ? "border-(--linkC)" : ""
+                            qrSetting.logoImage == item ? "border-theme-450" : ""
                           } `}
                           onClick={() =>
                             setQrSetting((prev) => ({
@@ -1047,7 +1047,7 @@ function Frame({ frame, children }: { frame: QrFrame; children: React.ReactNode 
 
   const textBox = (
     <div
-      className="flex justify-center p-1.5 rounded-md min-h-4 overflow-x-hidden hide-scrollbar"
+      className="flex justify-center p-1.5 rounded-md min-h-4 overflow-x-hidden no-scrollbar"
       style={{
         color: frame.color,
         width: childWidth,

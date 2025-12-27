@@ -14,7 +14,7 @@ export default function Wave() {
               id="wave-bg"
             />
           </defs>
-          <g className="fill-(--waveB) dark:*:fill-neutral-700 *:w-full">
+          <g className="fill-theme-150 dark:*:fill-neutral-700 *:w-full">
             <use
               x="48"
               y="0"
@@ -70,7 +70,7 @@ export default function Wave() {
           `}
         </style>
       </div>
-      <div className="relative bg-(--waveB) h-32 md:h-36 dark:bg-neutral-700"></div>
+      <div className="relative bg-theme-150 h-32 md:h-36 dark:bg-neutral-700"></div>
     </div>
   );
 }

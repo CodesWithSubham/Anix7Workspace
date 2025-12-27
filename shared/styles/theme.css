@@ -1,0 +1,89 @@
+@layer base {
+  :root,
+  :root.light:not(.dark),
+  :root.theme0:not(.dark) {
+    --themeC: lab(35.45% 75.48 -102.56);
+  }
+
+  /* theme1 - Red */
+  :root.theme1:not(.dark) {
+    --themeC: lab(43.36% 61.96 43.22);
+  }
+
+  /* theme2 - Teal */
+  :root.theme2:not(.dark) {
+    --themeC: lab(45.27% -32.13 -0.46);
+  }
+
+  /* theme3 - Blue */
+  :root.theme3:not(.dark) {
+    --themeC: lab(35.74% 13.73 -51.27);
+  }
+
+  /* theme4 - Amber */
+  :root.theme4:not(.dark) {
+    --themeC: lab(81% 10 83);
+  }
+
+  /* theme5 - Pink */
+  :root.theme5:not(.dark) {
+    --themeC: lab(42.58% 65.55 7.59);
+  }
+
+  /* theme6 - Deep Orange */
+  :root.theme6:not(.dark) {
+    --themeC: lab(53.8% 58.38 58.2);
+  }
+
+  /* theme7 - Blue Grey */
+  :root.theme7:not(.dark) {
+    --themeC: lab(36.93% -5.32 -8.35);
+  }
+
+  /* theme8 - Brown */
+  :root.theme8:not(.dark) {
+    --themeC: lab(30.08% 11.32 10.54);
+  }
+
+  /* theme9 - Purple */
+  :root.theme9:not(.dark) {
+    --themeC: lab(33.56% 57.65 -51.41);
+  }
+
+  /* theme10 - Indigo */
+  :root.theme10:not(.dark) {
+    --themeC: lab(27.03% 28.17 -53.29);
+  }
+
+  /* dark mode - Green */
+  :root.dark {
+    --themeC: lab(65.47% -46.48 22.43);
+  }
+}
+
+@theme inline {
+  /* LIGHT SIDE */
+  --color-theme-50: color-mix(in oklch, var(--themeC) 4%, white);
+  --color-theme-100: color-mix(in oklch, var(--themeC) 10%, white);
+  --color-theme-150: color-mix(in oklch, var(--themeC) 18%, white);
+  --color-theme-200: color-mix(in oklch, var(--themeC) 27%, white);
+  --color-theme-250: color-mix(in oklch, var(--themeC) 37%, white);
+  --color-theme-300: color-mix(in oklch, var(--themeC) 48%, white);
+  --color-theme-350: color-mix(in oklch, var(--themeC) 59%, white);
+  --color-theme-400: color-mix(in oklch, var(--themeC) 72%, white);
+  --color-theme-450: color-mix(in oklch, var(--themeC) 86%, white);
+
+  /* BASE */
+  --color-theme-500: var(--themeC);
+
+  /* DARK SIDE */
+  --color-theme-550: color-mix(in oklch, var(--themeC) 90%, black);
+  --color-theme-600: color-mix(in oklch, var(--themeC) 80%, black);
+  --color-theme-650: color-mix(in oklch, var(--themeC) 70%, black);
+  --color-theme-700: color-mix(in oklch, var(--themeC) 60%, black);
+  --color-theme-750: color-mix(in oklch, var(--themeC) 50%, black);
+  --color-theme-800: color-mix(in oklch, var(--themeC) 42%, black);
+  --color-theme-850: color-mix(in oklch, var(--themeC) 33%, black);
+  --color-theme-900: color-mix(in oklch, var(--themeC) 25%, black);
+  --color-theme-950: color-mix(in oklch, var(--themeC) 15%, black);
+}

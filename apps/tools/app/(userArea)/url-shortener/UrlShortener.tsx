@@ -139,7 +139,7 @@ export default function UrlShortener() {
             <ErrorText>{urlError}</ErrorText>
 
             <button
-              className="my-2 text-(--linkC) font-bold cursor-pointer"
+              className="my-2 text-theme-450 font-bold cursor-pointer"
               onClick={() => setIsAlias(!isAlias)}
             >
               {isAlias ? "- Remove Alias" : "+ Add Alias"}

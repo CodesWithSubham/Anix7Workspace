@@ -1,211 +1,8 @@
-/* /app/globals.css */
+/* shared/styles/base.css */
 
-/* Variable color */
-
-/* Required colors */
-/* 
-- themeC
-- linkC -> primaryC
-- headerB -> secondaryC
-- bodyB -> bodyC
-- waveC
-
-*/
-
-:root,
-:root .light:not(.dark),
-:root .theme0:not(.dark) {
-  --themeC: #482dff;
-  --headC: #08102b;
-  --bodyC: #08102b;
-  --bodyCa: #989b9f;
-  --bodyB: #fdfcff;
-  --linkC: #482dff;
-  --linkB: #482dff;
-  --waveB: #c6dafc;
-  --iconC: #08102b;
-  --iconCa: #08102b;
-  --iconCs: #767676;
-  --headerC: #343435;
-  --headerB: #fffdfc;
-  --headerI: #08102b;
-  --headerH: 60px;
-  --headerHi: -60px;
-  --headerHm: 58px;
-  --headerR: 30px;
-  --contentB: #fffdfc;
-  --contentL: #e6e6e6;
-  --contentW: 1280px;
-  --sideW: 300px;
-  --transB: rgba(0, 0, 0, 0.05);
-  --pageW: 780px;
-  --pageW: 780px;
-  --postT: 28px;
-  --postF: 14px;
-  --postTm: 22px;
-  --postFm: 13px;
-  --widgetT: 15px;
-  --widgetTw: 400;
-  --widgetTa: 25px;
-  --widgetTac: #989b9f;
-  --navW: 230px;
-  --navT: #08102b;
-  --navI: #08102b;
-  --navB: #fffdfc;
-  --navL: 1px;
-  --srchI: #48525c;
-  --srchB: #fffdfc;
-  --mobT: #08102b;
-  --mobHv: #f1f1f0;
-  --mobB: #fffdfc;
-  --mobL: 2px;
-  --mobBr: 36px;
-  --fotT: #08102b;
-  --fotB: transparent;
-  --fotL: 1px;
-  --trans-1: all 0.1s ease;
-  --trans-2: all 0.2s ease;
-  --trans-3: all 0.3s ease;
-  --trans-4: all 0.4s ease;
-
-  --thumbEr: 5px;
-  --srchMr: 20px;
-  --srchDr: 20px;
-  --darkT: #fffdfc;
-  --darkTa: #989b9f;
-  --darkU: #41b375;
-  --darkW: #343435;
-  --darkB: #1e1e1e;
-  --darkBa: #2d2d30;
-  --darkBs: #252526;
-}
-
-:root .dark {
-  --themeC: #1e1e1e;
-  --linkC: #41b375;
-  --headerB: #2d2d30;
-  --waveB: #252526;
-}
-
-:root .theme1:not(.dark) {
-  --themeC: #d32f2f;
-  --bodyB: #fffcfd;
-  --linkC: #f44336;
-  --linkB: #f44336;
-  --headerB: #ffebee;
-  --srchB: #ffebee;
-  --mobB: #ffebee;
-  --waveB: #ffebee;
-}
-
-:root .theme2:not(.dark) {
-  --themeC: #00796b;
-  --bodyB: #fcfffc;
-  --linkC: #009688;
-  --linkB: #009688;
-  --headerB: #e0f2f1;
-  --srchB: #e0f2f1;
-  --mobB: #e0f2f1;
-  --waveB: #e0f2f1;
-}
-
-:root .theme3:not(.dark) {
-  --themeC: #1565c0;
-  --bodyB: #fbfeff;
-  --linkC: #1976d2;
-  --linkB: #1976d2;
-  --headerB: #e3f2fd;
-  --srchB: #e3f2fd;
-  --mobB: #e3f2fd;
-  --waveB: #e3f2fd;
-}
-
-:root .theme4:not(.dark) {
-  --themeC: #ffc107;
-  --bodyB: #fffefa;
-  --linkC: #ff8f00;
-  --linkB: #ff8f00;
-  --headerB: #fff8e1;
-  --srchB: #fff8e1;
-  --mobB: #fff8e1;
-  --waveB: #fff8e1;
-}
-
-:root .theme5:not(.dark) {
-  --themeC: #c2185b;
-  --bodyB: #fffcfd;
-  --linkC: #d81b60;
-  --linkB: #d81b60;
-  --headerB: #fce4ec;
-  --srchB: #fce4ec;
-  --mobB: #fce4ec;
-  --waveB: #fce4ec;
-}
-
-:root .theme6:not(.dark) {
-  --themeC: #e64a19;
-  --bodyB: #fbfeff;
-  --linkC: #f4511e;
-  --linkB: #f4511e;
-  --headerB: #fbe9e7;
-  --srchB: #fbe9e7;
-  --mobB: #fbe9e7;
-  --waveB: #fbe9e7;
-}
-
-:root .theme7:not(.dark) {
-  --themeC: #455a64;
-  --bodyB: #fbfeff;
-  --linkC: #546e7a;
-  --linkB: #546e7a;
-  --headerB: #eceff1;
-  --srchB: #eceff1;
-  --mobB: #eceff1;
-  --waveB: #eceff1;
-}
-
-:root .theme8:not(.dark) {
-  --themeC: #5d4037;
-  --bodyB: #fbfeff;
-  --linkC: #5d4037;
-  --linkB: #5d4037;
-  --headerB: #efebe9;
-  --srchB: #efebe9;
-  --mobB: #efebe9;
-  --waveB: #efebe9;
-}
-
-:root .theme9:not(.dark) {
-  --themeC: #7b1fa2;
-  --bodyB: #fbfeff;
-  --linkC: #8e24aa;
-  --linkB: #8e24aa;
-  --headerB: #f3e5f5;
-  --srchB: #f3e5f5;
-  --mobB: #f3e5f5;
-  --waveB: #f3e5f5;
-}
-
-:root .theme10:not(.dark) {
-  --themeC: #283593;
-  --bodyB: #fbfeff;
-  --linkC: #3949ab;
-  --linkB: #3949ab;
-  --headerB: #e8eaf6;
-  --srchB: #e8eaf6;
-  --mobB: #e8eaf6;
-  --waveB: #e8eaf6;
-}
-
-/*<![CDATA[*/
-/* Standar CSS */
 ::selection {
   color: #fff;
-  background: var(--linkB);
-}
-
-.dark ::selection {
-  background: var(--darkU);
+  background: var(--themeC);
 }
 
 *,
@@ -227,7 +24,11 @@ h5,
 h6 {
   margin: 0;
   font-weight: 700;
-  color: var(--headC);
+  color: #08102b;
+
+  @variant dark {
+    color: #f9f6ff;
+  }
 }
 
 h1 {
@@ -255,7 +56,7 @@ h6 {
 }
 
 a {
-  color: var(--linkC);
+  color: var(--themeC);
   text-decoration: none;
 }
 
@@ -276,6 +77,10 @@ textarea {
 
 input::placeholder {
   color: rgba(0, 0, 0, 0.5);
+}
+
+.dark input::placeholder {
+  color: rgba(255, 255, 255, 0.25);
 }
 
 img {
@@ -300,45 +105,22 @@ svg .line {
   stroke-width: 2;
 }
 
-.clear {
-  width: 100%;
-  display: block;
-  margin: 0;
-  padding: 0;
-  float: none;
-  clear: both;
-}
-
-.fCls {
-  display: block;
-  position: fixed;
-  top: -50%;
-  left: -50%;
-  right: -50%;
-  bottom: -50%;
-  z-index: 1;
-  transition: var(--trans-1);
-  background: transparent;
-  opacity: 0;
-  visibility: hidden;
-}
-
 svg .svgC {
-  fill: var(--linkC);
+  fill: var(--themeC);
 }
 
 svg.line .svgC {
   fill: none;
-  stroke: var(--linkC);
+  stroke: var(--themeC);
 }
 
 .dark svg .svgC {
-  fill: var(--darkU);
+  fill: var(--themeC);
 }
 
 .dark svg.line .svgC {
   fill: none;
-  stroke: var(--darkU);
+  stroke: var(--themeC);
 }
 
 /* Unfilled Ads */
@@ -350,6 +132,7 @@ ins.adsbygoogle[data-ad-status="unfilled"] {
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+  color-scheme: light dark;
 }
 
 body {
@@ -360,43 +143,19 @@ body {
   padding: 0 !important;
   width: 100%;
   font-size: 14px;
-  color: var(--bodyC);
-  background: var(--bodyB);
+  color: #08102b;
+  background-color: #fffdfc;
+  background-color: color-mix(in oklab, var(--themeC) 2%, white);
   animation: opaCity 1s 0s;
   -webkit-animation: opaCity 1s 0s;
-}
 
-.shBri {
-  max-width: 520px;
-}
-
-/* Extra */
-
-.aNm.t {
-  background: rgba(255, 255, 255, 0.8);
-  padding: 6px;
-}
-
-.aNm.t .im {
-  width: 16px;
-  height: 16px;
-  margin-right: 4px;
-}
-
-.aNm.t .nm {
-  font-size: 13px;
-  color: var(--bodyC);
-}
-
-.aNm.t svg {
-  width: 13px;
-  height: 13px;
-  fill: #1da1f2;
-  margin-left: 4px;
+  @variant dark {
+    background-color: #151313;
+    color: #fffdfc;
+  }
 }
 
 /* Keyframes Animation */
-
 @keyframes opaCity {
   0% {
     opacity: 0;
@@ -407,155 +166,14 @@ body {
   }
 }
 
-@-webkit-keyframes opaCity {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-/* --- Your Custom CSS goes here --- */
-
-.dark input::placeholder,
-.dark .cpL input {
-  color: rgba(255, 255, 255, 0.25);
-}
-
-.dark .erroC h3 span.e {
-  color: var(--darkBa);
-}
-
-.dark .cmC i[rel="image"]::before {
-  background: var(--darkBs);
-  border-color: rgba(255, 255, 255, 0.15);
-}
-
 .dark svg.line {
   fill: none;
   stroke: currentColor;
 }
 
-.dark svg.c-2 {
-  fill: var(--darkTa);
-  opacity: 0.4;
-}
-
-.dark {
-  background: var(--darkB);
-  color: var(--darkT);
-}
-
-.dark .ntfC {
-  background: var(--darkBa);
-  color: var(--darkTa);
-}
-
-.dark .ntfC {
-  color: rgba(255, 255, 255, 0.9);
-}
-
-.dark .cmHl > li > .cmIn,
-.dark .pRelate {
-  border-color: rgba(255, 255, 255, 0.15);
-}
-
-.dark .pre {
-  background: var(--darkBs);
-  color: var(--darkT);
-}
-
-.dark .wL.bg li > *,
-.dark .shL a,
-.dark .cpLb {
-  background: rgba(0, 0, 0, 0.15);
-}
-
-.dark h1,
-.dark h2,
-.dark h3,
-.dark h4,
-.dark h5,
-.dark h6 {
-  color: var(--darkT);
-}
-
-.dark .fixLs {
-  background: var(--darkBs);
-}
-
-.dark .tocLi {
-  background: var(--darkB);
-}
-
-.dark .admPs,
-.dark .tocC span,
-.dark .pShc > *:not(.c),
-.dark .cmHl > li > .cmIn {
-  background: var(--darkBa);
-}
-
-.dark .tocC span::before {
-  background: var(--darkBa);
-}
-
-.dark .tocC span::after {
-  background: var(--darkU);
-}
-
-.dark .tocL svg.rad {
-  fill: var(--darkBa);
-}
-
 .dark::selection,
-.dark a,
-.dark .free::after,
-.dark .new::after,
-.dark .aTtl a:hover,
-.dark .cpL label,
-.dark .wL li > *:hover .lbC,
-.dark .wL li > div .lbC,
-.dark .wL .lbM,
-.dark .cmBtn.ln:hover,
-.dark .wL.cl .lbN:hover .lbC,
-.dark .wL.cl div.lbN .lbC {
-  color: var(--darkU);
-}
-
-.dark .wL li > *:hover svg,
-.dark .wL li > div svg {
-  stroke: var(--darkU);
-}
-
-.dark .wL.cl .lbN:not(div):hover,
-.dark .wL.cl div.lbN {
-  border-color: var(--darkU);
-}
-
-.dark .aTtl a,
-.dark .wL li > *,
-.dark .cmAc a {
-  color: var(--darkT);
-}
-
-@media screen and (min-width: 768px) {
-  .dark .tocLi::before {
-    border-color: rgba(255, 255, 255, 0.15);
-  }
-}
-
-@media screen and (min-width: 641px) {
-  .dark .ftMn a:hover {
-    color: var(--darkU);
-  }
-}
-
-@media screen and (max-width: 640px) {
-  .dark .ftMn {
-    background: var(--darkBa);
-  }
+.dark a {
+  color: var(--themeC);
 }
 
 *,
@@ -582,60 +200,46 @@ svg {
 .theme8 .themePickerOutline8,
 .theme9 .themePickerOutline9,
 .theme10 .themePickerOutline10 {
-  /* Use direct CSS */
-  --tw-ring-color: var(--linkC) !important;
+  --tw-ring-color: var(--themeC) !important;
   --tw-ring-offset-color: #ffffff !important;
 }
 
-/* Scrollbar */
-@media screen and (min-width: 768px) {
-  *::-webkit-scrollbar {
-    -webkit-appearance: none;
-    width: 8px;
-    height: 5px;
-  }
-
-  *::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  *::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.15);
-    border-radius: 10px;
-  }
-
-  *::-webkit-scrollbar-thumb:hover {
-    background: rgba(0, 0, 0, 0.35);
-  }
-
-  *::-webkit-scrollbar-thumb:active {
-    background: rgba(0, 0, 0, 0.35);
-  }
+/* scrollbar */
+:root {
+  --scrollbar-thumb: oklch(0.923 0.003 48.717);
+  --scrollbar-thumb-hover: oklch(0.709 0.01 56.259);
+  --scrollbar-track: transparent;
 }
 
-/* Hide Scroll */
-.hide-scrollbar::-webkit-scrollbar {
-  width: 0;
-  height: 0;
+.dark {
+  --scrollbar-thumb: oklch(0.268 0.007 34.298);
+  --scrollbar-thumb-hover: oklch(0.553 0.013 58.071);
+  --scrollbar-track: transparent;
 }
 
-.hide-scrollbar::-webkit-scrollbar-track {
+/* Global, accessible custom scrollbars */
+* {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+/* WebKit-based browsers */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb);
+  border-radius: 9999px;
+  border: 3px solid transparent; /* creates a gap between thumb and track */
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--scrollbar-thumb-hover);
+}
+::-webkit-scrollbar-corner {
   background: transparent;
-}
-
-.hide-scrollbar::-webkit-scrollbar-thumb {
-  background: transparent;
-  border: none;
-}
-
-/* Hide number input spinners */
-.no-spinner::-webkit-inner-spin-button,
-.no-spinner::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-.no-spinner {
-  appearance: textfield;
-  -moz-appearance: textfield;
 }

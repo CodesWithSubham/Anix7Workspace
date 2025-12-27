@@ -205,11 +205,11 @@ export default function ShortedURLs({
                   {/* URLs */}
                   <td className="w-1/2 pt-2 border border-black">
                     <div className="py-4 w-11/12 mx-auto relative">
-                      <label className="text-xs text-(--linkC) absolute top-0 left-1">
+                      <label className="text-xs text-theme-450 absolute top-0 left-1">
                         Original Url
                       </label>
                       <input
-                        className="border border-dotted border-(--linkC) w-full bg-transparent outline-hidden py-1 pl-2 pr-7 rounded-full"
+                        className="border border-dotted border-theme-450 w-full bg-transparent outline-hidden py-1 pl-2 pr-7 rounded-full"
                         readOnly
                         value={url.longUrl}
                       />
@@ -226,11 +226,11 @@ export default function ShortedURLs({
                       </svg>
                     </div>
                     <div className="py-4 w-11/12 mx-auto relative">
-                      <label className="text-xs text-(--linkC) absolute top-0 left-1">
+                      <label className="text-xs text-theme-450 absolute top-0 left-1">
                         Short Url
                       </label>
                       <input
-                        className="border border-dotted border-(--linkC) w-full bg-transparent outline-hidden py-1 pl-2 pr-7 rounded-full"
+                        className="border border-dotted border-theme-450 w-full bg-transparent outline-hidden py-1 pl-2 pr-7 rounded-full"
                         readOnly
                         value={baseUrl + "/" + url.alias}
                       />
@@ -260,8 +260,8 @@ export default function ShortedURLs({
                           className="cursor-pointer"
                         >
                           <span
-                            className={`w-4 h-4 rounded-full mr-[6px] inline-block border-[3.5px] border-(--waveB) outline outline-(--linkC) ${
-                              url.adsLabel === i ? "bg-(--linkC)" : "bg-(--waveB)"
+                            className={`w-4 h-4 rounded-full mr-[6px] inline-block border-[3.5px] border-theme-150 outline outline-theme-450 ${
+                              url.adsLabel === i ? "bg-theme-450" : "bg-theme-150"
                             }`}
                           />
                           <span>{label}</span>
@@ -284,7 +284,7 @@ export default function ShortedURLs({
           </table>
           {total > urls.length && (
             <button
-              className="block w-1/2 max-w-96 bg-(--linkC) p-3 mx-auto rounded-full text-white font-bold disabled:opacity-80 disabled:cursor-not-allowed enabled:hover:scale-105 transition-all duration-300"
+              className="block w-1/2 max-w-96 bg-theme-450 p-3 mx-auto rounded-full text-white font-bold disabled:opacity-80 disabled:cursor-not-allowed enabled:hover:scale-105 transition-all duration-300"
               onClick={() => setPage((p) => ++p)}
               disabled={loading}
             >
@@ -305,10 +305,10 @@ export default function ShortedURLs({
       {showDeletePopup && selectedUrl && (
         <PopUpBox header="Are you sure you want to delete?" svg={<RiDeleteBin6Line />}>
           <p className="my-2">
-            <span className="text-(--linkC)">Original URL:</span> {selectedUrl.longUrl}
+            <span className="text-theme-450">Original URL:</span> {selectedUrl.longUrl}
           </p>
           <p>
-            <span className="text-(--linkC)">Shortened URL:</span>{" "}
+            <span className="text-theme-450">Shortened URL:</span>{" "}
             {baseUrl + "/" + selectedUrl.alias}
           </p>
           <div className="flex justify-end items-center text-white font-bold mt-5">
@@ -321,7 +321,7 @@ export default function ShortedURLs({
               Delete
             </Button>
             <Button
-              className="bg-(--linkC) hover:scale-105 mx-3"
+              className="bg-theme-450 hover:scale-105 mx-3"
               onClick={closeDeletePopup}
               disabled={deleteLoading}
             >
@@ -340,7 +340,7 @@ export default function ShortedURLs({
           svg={<IoDocumentTextOutline />}
         >
           <div className="flex flex-col mb-5 px-2">
-            <label htmlFor="editShortedUrl" className="text-(--linkC) text-xs ml-1">
+            <label htmlFor="editShortedUrl" className="text-theme-450 text-xs ml-1">
               Shorted URL
             </label>
             <Input
@@ -350,7 +350,7 @@ export default function ShortedURLs({
               className="mb-3"
             />
 
-            <label htmlFor="editOrgUrl" className="text-(--linkC) text-xs ml-1">
+            <label htmlFor="editOrgUrl" className="text-theme-450 text-xs ml-1">
               Original URL
             </label>
             <Input

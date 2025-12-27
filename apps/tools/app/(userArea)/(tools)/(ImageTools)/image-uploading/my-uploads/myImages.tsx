@@ -164,7 +164,7 @@ export default function MyImages() {
           <div className="columns-1 min-[420px]:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
             {images[pageNum - 1]?.map((image) => (
               <div
-                className="break-inside-avoid overflow-hidden rounded-lg even:bg-(--waveB) dark:even:bg-(--headerB) odd:bg-[#4e4e4e29] border-2 border-dotted border-(--linkC)"
+                className="break-inside-avoid overflow-hidden rounded-lg even:bg-theme-150 dark:even:bg-neutral-800 odd:bg-[#4e4e4e29] border-2 border-dotted border-theme-450"
                 key={image.alias}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -176,7 +176,7 @@ export default function MyImages() {
                   className="w-full h-auto select-none"
                 />
 
-                <div className="flex w-full gap-2 items-center justify-around p-1 border-y-2 border-dotted border-(--linkC)">
+                <div className="flex w-full gap-2 items-center justify-around p-1 border-y-2 border-dotted border-theme-450">
                   <CopyInput value={`${indexUrl}/${image.alias}`} />
                   <IconButton onClick={() => openPopup(image)} className="m-0.5 p-0">
                     <RiDeleteBin6Line />
@@ -197,8 +197,8 @@ export default function MyImages() {
                         onClick={() => modifyAds(image.alias, value as 0 | 1 | 2 | 3)}
                       >
                         <span
-                          className={`w-4 h-4 rounded-full mr-1.5 border-[3.5px] border-(--waveB) outline outline-(--linkC) ${
-                            image.adsLabel === value ? "bg-(--linkC)" : "bg-(--waveB)"
+                          className={`w-4 h-4 rounded-full mr-1.5 border-[3.5px] border-theme-150 outline outline-theme-450 ${
+                            image.adsLabel === value ? "bg-theme-450" : "bg-theme-150"
                           } ${adsLoading ? "opacity-70" : ""}`}
                         />
                         <span>{label}</span>
@@ -239,7 +239,7 @@ export default function MyImages() {
         </div>
       )}
 
-      <div className="flex w-full gap-2 *:flex *:justify-center *:items-center *:bg-(--linkC) *:text-white *:w-full *:py-2 my-4">
+      <div className="flex w-full gap-2 *:flex *:justify-center *:items-center *:bg-theme-450 *:text-white *:w-full *:py-2 my-4">
         {pageNum != 1 && (
           <button
             className="rounded-l-lg hover:scale-105 transition-all duration-300"
@@ -301,7 +301,7 @@ export default function MyImages() {
             />
           </div>
 
-          <p className="text-center text-sm text-(--linkC) my-2">{`${indexUrl}/${selectedUrl.alias}`}</p>
+          <p className="text-center text-sm text-theme-450 my-2">{`${indexUrl}/${selectedUrl.alias}`}</p>
           <div className="flex justify-end items-center text-white font-bold *:px-4 *:py-2 *:rounded-full *:transition-all *:duration-300">
             <Button
               className="bg-red-600"
@@ -326,7 +326,7 @@ export default function MyImages() {
               Delete
             </Button>
             <Button
-              className="bg-(--linkC) hover:scale-105 mx-3"
+              className="bg-theme-450 hover:scale-105 mx-3"
               onClick={closePopup}
               disabled={deleteLoading}
             >

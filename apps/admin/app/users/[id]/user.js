@@ -50,7 +50,7 @@ export default function UserClientPage({ user }) {
           </ul>
         </div>
       </div>
-      <pre className="w-[calc(100vw-40px)] p-3 overflow-x-scroll shadow hide-scrollbar">
+      <pre className="w-[calc(100vw-40px)] p-3 overflow-x-scroll shadow no-scrollbar">
         {JSON.stringify(user, null, 2)}
       </pre>
 
@@ -148,19 +148,19 @@ function UserDetailsEditPopUp({ user, pop, setPop }) {
                 />
                 <Button
                   htmlFor="radioDiamond"
-                  className="w-full bg-transparent text-inherit peer-checked/diamond:bg-(--linkC) peer-checked/diamond:text-white rounded-none m-0"
+                  className="w-full bg-transparent text-inherit peer-checked/diamond:bg-theme-450 peer-checked/diamond:text-white rounded-none m-0"
                 >
                   Diamond
                 </Button>
                 <Button
                   htmlFor="radioCoin"
-                  className="w-full bg-transparent text-inherit peer-checked/coin:bg-(--linkC) peer-checked/coin:text-white rounded-none m-0"
+                  className="w-full bg-transparent text-inherit peer-checked/coin:bg-theme-450 peer-checked/coin:text-white rounded-none m-0"
                 >
                   Coin
                 </Button>
                 <Button
                   htmlFor="radioLife"
-                  className="w-full bg-transparent text-inherit peer-checked/life:bg-(--linkC) peer-checked/life:text-white rounded-none m-0"
+                  className="w-full bg-transparent text-inherit peer-checked/life:bg-theme-450 peer-checked/life:text-white rounded-none m-0"
                 >
                   Life
                 </Button>
@@ -183,13 +183,13 @@ function UserDetailsEditPopUp({ user, pop, setPop }) {
                 />
                 <Button
                   htmlFor="radioAdd"
-                  className="w-full bg-transparent text-inherit peer-checked/add:bg-(--linkC) peer-checked/add:text-white rounded-none m-0"
+                  className="w-full bg-transparent text-inherit peer-checked/add:bg-theme-450 peer-checked/add:text-white rounded-none m-0"
                 >
                   + Add
                 </Button>
                 <Button
                   htmlFor="radioRemove"
-                  className="w-full bg-transparent text-inherit peer-checked/remove:bg-(--linkC) peer-checked/remove:text-white rounded-none m-0"
+                  className="w-full bg-transparent text-inherit peer-checked/remove:bg-theme-450 peer-checked/remove:text-white rounded-none m-0"
                 >
                   - Remove
                 </Button>

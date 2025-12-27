@@ -2,15 +2,10 @@
 
 @source "../../../shared/**/*{.js,.jsx,.tsx}";
 
+@import "../../../shared/styles/utilities.css";
+@import "../../../shared/styles/theme.css";
+
 @custom-variant dark (&:is(.dark *));
-
-@theme {
-  --color-primary: oklch(93% 0.22 121);
-}
-
-.test {
-  --color-primary: oklch(93% 0.22 121);
-}
 
 @layer base {
   @import "../../../shared/styles/base.css";
