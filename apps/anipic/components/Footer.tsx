@@ -2,7 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import Hr from "@shared/components/ui/Hr";
 import Section from "@shared/components/ui/Section";
-import { cacheLife } from "next/cache";
+import { Suspense } from "react";
+import CurrentYear from "@shared/components/currentYear";
 
 // Updated importantLinks constant with multiple categories
 const importantLinks = [
@@ -60,9 +61,6 @@ const importantLinks = [
 ];
 
 export default async function Footer() {
-  "use cache";
-  cacheLife("days");
-  
   return (
     <footer className="mb-8 mt-12">
       <Section className="text-center border border-gray-200/50 dark:border-neutral-600/60">
@@ -70,17 +68,17 @@ export default async function Footer() {
         <div>
           <div className="text-gray-500 dark:text-gray-200">Made with ❤️ by</div>
           <Image
-            className="w-1/3 max-w-60 aspect-square mt-2 mb-1 mx-auto rounded-2xl"
-            src="/assets/img/logo/anix7-logo-512.jpg"
+            className="w-1/3 max-w-60 mt-2 mb-1 mx-auto drop-shadow-xs drop-shadow-black/60 "
+            src="/assets/img/logo/logo-512.png"
             width={120}
             height={120}
-            alt="Anix7 Tools"
+            alt="AniPic - Anix7"
           />
           <div>
-            <h2>Anix7</h2>
+            <h2>AniPic - Anix7</h2>
             <p>
-              Anix7 is your all-in-one hub for smart tools, anime updates, 4K wallpapers, mini games
-              and nature photography. Discover, create, and download with ease.
+              AniPic by Anix7 is a modern platform for discovering high-quality AI-generated images,
+              art, and creative visuals.
             </p>
           </div>
         </div>
@@ -111,7 +109,10 @@ export default async function Footer() {
         <div className="inline-flex items-center">
           <span>
             <span className="font-sans">&copy;</span>
-            <span>{new Date().getFullYear()}</span> &nbsp;&middot;&nbsp;&nbsp;
+            <Suspense>
+              <CurrentYear />
+            </Suspense>{" "}
+            &nbsp;&middot;&nbsp;&nbsp;
             <bdi>
               <Link href="/" className=" inline-flex items-center text-lg">
                 Anix7

@@ -1,5 +1,3 @@
-"use client";
-
 import SlideBarLayout, { MenuItem } from "@shared/components/navigation/SlideBarLayout";
 import { Suspense } from "react";
 // import { PiResize } from "react-icons/pi";
@@ -26,7 +24,7 @@ const menuItem: MenuItem[] = [
 export default function SlideBar() {
   return (
     <Suspense>
-      <SlideBarLayout menuItem={menuItem} />;
+      <SlideBarLayout menuItem={menuItem} />
     </Suspense>
   );
 }

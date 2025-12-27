@@ -2,10 +2,10 @@
 
 import { useActionState, useState } from "react";
 import { uploadImageAction } from "./actions";
-import { formatThumbnailImageUrl } from "@/utils/formatThumbnail";
 import { Button } from "@shared/components/ui/Button";
 import { cn } from "@shared/utils/cn";
 import { useSession } from "@shared/auth/client";
+import { Input } from "@shared/components/ui/Input";
 
 export default function UploadPage() {
   const [state, action, isPending] = useActionState(uploadImageAction, {
@@ -13,46 +13,52 @@ export default function UploadPage() {
     error: "",
   });
 
-  type ImgType = {
-    org: {
-      url: string;
-      width: number;
-      height: number;
-    };
-    thumb: {
-      url: string;
-      width: number;
-      height: number;
-    };
+  type UrlType = "originalUrl" | "displayUrl" | "thumbnailUrl";
+
+  type ImgMeta = {
+    url: string;
+    width: number;
+    height: number;
   };
-  const [img, setImg] = useState<ImgType | null>(null);
+
+  type ImgType = Record<UrlType, ImgMeta | null>;
+
+  const [img, setImg] = useState<ImgType>({
+    originalUrl: null,
+    displayUrl: null,
+    thumbnailUrl: null,
+  });
+
   const [imgLoading, setImgLoading] = useState(false);
 
   const imageUrlChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const type = e.target.name as UrlType;
+    const url = e.target.value.trim();
+    if (!url) return;
+
     setImgLoading(true);
-    setImg(null);
-    const url = e.target.value;
-    // validate URL format is an image
-    const img = new Image();
-    img.src = url;
-    img.onload = () => {
+    setImg((prev) => ({ ...prev, [type]: null }));
+
+    const image = new Image();
+    image.src = url;
+
+    image.onload = () => {
       e.target.setCustomValidity("");
-      const thumbUrl = formatThumbnailImageUrl(url);
-      const thumb = new Image();
-      thumb.src = thumbUrl;
-      thumb.onload = () => {
-        setImg({
-          org: { url, width: img.width, height: img.height },
-          thumb: { url: thumbUrl, width: thumb.width, height: thumb.height },
-        });
-        setImgLoading(false);
-      };
-      thumb.onerror = () => {
-        e.target.setCustomValidity("Please enter a valid image URL.");
-        setImgLoading(false);
-      };
+
+      setImg((prev) => ({
+        ...prev,
+        [type]: {
+          url,
+          width: image.width,
+          height: image.height,
+          // type: image.
+        },
+      }));
+
+      setImgLoading(false);
     };
-    img.onerror = () => {
+
+    image.onerror = () => {
       e.target.setCustomValidity("Please enter a valid image URL.");
       setImgLoading(false);
     };
@@ -76,50 +82,103 @@ export default function UploadPage() {
       <h1 className="text-2xl font-semibold mb-6 text-center">Upload Image (Direct URL)</h1>
 
       <form action={action} className="flex flex-col gap-3">
-        <input
+        <Input
           type="url"
-          name="url"
+          name="originalUrl"
           onChange={imageUrlChange}
-          placeholder="Enter direct image URL (https://...)"
-          className="border p-2 rounded"
+          placeholder="https://..."
+          label="Enter original image URL"
           required
+          autoComplete="off"
+        />
+        <Input
+          type="url"
+          name="displayUrl"
+          onChange={imageUrlChange}
+          placeholder="https://..."
+          label="Enter display image URL (512 x 512)"
+          required
+          autoComplete="off"
+        />
+        <Input
+          type="url"
+          name="thumbnailUrl"
+          onChange={imageUrlChange}
+          placeholder="https://..."
+          label="Enter thumbnail image URL (320 x 320)"
+          required
+          autoComplete="off"
         />
 
-        <input
+        <Input
           type="text"
           name="tags"
-          placeholder="Tags (comma separated)"
-          className="border p-2 rounded"
+          placeholder="profile pic, cat, dog"
+          label="Tags (comma separated)"
         />
 
         {img && (
-          <table className="mt-3 table-fixed w-full border border-gray-700/40 text-sm">
-            <thead>
-              <tr className="text-base bg-gray-800/60">
-                <th className="w-1/2 p-1.5 font-medium border-r border-gray-700/40">Image</th>
-                <th className="w-1/2 p-1.5 font-medium">Thumbnail</th>
+          <table className="mt-3 w-full border border-gray-700/40 text-sm">
+            <thead className=" *:w-1/3">
+              <tr className="bg-gray-800/60">
+                <th className="p-2 border-r">Original</th>
+                <th className="p-2 border-r">Display</th>
+                <th className="p-2">Thumbnail</th>
               </tr>
             </thead>
             <tbody>
-              <tr className="align-top">
-                <td className="p-1 border-t border-gray-700/40 border-r">
-                  <img src={img.org.url} alt="Preview" className="w-full h-auto rounded-md" />
+              <tr className="*:w-1/3 border-b">
+                <td className="p-1 border-r">
+                  {img.originalUrl?.url && (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={img.originalUrl.url} className="rounded-md w-full" alt="Original Image" />
+                  )}
                 </td>
-                <td className="p-1 border-t border-gray-700/40">
-                  <img src={img.thumb.url} alt="Thumbnail" className="w-full h-auto rounded-md" />
+                <td className="p-1 border-r">
+                  {img.displayUrl?.url && (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={img.displayUrl.url} className="rounded-md w-full" alt="Display Image" />
+                  )}
+                </td>
+                <td className="p-1">
+                  {img.thumbnailUrl?.url && (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={img.thumbnailUrl.url} className="rounded-md w-full" alt="Thumbnail" />
+                  )}
                 </td>
               </tr>
               <tr className="text-center text-gray-400">
-                <td className="p-1 border-t border-gray-700/40 border-r">
-                  {img.org.width} x {img.org.height}
+                <td className="p-2 border-r">
+                  {img.originalUrl?.width} x {img.originalUrl?.height}
                 </td>
-                <td className="p-1 border-t border-gray-700/40">
-                  {img.thumb.width} x {img.thumb.height}
+                <td className="p-2">
+                  {img.displayUrl?.width} x {img.displayUrl?.height}
+                </td>
+                <td className="p-2">
+                  {img.thumbnailUrl?.width} x {img.thumbnailUrl?.height}
                 </td>
               </tr>
             </tbody>
           </table>
         )}
+        
+        <div className="w-full max-w-sm flex gap-2 items-center mx-auto">
+          <Input
+            type="number"
+            name="width"
+            disabled
+            defaultValue={img.originalUrl?.width}
+            label="Original Image Width"
+          />{" "}
+          x
+          <Input
+            type="number"
+            name="height"
+            disabled
+            defaultValue={img.originalUrl?.height}
+            label="Original Image Height"
+          />
+        </div>
 
         <Button
           type="submit"
