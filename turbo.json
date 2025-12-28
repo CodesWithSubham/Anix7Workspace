@@ -39,6 +39,8 @@
         "BLOB_BASE_URL",
 
         "MONGODB_URI_ANIPIC",
+        "DOWNLOAD_SECRET",
+        "DOWNLOAD_BASE",
 
         "PORT"
       ]
