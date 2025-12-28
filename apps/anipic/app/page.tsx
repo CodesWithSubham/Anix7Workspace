@@ -1,6 +1,6 @@
 import ImageGrid from "@/components/imageGrid";
 import { IMAGE_LIMIT_PER_PAGE } from "@/utils/const";
-import getAniPicModel, { IAniPic } from "@shared/lib/db/models/AniPic";
+import getAniPicModel, { IAniPic } from "@/lib/db/models/AniPic";
 import { cacheLife, cacheTag } from "next/cache";
 import Link from "next/link";
 
@@ -18,10 +18,6 @@ export default async function HomePage() {
 
   return (
     <main className="max-w-4xl mx-auto p-6">
-      {/* <h1 className="text-2xl font-bold mb-4">
-        AniPics (Page {pageNum} of {totalPages})
-      </h1> */}
-
       <ImageGrid images={images} />
 
       {/* Pagination controls */}

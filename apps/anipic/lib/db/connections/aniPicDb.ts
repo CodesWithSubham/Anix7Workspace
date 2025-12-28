@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const uri = process.env.MONGODB_URI_ANIPIC;
 
-let cached = global._aniPicDb || { conn: null, promise: null };
+const cached = global._aniPicDb || { conn: null, promise: null };
 
 export default async function connectToAniPicDb() {
   if (!uri) throw new Error("❌ MONGODB_URI_ANIPIC not found");

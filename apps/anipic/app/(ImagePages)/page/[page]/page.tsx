@@ -1,6 +1,6 @@
 import ImageGrid from "@/components/imageGrid";
 import { IMAGE_LIMIT_PER_PAGE } from "@/utils/const";
-import getAniPicModel, { IAniPic } from "@shared/lib/db/models/AniPic";
+import getAniPicModel, { IAniPic } from "@/lib/db/models/AniPic";
 import type { Metadata } from "next";
 import { cacheLife, cacheTag } from "next/cache";
 import Link from "next/link";
@@ -54,7 +54,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 
 export default async function AniPicPage({ params }: Params) {
   "use cache";
-  cacheLife("days");
+  cacheLife("max");
   cacheTag("anipicImagePages");
 
   const { page } = await params;

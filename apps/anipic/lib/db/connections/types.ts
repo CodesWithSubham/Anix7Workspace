@@ -9,6 +9,5 @@ interface CachedConnection {
 declare global {
   // Avoid TS error on redeclaration in hot reload
   // eslint-disable-next-line no-var
-  var _imageUploadDb: CachedConnection | undefined;
-  var _shortUrlDb: CachedConnection | undefined;
+  var _aniPicDb: CachedConnection | undefined;
 }

@@ -1,28 +1,41 @@
 "use server";
 
-import getAniPicModel from "@shared/lib/db/models/AniPic";
+import getAniPicModel from "@/lib/db/models/AniPic";
+import { createDownloadToken } from "@/utils/createDownloadToken";
 
-export default async function updateDownloads(sno: number) {
+const DOWNLOAD_BASE = process.env.DOWNLOAD_BASE;
+
+if (!DOWNLOAD_BASE) {
+  throw new Error("DOWNLOAD_BASE is not defined");
+}
+
+export default async function getDownloadUrl(sno: number) {
   try {
     const AniPic = await getAniPicModel();
 
-    const result = await AniPic.updateOne(
+    const img = await AniPic.findOneAndUpdate(
       { sno, approved: true },
-      { $inc: { downloads: 1 } }
+      { $inc: { downloads: 1 } },
+      { new: true }
     );
 
-    if (result.modifiedCount === 0) {
-      return { success: false, message: "Image not found or not approved", code: 404 };
-    }
+    if (!img) return { success: false, message: "Image not found or not approved" };
 
-    return { success: true, message: "Update success" };
+    const title = `AniPic image of ${img.tags[0]}, ${img.tags[1]}, ${img.tags[2]}`;
+
+    const downloadToken = createDownloadToken({
+      u: img.originalUrl,
+      w: img.width || 4000,
+      h: img.height || 4000,
+      t: title,
+    });
+
+    const downloadUrl = new URL(`?token=${downloadToken}`, DOWNLOAD_BASE).toString();
+
+    return { success: true, message: "Update success", downloadUrl };
   } catch (error) {
-    console.error("Error occurred in updateDownloads:", error);
+    console.error("Error occurred in getDownloadUrl:", error);
 
-    return {
-      success: false,
-      message: "An unexpected error occurred. Please try again.",
-      code: 500,
-    };
+    return { success: false, message: "An unexpected error occurred. Please try again." };
   }
 }

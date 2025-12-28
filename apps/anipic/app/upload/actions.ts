@@ -1,22 +1,40 @@
 "use server";
 
 import { auth } from "@shared/auth";
-import getAniPicModel from "@shared/lib/db/models/AniPic";
+import getAniPicModel from "@/lib/db/models/AniPic";
 import { headers } from "next/headers";
-// import { revalidatePath } from "next/cache";
+import { z } from "zod";
+import { updateTag } from "next/cache";
 
-// Type of the return state
+/* ---------------- ZOD SCHEMA ---------------- */
+
+const uploadImageSchema = z.object({
+  originalUrl: z.string().url(),
+  displayUrl: z.string().url(),
+  thumbnailUrl: z.string().url(),
+
+  width: z.coerce.number().int().positive().optional(),
+  height: z.coerce.number().int().positive().optional(),
+
+  tags: z
+    .string()
+    .optional()
+    .transform((val) =>
+      val
+        ? val
+            .split(",")
+            .map((t) => t.trim())
+            .filter(Boolean)
+        : []
+    ),
+});
+
 export type UploadImageState =
-  | {
-      success: false;
-      error: string;
-    }
-  | {
-      success: true;
-      message: string;
-    };
+  | { success: false; error: string }
+  | { success: true; message: string };
 
-// 🧠 Server Action
+/* ---------------- SERVER ACTION ---------------- */
+
 export async function uploadImageAction(
   _prevState: UploadImageState,
   formData: FormData
@@ -24,46 +42,60 @@ export async function uploadImageAction(
   const session = await auth.api.getSession({
     headers: await headers(),
   });
-  // Temporary for admin and owner access
-  if (
-    !session ||
-    !session.user ||
-    !(session?.user?.role === "admin" || session?.user?.role === "owner")
-  )
+
+  if (!session?.user || !(session.user.role === "admin" || session.user.role === "owner")) {
     return { success: false, error: "Unauthorized" };
+  }
 
-  const user = session.user;
+  /* -------- Convert FormData → Object -------- */
+  const raw = Object.fromEntries(formData.entries());
 
-  const url = formData.get("url") as string;
-  const tags = (formData.get("tags") as string)
-    ?.split(",")
-    .map((t) => t.trim())
-    .filter(Boolean);
+  const parsed = uploadImageSchema.safeParse(raw);
+  if (!parsed.success) {
+    return {
+      success: false,
+      error: parsed.error.issues[0].message,
+    };
+  }
 
-  if (!url || !url.startsWith("http"))
-    return { success: false, error: "Please enter a valid image URL." };
+  const { originalUrl, displayUrl, thumbnailUrl, width, height, tags } = parsed.data;
 
   try {
     const AniPic = await getAniPicModel();
-    const last = await AniPic.findOne().sort({ sno: -1 });
+
+    /* -------- Generate serial number -------- */
+    const last = await AniPic.findOne().sort({ sno: -1 }).lean();
     const sno = last ? last.sno + 1 : 1;
-    // await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate delay for demo purposes
-    // throw new Error("Simulated failure"); // Simulate failure for demo purposes
 
-    const data = {
+    await AniPic.create({
       sno,
-      url,
-      uploadedBy: 1, // Replace with logged-in user ID later
-      approved: user.role === "admin" || user.role === "owner",
+
+      originalUrl,
+      displayUrl,
+      thumbnailUrl,
+
+      width,
+      height,
+
       tags,
+
+      uploadedBy: session.user.id, // ✅ correct
+      approved: session.user.role === "admin" || session.user.role === "owner",
+
       downloads: 0,
+      views: 0,
+      likes: 0,
+
+      isDeleted: false,
+      dmcaFlag: false,
+    });
+
+    updateTag("anipicImagePages");
+
+    return {
+      success: true,
+      message: "✅ Image uploaded successfully (pending approval)",
     };
-
-    console.log("data", data);
-    await AniPic.create(data);
-
-    // revalidatePath("/");
-    return { success: true, message: "✅ Image uploaded (pending admin approval)" };
   } catch (err) {
     console.error("Upload failed:", err);
     return { success: false, error: "Upload failed. Try again later." };
