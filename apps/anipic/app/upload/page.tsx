@@ -131,13 +131,21 @@ export default function UploadPage() {
                 <td className="p-1 border-r">
                   {img.originalUrl?.url && (
                     // eslint-disable-next-line @next/next/no-img-element
-                    <img src={img.originalUrl.url} className="rounded-md w-full" alt="Original Image" />
+                    <img
+                      src={img.originalUrl.url}
+                      className="rounded-md w-full"
+                      alt="Original Image"
+                    />
                   )}
                 </td>
                 <td className="p-1 border-r">
                   {img.displayUrl?.url && (
                     // eslint-disable-next-line @next/next/no-img-element
-                    <img src={img.displayUrl.url} className="rounded-md w-full" alt="Display Image" />
+                    <img
+                      src={img.displayUrl.url}
+                      className="rounded-md w-full"
+                      alt="Display Image"
+                    />
                   )}
                 </td>
                 <td className="p-1">
@@ -161,12 +169,12 @@ export default function UploadPage() {
             </tbody>
           </table>
         )}
-        
+
         <div className="w-full max-w-sm flex gap-2 items-center mx-auto">
           <Input
             type="number"
             name="width"
-            disabled
+            readOnly
             defaultValue={img.originalUrl?.width}
             label="Original Image Width"
           />{" "}
@@ -174,7 +182,7 @@ export default function UploadPage() {
           <Input
             type="number"
             name="height"
-            disabled
+            readOnly
             defaultValue={img.originalUrl?.height}
             label="Original Image Height"
           />

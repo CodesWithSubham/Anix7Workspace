@@ -13,8 +13,8 @@ const uploadImageSchema = z.object({
   displayUrl: z.string().url(),
   thumbnailUrl: z.string().url(),
 
-  width: z.coerce.number().int().positive().optional(),
-  height: z.coerce.number().int().positive().optional(),
+  width: z.coerce.number().int().positive(),
+  height: z.coerce.number().int().positive(),
 
   tags: z
     .string()

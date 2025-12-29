@@ -131,8 +131,12 @@ ins.adsbygoogle[data-ad-status="unfilled"] {
 /* Main Element */
 html {
   scroll-behavior: smooth;
+  color-scheme: light;
   overflow-x: hidden;
-  color-scheme: light dark;
+}
+
+html.dark {
+  color-scheme: dark;
 }
 
 body {

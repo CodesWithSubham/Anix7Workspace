@@ -85,7 +85,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function ImagePageInner({ params }: Props) {
   const { sno } = await params;
   const img = await getImage(Number(sno));
-  await new Promise((resolve) => setTimeout(resolve, 5000));
   if (!img) return notFound();
 
   return (
