@@ -1,13 +1,11 @@
-import ImageGrid from "@/components/imageGrid";
+import ImageGrid, { SafeImages } from "@/components/imageGrid";
 import { IMAGE_LIMIT_PER_PAGE } from "@/utils/const";
-import getAniPicModel, { IAniPic } from "@/lib/db/models/AniPic";
+import getAniPicModel from "@/lib/db/models/AniPic";
 import type { Metadata } from "next";
 import { cacheLife, cacheTag } from "next/cache";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-
-// export const dynamic = "force-static"; // pre-render (ISR)
-// export const revalidate = 3600; // revalidate every hour
+import { buildSeoTitle } from "@/utils/seo/buildSeoUsingTags";
 
 type Params = { params: Promise<{ page: string }> };
 
@@ -26,8 +24,9 @@ export async function generateStaticParams() {
 /* --------------------------- Dynamic Metadata --------------------------- */
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const pageNum = Math.max(parseInt((await params).page), 1);
-  const title = `Image Page ${pageNum}`;
-  const description = `Browse beautiful anime wallpapers on AniPic - page ${pageNum} of our curated collection.`;
+  const title = `Browse AI Generated Images - Page ${pageNum}`;
+
+  const description = `Explore high-quality AI generated images, wallpapers, and digital art on AniPic - Page ${pageNum} of our curated collection.`;
 
   return {
     title,
@@ -58,8 +57,10 @@ export default async function AniPicPage({ params }: Params) {
   cacheTag("anipicImagePages");
 
   const { page } = await params;
-
   const pageNum = Math.max(parseInt(page), 1);
+
+  cacheTag(`anipicImagePage:${pageNum}`);
+
   const AniPic = await getAniPicModel();
 
   const [images, total] = await Promise.all([
@@ -67,7 +68,7 @@ export default async function AniPicPage({ params }: Params) {
       .sort({ createdAt: -1 })
       .skip(pageNum * IMAGE_LIMIT_PER_PAGE)
       .limit(IMAGE_LIMIT_PER_PAGE)
-      .lean<IAniPic[]>(),
+      .lean(),
     AniPic.countDocuments({ approved: true }),
   ]);
 
@@ -77,9 +78,17 @@ export default async function AniPicPage({ params }: Params) {
     return notFound();
   }
 
+  const safeImages: SafeImages[] = images.map((img) => ({
+    sno: img.sno,
+    thumbnailUrl: img.thumbnailUrl,
+    width: img.width,
+    height: img.height,
+    title: buildSeoTitle(img.tags),
+  }));
+
   return (
-    <main className="max-w-4xl mx-auto p-6">
-      <ImageGrid images={images} />
+    <section>
+      <ImageGrid images={safeImages} />
 
       {/* Pagination controls */}
       <div className="flex justify-between mt-6">
@@ -99,6 +108,6 @@ export default async function AniPicPage({ params }: Params) {
           </Link>
         )}
       </div>
-    </main>
+    </section>
   );
 }

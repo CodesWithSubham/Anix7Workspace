@@ -14,8 +14,8 @@ export interface IAniPic extends Document {
 
   tags: string[];
 
-  width?: number;
-  height?: number;
+  width: number;
+  height: number;
 
   downloads: number;
   views: number;

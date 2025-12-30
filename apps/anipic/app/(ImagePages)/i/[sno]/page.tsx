@@ -4,6 +4,8 @@ import getAniPicModel from "@/lib/db/models/AniPic";
 import { cacheLife, cacheTag } from "next/cache";
 import Image from "next/image";
 import { DownloadButton } from "./ImageClientAction";
+import { buildSeoDescription, buildSeoTitle } from "@/utils/seo/buildSeoUsingTags";
+import { capitalize } from "@/utils/capitalize";
 
 type Props = { params: Promise<{ sno: string }> };
 
@@ -25,6 +27,8 @@ async function getImage(sno: number) {
     width: imgObj.width,
     height: imgObj.height,
     tags: imgObj.tags,
+    title: buildSeoTitle(imgObj.tags),
+    description: buildSeoDescription(imgObj.tags),
     downloads: imgObj.downloads,
   };
 
@@ -39,27 +43,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return { title: "Image Not Found", robots: { index: false, follow: false } };
   }
 
-  const title = img.tags?.length > 0 ? img.tags.slice(0, 6).join(", ") : "Anime Image";
-
-  const description =
-    img.tags?.length > 0
-      ? `Download high quality anime image: ${img.tags.slice(0, 8).join(", ")}`
-      : "Download high quality anime images from AniPic";
-
   const canonical = `/i/${img.sno}`;
 
   return {
-    title,
-    description,
+    title: img.title,
+    description: img.description,
     keywords: img.tags,
 
-    alternates: {
-      canonical,
-    },
+    alternates: { canonical },
 
     openGraph: {
-      title,
-      description,
+      title: img.title,
+      description: img.description,
       url: canonical,
       siteName: "AniPic",
       type: "article",
@@ -68,15 +63,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
           url: img.thumbnailUrl,
           width: img.width,
           height: img.height,
-          alt: title,
+          alt: img.title,
         },
       ],
     },
 
     twitter: {
       card: "summary_large_image",
-      title,
-      description,
+      title: img.title,
+      description: img.description,
       images: [img.displayUrl],
     },
   };
@@ -88,7 +83,11 @@ export default async function ImagePageInner({ params }: Props) {
   if (!img) return notFound();
 
   return (
-    <div className="w-full flex flex-col md:flex-row gap-2 mx-auto p-4">
+    <section className="w-full flex flex-col md:flex-row gap-2 mx-auto p-4">
+      {/* Hidden Title & Desc */}
+      <p className="hidden">{img.title}</p>
+      <p className="hidden">{img.description}</p>
+
       <Image
         src={img.displayUrl}
         unoptimized
@@ -109,19 +108,19 @@ export default async function ImagePageInner({ params }: Props) {
         <div className="mt-4">
           {/* <p className="text-gray-400 text-xs mt-2">Downloads: {img.downloads}</p> */}
 
-          {img.tags?.length && (
+          {img.tags.length > 0 && (
             <p className="mt-2 text-gray-700 flex flex-wrap items-center gap-1">
               Tags:
               {img.tags.map((tag, i) => (
                 <span key={`${tag}-${i}`} className="border px-1 border-theme-250 rounded">
-                  {tag[0].toUpperCase() + tag.slice(1).toLowerCase()}
+                  {capitalize(tag)}
                 </span>
               ))}
             </p>
           )}
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 
