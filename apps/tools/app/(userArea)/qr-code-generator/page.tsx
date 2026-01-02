@@ -1,10 +1,10 @@
-
 import Image from "next/image";
 import { Button } from "@shared/components/ui/Button";
 import QRCodeGenerator, { LaunchQRCodeGenerator } from "./generator";
 import { IoColorPaletteOutline } from "react-icons/io5";
+import type { Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Fully customized QR Code Generator with colors, shapes, and logos",
   description:
     "QR Code Generator by Anix7 Tools, where you can generate fully customized QR Codes with colors, shapes, and logos.",
