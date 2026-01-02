@@ -22,7 +22,7 @@ type SignUpFormData = {
 };
 
 // Errors are optional strings for each field
-export type SignUpErrors = Partial<Record<keyof SignUpFormData | "otp", string>>;
+export type SignUpErrors = Partial<Record<keyof SignUpFormData, string>>;
 
 export default function LoginSignup() {
   const { data: session } = useSession();
@@ -80,7 +80,7 @@ export default function LoginSignup() {
           <span
             className={cn(
               "-z-1 absolute top-px bottom-px w-1/2 bg-theme-450 rounded-full",
-              isLoginTab ? "left-px" : "left-[calc(50%-1px)]"
+              isLoginTab ? "left-px" : "left-[calc(50%-1px)]",
             )}
           ></span>
         </div>
