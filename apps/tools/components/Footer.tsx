@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import Section from "@shared/components/ui/Section";
-import { cacheLife } from "next/cache";
 import Hr from "@shared/components/ui/Hr";
 import { Suspense } from "react";
 import CurrentYear from "@shared/components/currentYear";

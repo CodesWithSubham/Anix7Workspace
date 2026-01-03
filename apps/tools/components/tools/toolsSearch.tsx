@@ -20,23 +20,22 @@ export default function ToolSearch() {
 
   const pathname = usePathname();
 
-  // Reset focus when route changes
-  useEffect(() => {
-    setIsFocused(false);
-  }, [pathname]);
+  const closeSearch = () => {
+    setIsFocused(false); // Close search
+    setQuery("");
+    pushed.current = false; // Remove the pushed state
+  };
 
   useEffect(() => {
     const handlePopState = () => {
       if (isFocused) {
-        setIsFocused(false); // Close search instead of navigating back
-        pushed.current = false; // Remove the pushed state
-      } // else → allow normal back
+        closeSearch();
+      }
     };
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (isFocused && e.key === "Escape") {
-        setIsFocused(false);
-        pushed.current = false;
+        closeSearch();
       }
     };
 
@@ -50,9 +49,6 @@ export default function ToolSearch() {
         window.history.pushState(null, "", pathname);
         pushed.current = true;
       }
-    } else {
-      setQuery("");
-      inputRef.current?.blur();
     }
 
     return () => {
@@ -67,7 +63,7 @@ export default function ToolSearch() {
     const lower = query.toLowerCase();
     return tools.filter(
       (tool) =>
-        tool.title.toLowerCase().includes(lower) || tool.description.toLowerCase().includes(lower)
+        tool.title.toLowerCase().includes(lower) || tool.description.toLowerCase().includes(lower),
     );
   }, [query]);
 
@@ -86,7 +82,7 @@ export default function ToolSearch() {
         <div
           className={cn(
             "w-full max-md:fixed max-md:max-w-5/6 max-md:left-1/2 max-md:-translate-x-1/2 max-md:-top-12 md:relative transition-all duration-300 ease-in-out",
-            isFocused && "max-md:top-1"
+            isFocused && "max-md:top-1",
           )}
         >
           <Input
@@ -103,7 +99,7 @@ export default function ToolSearch() {
             onClick={() => setQuery("")}
             className={cn(
               "absolute top-1/2 -translate-y-1/2 right-2 transition-all duration-300 text-neutral-500",
-              query ? "cursor-pointer scale-100 hover:scale-105" : "scale-0"
+              query ? "cursor-pointer scale-100 hover:scale-105" : "scale-0",
             )}
           />
         </div>
@@ -116,11 +112,12 @@ export default function ToolSearch() {
                 <Link
                   className="w-full flex h-full flex-row items-center gap-2.5 overflow-hidden hover:scale-102 transition-all"
                   href={tool.link}
+                  onClick={closeSearch}
                 >
                   {tool.image && (
                     <div
                       className={cn(
-                        "w-1/4 max-w-12 md:max-w-16 aspect-square flex-shrink-0 flex items-center justify-center overflow-hidden"
+                        "w-1/4 max-w-12 md:max-w-16 aspect-square shrink-0 flex items-center justify-center overflow-hidden",
                       )}
                     >
                       <Image
@@ -160,9 +157,9 @@ export default function ToolSearch() {
       <div
         className={cn(
           "fixed inset-0 z-10 invisible backdrop-blur-none transition-all duration-300",
-          isFocused && "visible backdrop-blur-xs"
+          isFocused && "visible backdrop-blur-xs",
         )}
-        onClick={() => setIsFocused(false)}
+        onClick={closeSearch}
       />
     </>
   );
