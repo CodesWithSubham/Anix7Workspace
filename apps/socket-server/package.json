@@ -12,7 +12,7 @@
     "@repo/shared": "workspace:*",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
-    "fastify": "^4.29.1",
+    "fastify": "^5.7.3",
     "fastify-plugin": "^5.1.0",
     "mongoose": "^8.19.4",
     "socket.io": "^4.8.1"
