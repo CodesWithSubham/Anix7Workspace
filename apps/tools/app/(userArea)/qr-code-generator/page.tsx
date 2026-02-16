@@ -199,7 +199,7 @@ export default async function QrCode() {
           ].map((benefit, i) => (
             <div
               key={i}
-              className="flex-1 min-w-[250px] max-w-sm sm:basis-[calc(50%-1rem)] md:basis-[calc(33.333%-1rem)] border rounded-lg px-4 py-5 bg-background/80 shadow-xs hover:shadow-md transition-all"
+              className="flex-1 min-w-62.5 max-w-sm sm:basis-[calc(50%-1rem)] md:basis-[calc(33.333%-1rem)] border rounded-lg px-4 py-5 bg-background/80 shadow-xs hover:shadow-md transition-all"
             >
               <p className="font-medium text-sm sm:text-base">{benefit}</p>
             </div>

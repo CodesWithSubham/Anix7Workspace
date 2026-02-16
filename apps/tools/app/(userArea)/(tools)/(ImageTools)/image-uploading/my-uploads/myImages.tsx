@@ -161,7 +161,7 @@ export default function MyImages() {
       ) : total > 0 ? (
         <div>
           <h2 className="text-3xl font-bold text-center m-5">My Uploaded Images ({total})</h2>
-          <div className="columns-1 min-[420px]:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
+          <div className="columns-1 min-[26rem]:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
             {images[pageNum - 1]?.map((image) => (
               <div
                 className="break-inside-avoid overflow-hidden rounded-lg even:bg-theme-150 dark:even:bg-neutral-800 odd:bg-[#4e4e4e29] border-2 border-dotted border-theme-450"

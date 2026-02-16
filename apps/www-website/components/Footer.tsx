@@ -103,7 +103,7 @@ export default function Footer() {
             <Hr />
           </>
         )}
-        {/* <!--[ Credit ]--> */}
+        {/* Credit */}
         <div className="inline-flex items-center">
           <span>
             <span className="font-sans">&copy;</span>

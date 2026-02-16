@@ -124,7 +124,7 @@ export default function SlideBarLayout({
       {/* ml-0 in small  */}
       <div
         className={`w-full fixed left-0 top-0 bottom-0 md:relative transition-all duration-300 z-20 md:z-10 md:shrink-0 h-full md:h-auto flex justify-start md:block ${
-          showSideBar ? "ml-0 md:w-56" : "md:w-16 ml-[-100%] md:ml-0"
+          showSideBar ? "ml-0 md:w-56" : "md:w-16 -ml-[100%] md:ml-0"
         }`}
       >
         <div className="mnBr w-11/12 max-w-md md:w-auto relative md:sticky md:top-14.5 lg:top-15.25 xl:top-16 max-[767.98px]:h-full max-[767.98px]:rounded-r-xl max-[767.98px]:z-3 max-[767.98px]:overflow-hidden">

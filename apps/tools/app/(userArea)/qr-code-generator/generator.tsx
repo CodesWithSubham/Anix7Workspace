@@ -420,7 +420,7 @@ export default function QRCodeGenerator() {
                       {frameIcons.map((item, i) => (
                         <button
                           key={`con-${i}`}
-                          className={`flex-1 p-1.5 min-w-16 h-16 md:min-w-20 md:h-20 flex justify-center items-center border-[3px] font-semibold rounded-md cursor-pointer ${
+                          className={`flex-1 p-1.5 min-w-16 h-16 md:min-w-20 md:h-20 flex justify-center items-center border-3 font-semibold rounded-md cursor-pointer ${
                             frame.type == i ? "border-theme-450" : ""
                           } `}
                           onClick={() => setFrame((prev) => ({ ...prev, type: i }))}
@@ -433,7 +433,7 @@ export default function QRCodeGenerator() {
                     </div>
                     <div
                       className={`overflow-hidden transition-all duration-700 ease-in-out ${
-                        frame.type ? "max-h-[999px]" : "max-h-0"
+                        frame.type ? "max-h-249.75" : "max-h-0"
                       }`}
                     >
                       <h3 className="text-lg">Frame Background:</h3>
@@ -521,7 +521,7 @@ export default function QRCodeGenerator() {
                         {shape.map(({ type, svg }, i) => (
                           <button
                             key={`con-${i}`}
-                            className={`flex-1 p-1.5 min-w-14 h-14 md:min-w-16 md:h-16 flex justify-center items-center border-[3px] font-semibold rounded-md cursor-pointer ${
+                            className={`flex-1 p-1.5 min-w-14 h-14 md:min-w-16 md:h-16 flex justify-center items-center border-3 font-semibold rounded-md cursor-pointer ${
                               qrSetting.qrStyle == type ? "border-theme-450" : ""
                             } `}
                             onClick={() =>
@@ -555,7 +555,7 @@ export default function QRCodeGenerator() {
                         {eyes.inner.map(({ style, svg }, i) => (
                           <button
                             key={`con-${i}`}
-                            className={`flex-1 p-1.5 min-w-14 h-14 md:min-w-16 md:h-16 flex justify-center items-center border-[3px] font-semibold rounded-md cursor-pointer ${
+                            className={`flex-1 p-1.5 min-w-14 h-14 md:min-w-16 md:h-16 flex justify-center items-center border-3 font-semibold rounded-md cursor-pointer ${
                               eyeStyle.inner == i ? "border-theme-450" : ""
                             } `}
                             onClick={() => {
@@ -582,7 +582,7 @@ export default function QRCodeGenerator() {
                         {eyes.outer.map(({ style, svg }, i) => (
                           <button
                             key={`con-${i}`}
-                            className={`flex-1 p-1.5 min-w-14 h-14 md:min-w-16 md:h-16 flex justify-center items-center border-[3px] font-semibold rounded-md cursor-pointer ${
+                            className={`flex-1 p-1.5 min-w-14 h-14 md:min-w-16 md:h-16 flex justify-center items-center border-3 font-semibold rounded-md cursor-pointer ${
                               eyeStyle.outer == i ? "border-theme-450" : ""
                             } `}
                             onClick={() => {
@@ -610,7 +610,7 @@ export default function QRCodeGenerator() {
                       {logo.map((item, i) => (
                         <button
                           key={`con-${i}`}
-                          className={`flex-1 p-1.5 min-w-16 h-16 md:min-w-20 md:h-20 flex justify-center items-center border-[3px] font-semibold rounded-md cursor-pointer ${
+                          className={`flex-1 p-1.5 min-w-16 h-16 md:min-w-20 md:h-20 flex justify-center items-center border-3 font-semibold rounded-md cursor-pointer ${
                             qrSetting.logoImage == item ? "border-theme-450" : ""
                           } `}
                           onClick={() =>
@@ -653,7 +653,7 @@ export default function QRCodeGenerator() {
                       }
                       label="Remove Qr Code Behind Logo"
                       className={` overflow-hidden transition-all duration-700 ${
-                        qrSetting.logoImage ? "max-h-[99px]" : "max-h-0"
+                        qrSetting.logoImage ? "max-h-24.75" : "max-h-0"
                       }`}
                     />
                   </>
@@ -759,7 +759,7 @@ function Frame({ frame, children }: { frame: QrFrame; children: React.ReactNode 
           {children}
         </div>
         <div
-          className="absolute w-5 h-5 top-[220px] left-1/2 -translate-x-1/2 rotate-45 -z-10"
+          className="absolute w-5 h-5 top-55 left-1/2 -translate-x-1/2 rotate-45 -z-10"
           style={{ backgroundColor: frame.bg }}
         />
         {textBox}
@@ -778,7 +778,7 @@ function Frame({ frame, children }: { frame: QrFrame; children: React.ReactNode 
           {children}
         </div>
         <div
-          className="absolute w-5 h-5 bottom-[220px] left-1/2 -translate-x-1/2 rotate-45 -z-10"
+          className="absolute w-5 h-5 bottom-55 left-1/2 -translate-x-1/2 rotate-45 -z-10"
           style={{ backgroundColor: frame.bg }}
         />
       </div>

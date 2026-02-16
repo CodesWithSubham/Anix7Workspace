@@ -25,7 +25,7 @@ export default function ImageGrid({ images }: { images: SafeImages[] }) {
   const orderedImages = reorder(images);
 
   return (
-    <div className="columns-1 min-[320px]:columns-2 sm:columns-3 lg:columns-4 gap-x-4 gap-y-4">
+    <div className="columns-1 min-[20rem]:columns-2 sm:columns-3 lg:columns-4 gap-x-4 gap-y-4">
       {orderedImages.map(({ sno, thumbnailUrl, width, height, title }, index) => (
         <Link
           key={sno}
