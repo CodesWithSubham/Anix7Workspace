@@ -101,7 +101,7 @@ export default async function Footer() {
           ))}
         </div>
         <Hr />
-        {/* <!--[ Credit ]--> */}
+        {/* Credit */}
         <div className="inline-flex items-center">
           <span>
             <span className="font-sans">&copy;</span>

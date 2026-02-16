@@ -193,7 +193,7 @@ export function AdsterraBanner468x60() {
   }, []);
 
   return (
-    <AdsIcon className="w-[468px]">
+    <AdsIcon className="w-117">
       <div ref={containerRef} />
     </AdsIcon>
   );
@@ -235,7 +235,7 @@ export function AdsterraBanner728x90() {
   }, []);
 
   return (
-    <AdsIcon className="w-[728px]">
+    <AdsIcon className="w-182">
       <div ref={containerRef} />
     </AdsIcon>
   );
