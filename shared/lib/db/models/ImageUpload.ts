@@ -1,7 +1,7 @@
-import { Schema, Model, Document, Connection } from "mongoose";
+import { Schema, Model, Connection } from "mongoose";
 import connectToImageUploadDb from "../connections/imageUploadDb";
 
-export interface IImageUpload extends Document {
+export interface ImageUpload {
   alias: string;
   deleteHash: string;
   extension: string;
@@ -12,7 +12,7 @@ export interface IImageUpload extends Document {
   updatedAt: Date;
 }
 
-const imageUploadSchema = new Schema<IImageUpload>(
+const imageUploadSchema = new Schema<ImageUpload>(
   {
     alias: { type: String, required: true, unique: true },
     deleteHash: { type: String, required: true },
@@ -21,19 +21,16 @@ const imageUploadSchema = new Schema<IImageUpload>(
     adsLabel: { type: Number, enum: [0, 1, 2, 3], default: 1 },
     expiredAt: { type: Date, default: null },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
-let cachedModel: Model<IImageUpload> | null = null;
+let cachedModel: Model<ImageUpload> | null = null;
 
-export default async function getImageUploadModel(): Promise<
-  Model<IImageUpload>
-> {
+export default async function getImageUploadModel(): Promise<Model<ImageUpload>> {
   const conn: Connection = await connectToImageUploadDb();
   if (!cachedModel) {
     cachedModel =
-      conn.models.ImageUpload ||
-      conn.model<IImageUpload>("ImageUpload", imageUploadSchema);
+      conn.models.ImageUpload || conn.model<ImageUpload>("ImageUpload", imageUploadSchema);
   }
   return cachedModel;
 }

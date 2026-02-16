@@ -1,8 +1,7 @@
-import { Schema, Model, Document, Connection } from "mongoose";
+import { Schema, Model, Connection } from "mongoose";
 import connectToShortUrlDb from "../connections/shortUrlDb";
 
-// Define the TypeScript interface for ShortUrl documents
-export interface IShortUrl extends Document {
+export interface ShortUrl {
   alias: string; // Alias of 6 characters
   longUrl: string; // The original long URL
   uploadedBy: string; // References User's id
@@ -13,7 +12,7 @@ export interface IShortUrl extends Document {
 }
 
 // Define the schema with validations & defaults
-const shortUrlSchema = new Schema<IShortUrl>(
+const shortUrlSchema = new Schema<ShortUrl>(
   {
     alias: {
       type: String,
@@ -27,16 +26,16 @@ const shortUrlSchema = new Schema<IShortUrl>(
     adsLabel: { type: Number, enum: [0, 1, 2, 3], default: 1 }, // Ads label: 0, 1, 2, or 3
     expiredAt: { type: Date, default: null }, // Default to null if not provided
   },
-  { timestamps: true } // Automatically handles createdAt and updatedAt
+  { timestamps: true }, // Automatically handles createdAt and updatedAt
 );
 
 // Using mongoose models and checking for existing models to prevent overwriting
-let cachedModel: Model<IShortUrl> | null = null;
+let cachedModel: Model<ShortUrl> | null = null;
 
-export default async function getShortUrlModel(): Promise<Model<IShortUrl>> {
+export default async function getShortUrlModel(): Promise<Model<ShortUrl>> {
   const conn: Connection = await connectToShortUrlDb();
   if (!cachedModel) {
-    cachedModel = conn.models.ShortUrl || conn.model<IShortUrl>("ShortUrl", shortUrlSchema);
+    cachedModel = conn.models.ShortUrl || conn.model<ShortUrl>("ShortUrl", shortUrlSchema);
   }
   return cachedModel;
 }

@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const uri = process.env.MONGODB_URI_IMAGEUPLOADS;
 
-let cached = global._imageUploadDb || { conn: null, promise: null };
+const cached = global._imageUploadDb || { conn: null, promise: null };
 
 export default async function connectToImageUploadDb() {
   if (!uri) throw new Error("❌ MONGODB_URI_IMAGEUPLOADS not found");
