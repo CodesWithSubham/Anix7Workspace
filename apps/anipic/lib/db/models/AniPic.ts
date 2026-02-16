@@ -1,8 +1,8 @@
 import "server-only";
-import { Schema, Model, Document, Connection } from "mongoose";
+import { Schema, Model, Connection } from "mongoose";
 import connectToAniPicDb from "../connections/aniPicDb";
 
-export interface IAniPic extends Document {
+export interface AniPic {
   sno: number;
 
   originalUrl: string;
@@ -29,7 +29,7 @@ export interface IAniPic extends Document {
   updatedAt: Date;
 }
 
-const aniPicSchema = new Schema<IAniPic>(
+const aniPicSchema = new Schema<AniPic>(
   {
     sno: { type: Number, required: true, unique: true, index: true },
     originalUrl: { type: String, required: true, unique: true },
@@ -52,18 +52,18 @@ const aniPicSchema = new Schema<IAniPic>(
     dmcaFlag: { type: Boolean, default: false, index: true },
     dmcaReason: { type: String },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 // Index for sorting and searching efficiently
 aniPicSchema.index({ createdAt: -1 });
 
-let cachedModel: Model<IAniPic> | null = null;
+let cachedModel: Model<AniPic> | null = null;
 
-export default async function getAniPicModel(): Promise<Model<IAniPic>> {
+export default async function getAniPicModel(): Promise<Model<AniPic>> {
   const conn: Connection = await connectToAniPicDb();
   if (!cachedModel) {
-    cachedModel = conn.models.AniPic || conn.model<IAniPic>("AniPic", aniPicSchema);
+    cachedModel = conn.models.AniPic || conn.model<AniPic>("AniPic", aniPicSchema);
   }
   return cachedModel;
 }

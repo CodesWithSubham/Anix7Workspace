@@ -9,14 +9,16 @@ export async function getUrl(alias: string) {
   return url;
 }
 
-
 // Function to generate a random alias
 export async function generateAlias() {
-  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
   const ShortUrl = await getShortUrlModel();
   let alias;
   do {
-    alias = Array.from({ length: 6 }, () => characters[Math.floor(Math.random() * characters.length)]).join('');
+    alias = Array.from(
+      { length: 6 },
+      () => characters[Math.floor(Math.random() * characters.length)],
+    ).join("");
   } while (await ShortUrl.findOne({ alias }));
 
   return alias;
@@ -30,10 +32,10 @@ export async function createShortUrl(longUrl: string, uploadedBy: string) {
     longUrl,
     alias,
     uploadedBy,
-    adsLabel: 0,  // Default adsLabel set to 0
+    adsLabel: 0, // Default adsLabel set to 0
     createdAt: new Date(),
     updatedAt: new Date(),
-    expiredAt: null,  // Set null by default
+    expiredAt: null, // Set null by default
   });
 
   await newShortUrl.save();
@@ -41,9 +43,16 @@ export async function createShortUrl(longUrl: string, uploadedBy: string) {
 }
 
 // Function to update the URL's details
-export async function updateShortUrl(alias: string, updates: Partial<{ longUrl: string; adsLabel: number; expiredAt: Date }>) {
+export async function updateShortUrl(
+  alias: string,
+  updates: Partial<{ longUrl: string; adsLabel: number; expiredAt: Date }>,
+) {
   const ShortUrl = await getShortUrlModel();
-  const shortUrl = await ShortUrl.findOneAndUpdate({ alias }, { $set: updates }, { new: true });
+  const shortUrl = await ShortUrl.findOneAndUpdate(
+    { alias },
+    { $set: updates },
+    { new: true, runValidators: true },
+  );
   return shortUrl;
 }
 
@@ -53,4 +62,3 @@ export async function deleteShortUrl(alias: string) {
   const deletedUrl = await ShortUrl.findOneAndDelete({ alias });
   return deletedUrl;
 }
-

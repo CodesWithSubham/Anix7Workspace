@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const uri = process.env.MONGODB_URI_SHORTURLS;
 
-let cached = global._shortUrlDb || { conn: null, promise: null };
+const cached = global._shortUrlDb || { conn: null, promise: null };
 
 export default async function connectToShortUrlDb() {
   if (!uri) throw new Error("❌ MONGODB_URI_SHORTURLS not found");
