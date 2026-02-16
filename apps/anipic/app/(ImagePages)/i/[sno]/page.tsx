@@ -85,40 +85,45 @@ export default async function ImagePageInner({ params }: Props) {
   return (
     <section className="w-full flex flex-col md:flex-row gap-2 mx-auto p-4">
       {/* Hidden Title & Desc */}
-      <p className="hidden">{img.title}</p>
-      <p className="hidden">{img.description}</p>
+      <p className="sr-only">{img.title}</p>
+      <p className="sr-only">{img.description}</p>
 
-      <Image
-        src={img.displayUrl}
-        unoptimized
-        alt={`AniPic ${img.sno}`}
-        width={800}
-        height={600}
-        className="object-contain w-full md:max-w-md h-full rounded-2xl"
-      />
+      {/* Image Section */}
+      <div className="flex-1 rounded-3xl overflow-hidden bg-gray-100 dark:bg-neutral-900 flex items-center justify-center">
+        <Image
+          src={img.displayUrl}
+          unoptimized
+          alt={img.title}
+          width={512}
+          height={Math.round(512 * ((img.height || 512) / (img.width || 512)))}
+          className="w-full max-h-[70vh] object-contain"
+        />
+      </div>
 
-      <div className="flex-1">
-        <div className="flex gap-2 mx-4">
-          {/* <LikeButton /> */}
-          <div className="flex items-center gap-2">
-            <DownloadButton sno={img.sno} />
-            {/* <TotalDownloads sno={img.sno} /> */}
-          </div>
+      {/* Right Panel */}
+      <div className="flex-1 flex flex-col justify-between">
+        {/* Action Buttons */}
+        <div className="flex flex-wrap gap-3 max-md:mx-4">
+          <DownloadButton sno={img.sno} />
         </div>
-        <div className="mt-4">
-          {/* <p className="text-gray-400 text-xs mt-2">Downloads: {img.downloads}</p> */}
 
-          {img.tags.length > 0 && (
-            <p className="mt-2 text-gray-700 flex flex-wrap items-center gap-1">
-              Tags:
+        {/* Tags Section */}
+        {img.tags.length > 0 && (
+          <div className="mt-6">
+            <p className="text-sm text-gray-500 mb-2">Tags</p>
+
+            <div className="flex flex-wrap gap-2">
               {img.tags.map((tag, i) => (
-                <span key={`${tag}-${i}`} className="border px-1 border-theme-250 rounded">
+                <span
+                  key={`${tag.split(" ").join("")}-${i}`}
+                  className="px-3 py-1 text-sm border border-gray-300 dark:border-neutral-700 rounded-full hover:bg-gray-100 dark:hover:bg-neutral-800 transition"
+                >
                   {capitalize(tag)}
                 </span>
               ))}
-            </p>
-          )}
-        </div>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );

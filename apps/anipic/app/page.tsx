@@ -3,8 +3,8 @@ import ImageGrid, { SafeImages } from "@/components/imageGrid";
 import { IMAGE_LIMIT_PER_PAGE } from "@/utils/const";
 import getAniPicModel from "@/lib/db/models/AniPic";
 import { cacheLife, cacheTag } from "next/cache";
-import Link from "next/link";
 import { buildSeoTitle } from "@/utils/seo/buildSeoUsingTags";
+import { Button } from "@shared/components/ui/Button";
 
 export const metadata: Metadata = { alternates: { canonical: "/" } };
 
@@ -34,10 +34,8 @@ export default async function HomePage() {
       <ImageGrid images={safeImages} />
 
       {/* Pagination controls */}
-      <div className="flex justify-between mt-6">
-        <Link href={`/page/1`} className="px-4 py-2 border rounded-lg hover:bg-gray-100">
-          Next →
-        </Link>
+      <div className="flex justify-end mt-6">
+        <Button href="/page/1">Next →</Button>
       </div>
     </section>
   );

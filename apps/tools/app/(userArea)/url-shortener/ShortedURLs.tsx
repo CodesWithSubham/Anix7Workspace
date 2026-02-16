@@ -260,7 +260,7 @@ export default function ShortedURLs({
                           className="cursor-pointer"
                         >
                           <span
-                            className={`w-4 h-4 rounded-full mr-[6px] inline-block border-[3.5px] border-theme-150 outline outline-theme-450 ${
+                            className={`w-4 h-4 rounded-full mr-1.5 inline-block border-[3.5px] border-theme-150 outline outline-theme-450 ${
                               url.adsLabel === i ? "bg-theme-450" : "bg-theme-150"
                             }`}
                           />

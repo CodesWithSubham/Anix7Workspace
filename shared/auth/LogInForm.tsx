@@ -59,7 +59,7 @@ export default function LogInForm() {
                   toast.error(ctx.error.message || "Something went wrong");
               }
             },
-          }
+          },
         );
       } catch (err) {
         // 3️⃣ Zod field-level errors
@@ -68,7 +68,7 @@ export default function LogInForm() {
             err.errors.reduce<Record<string, string>>((acc, { path, message }) => {
               acc[path[0] as string] = message;
               return acc;
-            }, {})
+            }, {}),
           );
         } else {
           toast.error("Unexpected error occurred");

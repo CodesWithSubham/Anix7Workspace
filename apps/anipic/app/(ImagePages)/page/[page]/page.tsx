@@ -3,9 +3,9 @@ import { IMAGE_LIMIT_PER_PAGE } from "@/utils/const";
 import getAniPicModel from "@/lib/db/models/AniPic";
 import type { Metadata } from "next";
 import { cacheLife, cacheTag } from "next/cache";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { buildSeoTitle } from "@/utils/seo/buildSeoUsingTags";
+import { Button } from "@shared/components/ui/Button";
 
 type Params = { params: Promise<{ page: string }> };
 
@@ -91,22 +91,14 @@ export default async function AniPicPage({ params }: Params) {
       <ImageGrid images={safeImages} />
 
       {/* Pagination controls */}
-      <div className="flex justify-between mt-6">
-        <Link
-          href={pageNum > 1 ? `/page/${Math.min(totalPages, pageNum - 1)}` : "/"}
-          className="px-4 py-2 border rounded-lg hover:bg-gray-100"
-        >
+      <div className="flex justify-between mt-6 space-x-2">
+        {/* Previous Button */}
+        <Button href={pageNum > 1 ? `/page/${Math.min(totalPages, pageNum - 1)}` : "/"}>
           ← Prev
-        </Link>
+        </Button>
 
-        {pageNum + 1 < totalPages && (
-          <Link
-            href={`/page/${pageNum + 1}`}
-            className="px-4 py-2 border rounded-lg hover:bg-gray-100"
-          >
-            Next →
-          </Link>
-        )}
+        {/* Next Button */}
+        {pageNum + 1 < totalPages && <Button href={`/page/${pageNum + 1}`}>Next →</Button>}
       </div>
     </section>
   );
