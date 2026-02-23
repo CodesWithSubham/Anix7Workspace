@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { Button } from "./Button";
 import { cn } from "@shared/utils/cn";
@@ -11,7 +11,7 @@ export function WorkBox({ children, className = "", ...props }: React.HTMLProps<
     <div
       className={twMerge(
         "my-3 mx-auto p-5 bg-transparent text-center shadow-[0_5px_35px] shadow-black/5 rounded-xl relative",
-        className
+        className,
       )}
       {...props}
     >
@@ -73,20 +73,20 @@ export function PopUpBox({
     setIsVisible(visible);
   }, [visible]);
 
-  const handleScroll = useCallback(() => {
+  const handleScroll = () => {
     const el = scrollRef.current;
     if (!el) return;
     const { scrollTop, scrollHeight, clientHeight } = el;
     setIsAtBottom(scrollHeight - scrollTop - clientHeight <= 10);
-  }, []);
+  };
 
-  const checkScrollable = useCallback(() => {
+  const checkScrollable = () => {
     const el = scrollRef.current;
     if (!el) return;
     const { scrollHeight, clientHeight } = el;
     setIsScrollable(scrollHeight > clientHeight);
     handleScroll();
-  }, [handleScroll]);
+  };
 
   const scrollToBottom = () => {
     const el = scrollRef.current;
@@ -106,12 +106,12 @@ export function PopUpBox({
   //   }
   // }, [isVisible, onClose]);
 
-  const handleClose = useCallback(() => {
+  const handleClose = () => {
     setIsVisible(false);
     setTimeout(() => {
       onClose();
     }, 500);
-  }, [onClose]);
+  };
 
   return (
     <>
@@ -126,7 +126,7 @@ export function PopUpBox({
       <div
         className={cn(
           "fixed inset-0 z-98 bg-black/40 transition-all duration-500",
-          isVisible ? "visible opacity-100" : "opacity-0 invisible"
+          isVisible ? "visible opacity-100" : "opacity-0 invisible",
         )}
         {...props}
       >
@@ -135,7 +135,7 @@ export function PopUpBox({
             className={cn(
               "relative bg-slate-50 dark:bg-neutral-900 w-full max-w-xl pt-4 px-5 pb-6 rounded-3xl",
               "transition-transform duration-300",
-              isVisible ? "scale-100" : "scale-0"
+              isVisible ? "scale-100" : "scale-0",
             )}
           >
             {closeable && (
@@ -218,7 +218,7 @@ export function ShadowBox({
     <div
       className={twMerge(
         "w-full shadow-[0px_3px_10px_rgba(0,0,0,.20),inset_20px_20px_18px_rgba(255,255,255,.9),inset_-20px_-20px_18px_rgba(0,0,0,.07)] dark:shadow-[inset_20px_20px_18px_rgba(255,255,255,.07),inset_-20px_-20px_18px_rgba(0,0,0,.9)] p-5",
-        className
+        className,
       )}
       {...props}
     >

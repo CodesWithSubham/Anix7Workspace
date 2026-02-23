@@ -1,5 +1,6 @@
 import type { IProps as QrProps } from "react-qrcode-logo";
 import type { contentTab, DesignTab } from "./types";
+import { SelectOption } from "@shared/components/ui/Input";
 
 export const frameIcons = [
   <svg key={0} strokeWidth="0" viewBox="0 0 16 16" className="p-2">
@@ -285,3 +286,23 @@ export const defaultLogos = [
   "/assets/img/paypal.png",
 ];
 export const allContent: contentTab[] = ["URL", "Text", "Email", "Wifi", "Image", "Video"];
+
+export const fontOptions: SelectOption[] = [
+  { value: "Arial, sans-serif", label: "Arial" },
+  { value: "'Courier New', monospace", label: "Courier New" },
+  { value: "'Times New Roman', serif", label: "Times New Roman" },
+  { value: "'Lucida Console', monospace", label: "Lucida Console" },
+  {
+    value: "'Lucida Sans Unicode', sans-serif",
+    label: "Lucida Sans Unicode",
+  },
+  { value: "'Palatino Linotype', serif", label: "Palatino Linotype" },
+  { value: "'Tahoma', sans-serif", label: "Tahoma" },
+  { value: "'Trebuchet MS', sans-serif", label: "Trebuchet MS" },
+  { value: "'Verdana', sans-serif", label: "Verdana" },
+  { value: "'Impact', sans-serif", label: "Impact" },
+  {
+    value: "'Comic Sans MS', cursive, sans-serif",
+    label: "Comic Sans MS",
+  },
+].map((font) => ({ ...font, style: { fontFamily: font.value } }));
