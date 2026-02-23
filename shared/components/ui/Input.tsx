@@ -273,7 +273,7 @@ export function TextArea({
   );
 }
 
-export type Option = { label: string } & React.HTMLProps<HTMLOptionElement>;
+export type SelectOption = { label: string } & React.HTMLProps<HTMLOptionElement>;
 
 export function Select({
   label = "",
@@ -289,7 +289,7 @@ export function Select({
   name?: string;
   value?: string | number;
   className?: string;
-  options?: Option[];
+  options?: SelectOption[];
 } & Omit<
   React.DetailedHTMLProps<React.SelectHTMLAttributes<HTMLSelectElement>, HTMLSelectElement>,
   "children"

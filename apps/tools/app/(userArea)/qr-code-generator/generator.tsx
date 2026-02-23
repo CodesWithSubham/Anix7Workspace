@@ -13,10 +13,18 @@ import {
 import { toPng } from "html-to-image";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { type IProps as QrProps, QRCode } from "react-qrcode-logo";
 import type { contentTab, InnerOuterEyeColor, InnerOuterRadii, QrData, QrFrame } from "./types";
-import { allContent, defaultLogos, designTabs, eyes, frameIcons, shape } from "./preset";
+import {
+  allContent,
+  defaultLogos,
+  designTabs,
+  eyes,
+  fontOptions,
+  frameIcons,
+  shape,
+} from "./preset";
 import { normalizeEyeColor, normalizeEyeRadius } from "./helper";
 
 export default function QRCodeGenerator() {
@@ -148,7 +156,7 @@ export default function QRCodeGenerator() {
   // ====================================================
   // ============  Handle QR Download ===================
   // ====================================================
-  const handleDownload = useCallback(() => {
+  const handleDownload = () => {
     if (downloadRef.current === null) return;
     setIsLoading(true);
 
@@ -173,7 +181,7 @@ export default function QRCodeGenerator() {
       .finally(() => {
         setIsLoading(false); // ✅ Now correctly resets loading state
       });
-  }, [downloadRef, content]);
+  };
 
   const handleChange = (
     e:
@@ -302,7 +310,7 @@ export default function QRCodeGenerator() {
               <div className="flex flex-wrap justify-stretch gap-2 mb-5">
                 {allContent.map((item, index) => (
                   <Button
-                    key={`con-${index}`}
+                    key={`context-${index}`}
                     className={`flex-1 min-w-14 font-semibold mx-0 border ${
                       content == item ? "bg-theme-450 text-white" : "bg-transparent text-inherit"
                     }`}
@@ -402,7 +410,7 @@ export default function QRCodeGenerator() {
               <div className="flex  justify-stretch gap-2">
                 {designTabs.map((item, index) => (
                   <Button
-                    key={`con-${index}`}
+                    key={`design-${index}`}
                     className={`w-full px-0.5 py-2 m-0 font-semibold rounded-t-md rounded-b-none hover:scale-100 ${
                       designTab == item ? "bg-theme-450 text-white" : "bg-transparent text-inherit"
                     }`}
@@ -419,7 +427,7 @@ export default function QRCodeGenerator() {
                       {/* Frame Type */}
                       {frameIcons.map((item, i) => (
                         <button
-                          key={`con-${i}`}
+                          key={`frame-${i}`}
                           className={`flex-1 p-1.5 min-w-16 h-16 md:min-w-20 md:h-20 flex justify-center items-center border-3 font-semibold rounded-md cursor-pointer ${
                             frame.type == i ? "border-theme-450" : ""
                           } `}
@@ -460,25 +468,7 @@ export default function QRCodeGenerator() {
                           <Select
                             className="w-full"
                             style={{ fontFamily: frame.font }}
-                            options={[
-                              { value: "Arial, sans-serif", label: "Arial" },
-                              { value: "'Courier New', monospace", label: "Courier New" },
-                              { value: "'Times New Roman', serif", label: "Times New Roman" },
-                              { value: "'Lucida Console', monospace", label: "Lucida Console" },
-                              {
-                                value: "'Lucida Sans Unicode', sans-serif",
-                                label: "Lucida Sans Unicode",
-                              },
-                              { value: "'Palatino Linotype', serif", label: "Palatino Linotype" },
-                              { value: "'Tahoma', sans-serif", label: "Tahoma" },
-                              { value: "'Trebuchet MS', sans-serif", label: "Trebuchet MS" },
-                              { value: "'Verdana', sans-serif", label: "Verdana" },
-                              { value: "'Impact', sans-serif", label: "Impact" },
-                              {
-                                value: "'Comic Sans MS', cursive, sans-serif",
-                                label: "Comic Sans MS",
-                              },
-                            ].map((font) => ({ ...font, style: { fontFamily: font.value } }))}
+                            options={fontOptions}
                             value={frame.font}
                             onChange={(e) => {
                               const { value } = e.currentTarget;
@@ -520,7 +510,7 @@ export default function QRCodeGenerator() {
                       <div className="flex flex-wrap justify-stretch gap-2 mb-5">
                         {shape.map(({ type, svg }, i) => (
                           <button
-                            key={`con-${i}`}
+                            key={`shape-${i}`}
                             className={`flex-1 p-1.5 min-w-14 h-14 md:min-w-16 md:h-16 flex justify-center items-center border-3 font-semibold rounded-md cursor-pointer ${
                               qrSetting.qrStyle == type ? "border-theme-450" : ""
                             } `}
@@ -554,7 +544,7 @@ export default function QRCodeGenerator() {
                       <div className="flex flex-wrap justify-stretch gap-2 mb-5">
                         {eyes.inner.map(({ style, svg }, i) => (
                           <button
-                            key={`con-${i}`}
+                            key={`eye-inner-${i}`}
                             className={`flex-1 p-1.5 min-w-14 h-14 md:min-w-16 md:h-16 flex justify-center items-center border-3 font-semibold rounded-md cursor-pointer ${
                               eyeStyle.inner == i ? "border-theme-450" : ""
                             } `}
@@ -581,7 +571,7 @@ export default function QRCodeGenerator() {
                       <div className="flex flex-wrap justify-stretch gap-2 mb-5">
                         {eyes.outer.map(({ style, svg }, i) => (
                           <button
-                            key={`con-${i}`}
+                            key={`eye-outer-${i}`}
                             className={`flex-1 p-1.5 min-w-14 h-14 md:min-w-16 md:h-16 flex justify-center items-center border-3 font-semibold rounded-md cursor-pointer ${
                               eyeStyle.outer == i ? "border-theme-450" : ""
                             } `}
@@ -609,7 +599,7 @@ export default function QRCodeGenerator() {
                       {/* Logo */}
                       {logo.map((item, i) => (
                         <button
-                          key={`con-${i}`}
+                          key={`logo-${i}`}
                           className={`flex-1 p-1.5 min-w-16 h-16 md:min-w-20 md:h-20 flex justify-center items-center border-3 font-semibold rounded-md cursor-pointer ${
                             qrSetting.logoImage == item ? "border-theme-450" : ""
                           } `}
