@@ -1,6 +1,6 @@
 import type { IProps as QrProps } from "react-qrcode-logo";
 import type { contentTab, DesignTab } from "./types";
-import { SelectOption } from "@shared/components/ui/Input";
+import type { SelectOption } from "@shared/components/ui/Input";
 
 export const frameIcons = [
   <svg key={0} strokeWidth="0" viewBox="0 0 16 16" className="p-2">
