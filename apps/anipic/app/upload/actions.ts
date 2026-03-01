@@ -9,9 +9,9 @@ import { updateTag } from "next/cache";
 /* ---------------- ZOD SCHEMA ---------------- */
 
 const uploadImageSchema = z.object({
-  originalUrl: z.string().url(),
-  displayUrl: z.string().url(),
-  thumbnailUrl: z.string().url(),
+  originalUrl: z.url(),
+  displayUrl: z.url(),
+  thumbnailUrl: z.url(),
 
   width: z.coerce.number().int().positive(),
   height: z.coerce.number().int().positive(),
