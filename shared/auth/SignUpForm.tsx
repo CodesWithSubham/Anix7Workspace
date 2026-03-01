@@ -66,7 +66,7 @@ export default function SignUpForm() {
       const { [key]: _, ...rest } = prev;
       const issue = validation.success
         ? null
-        : validation.error.errors.find((err) => err.path[0] === key);
+        : validation.error.issues.find((err) => err.path[0] === key);
       return issue ? { ...rest, [key]: issue.message } : rest;
     });
 
@@ -117,7 +117,7 @@ export default function SignUpForm() {
       } catch (err) {
         if (err instanceof ZodError) {
           setErrors(
-            err.errors.reduce(
+            err.issues.reduce(
               (acc, { path, message }) => ({ ...acc, [path[0]]: message }),
               {} as SignUpErrors,
             ),

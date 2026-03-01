@@ -65,7 +65,7 @@ export default function LogInForm() {
         // 3️⃣ Zod field-level errors
         if (err instanceof ZodError) {
           setSignInError(
-            err.errors.reduce<Record<string, string>>((acc, { path, message }) => {
+            err.issues.reduce<Record<string, string>>((acc, { path, message }) => {
               acc[path[0] as string] = message;
               return acc;
             }, {}),
